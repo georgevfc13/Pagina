@@ -25,3 +25,9 @@ body{
 .burger{
     background-color: white;
 }
+
+.card:hover {
+    transform: scale(1.03);
+    transition: transform 0.2s;
+    box-shadow: 0 0 30px 0 rgba(0, 123, 255, 0.3);
+}
