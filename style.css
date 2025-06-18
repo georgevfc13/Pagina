@@ -9,6 +9,11 @@ body{
 
 }
 
+.logo{
+    border-radius: 50%;
+    
+}
+
 .nav{
     background-color: gray;
     height: 4rem;
