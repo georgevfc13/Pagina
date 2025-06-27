@@ -2,16 +2,18 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(120deg, #e0eafc, #cfdef3);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .card-container {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   height: auto;
   perspective: 1000px;
+  margin: 16px;
 }
 
 .card {
@@ -92,4 +94,18 @@ a:hover {
 
 input.error {
   border-color: red;
+}
+
+@media (max-width: 500px) {
+  body {
+    align-items: flex-start;
+    padding: 16px 0;
+  }
+  .card-container {
+    max-width: 100%;
+    margin: 0 4px;
+  }
+  .face {
+    padding: 16px;
+  }
 }
