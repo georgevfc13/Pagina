@@ -1,25 +1,136 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Iniciar Sesión</title>
-  
-  <link rel="stylesheet" href="styleform.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inicio / Registro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styleform.css" />
+  </head>
+  <body>
+    <div class="card-container">
+      <div class="card" id="card">
+        <!-- LADO LOGIN -->
+        <div class="face front">
+          <div class="form-container">
+            <h2>Iniciar Sesión</h2>
+            <label for="tipoLogin">Tipo de usuario:</label>
+            <select id="tipoLogin">
+              <option value="natural">Persona natural</option>
+              <option value="juridica">Persona jurídica</option>
+            </select>
+            <form id="loginForm">
+              <div id="loginNatural">
+                <input
+                  type="text"
+                  id="usuario"
+                  placeholder="Usuario"
+                  required
+                />
+                <input
+                  type="password"
+                  id="clave"
+                  placeholder="Contraseña"
+                  required
+                />
+              </div>
+              <div id="loginJuridica" style="display: none">
+                <input type="text" id="nitLogin" placeholder="NIT" required />
+                <input
+                  type="password"
+                  id="claveJuridica"
+                  placeholder="Contraseña"
+                  required
+                />
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit">Entrar</button>
+              </div>
+            </form>
+            <br />
+            <a href="#" id="flipToRegister"
+              >¿No estás registrado? Regístrate</a>
+          </div>
+        </div>
 
-  <div class="form-container">
-    <h2>Iniciar Sesión</h2>
-    <!-- formulario de login -->
-    <form id="loginForm">
-      <input type="text" id="usuario" placeholder="Usuario" required>
-      <input type="password" id="clave" placeholder="Contraseña" required>
-     <a href="" class="registrarse" >Si no estas registrado registrate</a> 
-      <button type="submit">Entrar</button>
-    </form>
-  </div>
+        <!-- LADO REGISTRO -->
+        <div class="face back">
+          <div class="form-container">
+            <h2>Registro</h2>
+            <label for="tipoRegistro">Tipo de usuario:</label>
+            <select id="tipoRegistro">
+              <option value="natural">Persona natural</option>
+              <option value="juridica">Persona jurídica</option>
+            </select>
+            <form id="registerForm">
+              <!-- Persona natural -->
+              <div id="registroNatural">
+                <input type="text" id="cedula" placeholder="Cédula" />
+                <input
+                  type="date"
+                  id="fechaNacimiento"
+                  placeholder="Fecha de nacimiento"
+                />
+                <input type="text" id="nombre" placeholder="Nombre" />
+                <input type="text" id="apellido" placeholder="Apellido" />
+                <input
+                  type="password"
+                  id="claveNatural"
+                  placeholder="Contraseña"
+                />
+                <input
+                  type="password"
+                  id="confirmarClave"
+                  placeholder="Confirmar contraseña"
+                />
+                <input
+                  type="text"
+                  id="area"
+                  placeholder="Área de conocimiento (opcional)"
+                />
+              </div>
 
-  <script src="login.js"></script>
-</body>
+              <!-- Persona jurídica -->
+              <div id="registroJuridica" style="display: none">
+                <input
+                  type="text"
+                  id="nombreEmpresa"
+                  placeholder="Nombre de la empresa"
+                />
+                <input type="text" id="nit" placeholder="NIT" />
+                <input
+                  type="text"
+                  id="direccion"
+                  placeholder="Dirección y ciudad"
+                />
+                <input
+                  type="text"
+                  id="contacto"
+                  placeholder="Teléfono o correo electrónico"
+                />
+              </div>
+              <p id="mensajeError" class="error"></p>
+              <div class="d-flex justify-content-center">
+                <button type="submit">Registrar</button>
+              </div>
+            </form>
+            <br />
+            <a href="#" id="flipToLogin">¿Ya tienes cuenta? Inicia sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="login.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
