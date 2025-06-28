@@ -9,14 +9,18 @@ document.getElementById("tipoRegistro").onchange = function () {
   document.getElementById("registroJuridica").style.display = this.value === "juridica" ? "block" : "none";
 };
 
-// Giro de tarjeta
+// Giro de tarjeta y cambio de clase del body
 document.getElementById("flipToRegister").onclick = function (e) {
   e.preventDefault();
   document.getElementById("card").classList.add("girar");
+  document.body.classList.remove("centrado-vertical");
+  document.body.classList.add("scroll-vertical");
 };
 document.getElementById("flipToLogin").onclick = function (e) {
   e.preventDefault();
   document.getElementById("card").classList.remove("girar");
+  document.body.classList.remove("scroll-vertical");
+  document.body.classList.add("centrado-vertical");
 };
 
 // Validación de login

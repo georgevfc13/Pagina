@@ -31,3 +31,9 @@ body{
     transition: transform 0.2s;
     box-shadow: 0 0 30px 0 rgba(0, 123, 255, 0.3);
 }
+
+#tarjeta_bacana {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
