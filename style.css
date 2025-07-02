@@ -1,10 +1,13 @@
 .pie_pagina{
     background-color: black;
     color: azure;
+    text-align: center;
+    height: 100%;
 }
 
 body{
     background-color: white;
+margin: 0;
 
 
 }
