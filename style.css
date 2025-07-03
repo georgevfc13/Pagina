@@ -7,9 +7,7 @@
 
 body{
     background-color: white;
-margin: 0;
-
-
+    margin: 0;
 }
 
 .logo{
@@ -36,7 +34,16 @@ margin: 0;
 }
 
 #tarjeta_bacana {
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  transform-style: preserve-3d;
-  perspective: 1000px;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+footer a i {
+    color: #fff !important;
+    transition: color 0.2s;
+}
+
+footer a:hover i {
+    color: #ddd !important;
 }
