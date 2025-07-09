@@ -11,27 +11,11 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <link rel="stylesheet" href="style.css" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#3b82f6",
-                        secondary: "#1e40af"
-                    }
-                }
-            }
-        }
-    </script>
-
   </head>
   <body>
-    <!-- nadvar -->
+    <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
       <div class="container-fluid">
         <img src="img/logo.jpg" alt="Logo" class="logo me-2 rounded" />
@@ -62,28 +46,26 @@
               <a class="nav-link" href="#">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="login.html"
-                >Iniciar Sesion/registrarse</a
-              >
+              <a class="nav-link" href="login.html">Iniciar Sesión/Registrarse</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- fin del nadvar -->
+    <!-- fin del navbar -->
 
     <!-- zona hero -->
-
     <section class="bg-primary text-white text-center py-5">
       <div class="container">
         <h1 class="display-5 fw-bold">Bienvenido a GDA</h1>
         <p class="lead">
           Tu puente entre oportunidades laborales y talento profesional
         </p>
-        <a href="login.html" class="btn btn-light mt-3">Registrate aqui</a>
+        <a href="login.html" class="btn btn-light mt-3">Regístrate aquí</a>
       </div>
     </section>
 
+    <!-- tarjeta destacada -->
     <div
       class="card shadow-lg rounded-4 border-primary bg-light mx-auto my-5"
       style="width: 22rem; max-width: 90%"
@@ -100,10 +82,9 @@
       </div>
     </div>
 
-    <!-- inicio del filtro y busqueda -->
+    <!-- inicio del filtro y búsqueda -->
     <section class="container my-5">
       <h2 class="text-center mb-4">Busca Vacantes o Servicios</h2>
-
       <form class="row g-3 shadow p-4 rounded bg-light">
         <!-- Barra de búsqueda -->
         <div class="col-md-6">
@@ -114,7 +95,6 @@
             name="busqueda"
           />
         </div>
-
         <!-- Filtro por tipo -->
         <div class="col-md-3">
           <select class="form-select" name="tipo">
@@ -123,7 +103,6 @@
             <option value="servicio">Servicio</option>
           </select>
         </div>
-
         <!-- Filtro por ubicación -->
         <div class="col-md-3">
           <select class="form-select" name="ubicacion">
@@ -134,15 +113,17 @@
             <option value="la_paz">La Paz</option>
           </select>
         </div>
-
         <!-- Botón de búsqueda -->
         <div class="col-12 text-center">
-          <button type="submit" class="btn btn-primary px-4"><i class="bi bi-search"></i> Buscar</button>
+          <button type="submit" class="btn btn-primary px-4">
+            <i class="bi bi-search"></i> Buscar
+          </button>
         </div>
       </form>
     </section>
-    <!-- filtro y busqueda -->
+    <!-- fin del filtro y búsqueda -->
 
+<<<<<<< HEAD
     <!-- fin de zona hero -->
 
 
@@ -250,9 +231,110 @@
                         Más información <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </div>
+=======
+    <!-- servicios -->
+    <main class="container py-5">
+      <section class="text-center mb-5">
+        <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
+        <p class="lead text-secondary mx-auto" style="max-width: 600px;">
+          Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y tener éxito en el mercado actual.
+        </p>
+      </section>
+      <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Servicio 1 -->
+        <div class="col">
+          <div class="card h-100 shadow rounded-4">
+            <div class="card-body text-center">
+              <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:64px; height:64px;">
+                <i class="fas fa-laptop-code text-primary fs-3"></i>
+              </div>
+              <h5 class="card-title fw-bold">Desarrollo Web</h5>
+              <p class="card-text">
+                Desarrollo de sitios web a medida con tecnologías modernas.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
-        </section>
+          </div>
+        </div>
+        <!-- Servicio 2 -->
+        <div class="col">
+          <div class="card h-100 shadow rounded-4">
+            <div class="card-body text-center">
+              <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:64px; height:64px;">
+                <i class="fas fa-mobile-alt text-primary fs-3"></i>
+              </div>
+              <h5 class="card-title fw-bold">Aplicaciones Móviles</h5>
+              <p class="card-text">
+                Apps móviles multiplataforma para iOS y Android.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Servicio 3 -->
+        <div class="col">
+          <div class="card h-100 shadow rounded-4">
+            <div class="card-body text-center">
+              <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:64px; height:64px;">
+                <i class="fas fa-chart-line text-primary fs-3"></i>
+              </div>
+              <h5 class="card-title fw-bold">Marketing Digital</h5>
+              <p class="card-text">
+                Estrategias digitales para aumentar tu presencia y ventas.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Servicio 4 -->
+        <div class="col">
+          <div class="card h-100 shadow rounded-4">
+            <div class="card-body text-center">
+              <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:64px; height:64px;">
+                <i class="fas fa-paint-brush text-primary fs-3"></i>
+              </div>
+              <h5 class="card-title fw-bold">Diseño UI/UX</h5>
+              <p class="card-text">
+                Interfaces atractivas y funcionales para tus usuarios.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Servicio 5 -->
+        <div class="col">
+          <div class="card h-100 shadow rounded-4">
+            <div class="card-body text-center">
+              <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:64px; height:64px;">
+                <i class="fas fa-cloud text-primary fs-3"></i>
+              </div>
+              <h5 class="card-title fw-bold">Soluciones en la Nube</h5>
+              <p class="card-text">
+                Infraestructura escalable y servicios cloud para tu negocio.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Servicio 6 -->
+        <div class="col">
+          <div class="card h-100 shadow rounded-4">
+            <div class="card-body text-center">
+              <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width:64px; height:64px;">
+                <i class="fas fa-headset text-primary fs-3"></i>
+              </div>
+              <h5 class="card-title fw-bold">Soporte 24/7</h5>
+              <p class="card-text">
+                Soporte técnico permanente para que tu sistema nunca se detenga.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+>>>>>>> de9dbd2b885035b77fb837402cc533079b90898c
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+    <!-- fin de servicios -->
 
     <!-- Fin de tarjetas de servicio --> 
 
@@ -263,10 +345,11 @@
         <a href="#"><i class="bi bi-facebook p-3"></i></a>
         <a href="#"><i class="bi bi-instagram p-3"></i></a>
         <a href="#"><i class="bi bi-whatsapp p-3"></i></a>
-        <a href="https://github.com/georgevfc13" target="_blank"><i class="bi bi-github p-3"></i></a>
+        <a href="https://github.com/georgevfc13" target="_blank" rel="noopener noreferrer"><i class="bi bi-github p-3"></i></a>
       </div>
     </footer>
     <!-- fin del footer -->
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
