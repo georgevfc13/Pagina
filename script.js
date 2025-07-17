@@ -42,7 +42,7 @@ document.querySelectorAll('.toggle-info').forEach(btn => {
 document.addEventListener("DOMContentLoaded", function () {
   // pa que el mapa que se muestre sea en la jagua
     const mapa = L.map('mapa', {
-      scrollWheelZoom: false}).setView([10.1, -73.3], 10);
+      scrollWheelZoom: false}).setView([9.564642895405072, -73.33608547628114], 14);
 
 
   // este es pa cargar un mapa de OpenStreetMap
@@ -76,3 +76,44 @@ document.addEventListener("DOMContentLoaded", function () {
       .bindPopup(`<b>${vacante.titulo}</b><br>La Jagua de Ibirico`);
   });
 });
+
+//graficos
+  //pueblos con más vacantes
+  new Chart(document.getElementById("graficoVacantesCiudades"), {
+    type: "bar",
+    data: {
+      labels: ["La Jagua", "Aguachica", "Becerril", "La Paz", "Curumaní"],
+      datasets: [{
+        label: "Vacantes",
+        data: [62, 20, 29, 20, 15],
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  //servicios más ofertados
+  new Chart(document.getElementById("graficoServiciosOfertados"), {
+    type: "bar",
+    data: {
+      labels: ["Electricista", "Diseñador", "Desarrollador Web", "Celador", "Atendedor"],
+      datasets: [{
+        label: "Servicios",
+        data: [15, 20, 25, 10, 18],
+        backgroundColor: "rgba(54, 162, 235, 0.6)",
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
