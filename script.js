@@ -37,3 +37,42 @@ document.querySelectorAll('.toggle-info').forEach(btn => {
     }
   });
 });
+
+// el script del mapa
+document.addEventListener("DOMContentLoaded", function () {
+  // pa que el mapa que se muestre sea en la jagua
+    const mapa = L.map('mapa', {
+      scrollWheelZoom: false}).setView([10.1, -73.3], 10);
+
+
+  // este es pa cargar un mapa de OpenStreetMap
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(mapa);
+
+  const vacantes = [
+    {
+      titulo: "Celador",
+      lat: 9.555774159560068,
+      lng: -73.33499886092615,
+    },
+    {
+      titulo: "Alguien pa que puye",
+      lat: 9.562868102518381,
+      lng: -73.33157941460846,
+    },
+    {
+      titulo: "Atendedor",
+      lat: 9.562561289714909,
+      lng: -73.3326576626357,
+    },
+  ];
+
+  // Agregar marcadores
+  vacantes.forEach((vacante) => {
+    L.marker([vacante.lat, vacante.lng])
+      .addTo(mapa)
+      .bindPopup(`<b>${vacante.titulo}</b><br>La Jagua de Ibirico`);
+  });
+});
