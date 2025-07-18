@@ -23,6 +23,10 @@
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- navbar -->
@@ -44,7 +48,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a title="Inicio" class="nav-link active" aria-current="page" href="#">Inicio</a>
+              <a
+                title="Inicio"
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                >Inicio</a
+              >
             </li>
             <li class="nav-item">
               <a title="Servicios" class="nav-link" href="#">Servicios</a>
@@ -59,7 +69,10 @@
               <a title="Noticias" class="nav-link" href="#">Noticias</a>
             </li>
             <li class="nav-item">
-              <a title="Iniciar Sesión/Registrarse" class="nav-link" href="login.html"
+              <a
+                title="Iniciar Sesión/Registrarse"
+                class="nav-link"
+                href="login.html"
                 >Iniciar Sesión/Registrarse</a
               >
             </li>
@@ -525,108 +538,242 @@
       <!-- fin de vacantes -->
 
       <!-- inicio del mapa de vacantes -->
-        <section class="container my-5">
-          <h2 class="text-center text-primary mb-4">Mapa de Vacantes</h2>
-          <div id="mapa" style="height: 400px; border-radius: 10px;"></div>
-        </section>
+      <section class="container my-5">
+        <h2 class="text-center text-primary mb-4">Mapa de Vacantes</h2>
+        <div id="mapa" style="height: 400px; border-radius: 10px"></div>
+      </section>
       <!-- fin del mapa -->
 
+      <!-- mapa de oportunidades de estudio -->
+      <h2 class="text-center my-4">Mapa de Estudio</h2>
+      <p class="text-center">
+        Educate y consigue nuevas habilidades y mas oportunidades de ser
+        contratado.
+      </p>
+      <div id="mapa-oportunidades" style="height: 500px"></div>
+      <!-- fin yeste -->
+
       <!-- inicio pal bloc de noticias -->
-<section class="container my-5">
-  <h2 class="text-center text-primary mb-4">📰 Consejos & Noticias laborales</h2>
-  <div class="row g-4">
-    
-    <!-- Tarjeta 1 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0">
-        <img src="img/entrevista.jpg" class="card-img-top">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">La IA va a cambiar la forma de conseguir empleo en Colombia</h5>
-          <p class="card-text flex-grow-1">
-            Pilla como la inteligencia artificial va a cambiar la forma de buscar trabajo.
-          </p>
-          <a href="https://www.rcnradio.com/tecnologia/la-ia-va-cambiar-la-forma-de-conseguir-empleo-en-colombia-asi-le-va-tocar-a-los-que-ya-estan-buscando-trabajo" target="_blank" class="btn btn-outline-primary mt-auto">Ver mas</a>
-        </div>
-      </div>
-    </div>
+      <section class="container my-5">
+        <h2 class="text-center text-primary mb-4">
+          📰 Consejos & Noticias laborales
+        </h2>
+        <div class="row g-4">
+          <!-- Tarjeta 1 -->
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+              <img src="img/entrevista.jpg" class="card-img-top" />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">
+                  La IA va a cambiar la forma de conseguir empleo en Colombia
+                </h5>
+                <p class="card-text flex-grow-1">
+                  Pilla como la inteligencia artificial va a cambiar la forma de
+                  buscar trabajo.
+                </p>
+                <a
+                  href="https://www.rcnradio.com/tecnologia/la-ia-va-cambiar-la-forma-de-conseguir-empleo-en-colombia-asi-le-va-tocar-a-los-que-ya-estan-buscando-trabajo"
+                  target="_blank"
+                  class="btn btn-outline-primary mt-auto"
+                  >Ver mas</a
+                >
+              </div>
+            </div>
+          </div>
 
-    <!-- Tarjeta 2 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0">
-        <img src="img/entrevista-otra.jpg" class="card-img-top" alt="Tips entrevista laboral Colombia">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Tips para una entrevista laboral exitosa</h5>
-          <p class="card-text flex-grow-1">
-            Pilla seis claves para afrontar una entrevista de trabajo.
-          </p>
-          <a href="https://www.valoraanalitik.com/entrevista-laboral-seis-claves-para-conseguir-empleo-en-colombia" target="_blank" class="btn btn-outline-primary mt-auto">Ver mas</a>
-        </div>
-      </div>
-    </div>
+          <!-- Tarjeta 2 -->
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+              <img
+                src="img/entrevista-otra.jpg"
+                class="card-img-top"
+                alt="Tips entrevista laboral Colombia"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">
+                  Tips para una entrevista laboral exitosa
+                </h5>
+                <p class="card-text flex-grow-1">
+                  Pilla seis claves para afrontar una entrevista de trabajo.
+                </p>
+                <a
+                  href="https://www.valoraanalitik.com/entrevista-laboral-seis-claves-para-conseguir-empleo-en-colombia"
+                  target="_blank"
+                  class="btn btn-outline-primary mt-auto"
+                  >Ver mas</a
+                >
+              </div>
+            </div>
+          </div>
 
-    <!-- Tarjeta 3 -->
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0">
-        <img src="img/trabajo.jpg" class="card-img-top" alt="Preguntas finales entrevista">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">¿Qué preguntar al final de una entrevista?</h5>
-          <p class="card-text flex-grow-1">
-            Aprende preguntas pa haer en una entrevista de trabajo y dar una buena impresion.
-          </p>
-          <a href="https://www.semana.com/como/articulo/que-preguntas-hacer-al-final-de-una-entrevista-de-trabajo/202342/" target="_blank" class="btn btn-outline-primary mt-auto">Ver mas</a>
+          <!-- Tarjeta 3 -->
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+              <img
+                src="img/trabajo.jpg"
+                class="card-img-top"
+                alt="Preguntas finales entrevista"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">
+                  ¿Qué preguntar al final de una entrevista?
+                </h5>
+                <p class="card-text flex-grow-1">
+                  Aprende preguntas pa haer en una entrevista de trabajo y dar
+                  una buena impresion.
+                </p>
+                <a
+                  href="https://www.semana.com/como/articulo/que-preguntas-hacer-al-final-de-una-entrevista-de-trabajo/202342/"
+                  target="_blank"
+                  class="btn btn-outline-primary mt-auto"
+                  >Ver mas</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-outline-info">Ver mas noticias</button>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="text-center">
-      <button class="btn btn-outline-info">Ver mas noticias</button>
-    </div>
-  </div>
-</section>
+      </section>
       <!-- fin del coso ese -->
+
+      <!-- calendario -->
+      <h2 class="text-center my-4">Eventos y Oportunidades</h2>
+      <div id="calendario" class="container mb-5"></div>
+      <!-- fin del calendario -->
+
+      <!-- yeste. -->
+      <h2 class="text-center my-4">Tips Laborales</h2>
+
+      <div
+        id="carruselTips"
+        class="carousel slide container"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <!-- tip 1 -->
+          <div class="carousel-item active">
+            <div class="card p-4 shadow-sm text-center">
+              <h5 class="mb-3">Sé puntual en las entrevistas</h5>
+              <p>
+                Llegar a tiempo demuestra responsabilidad, compromiso y respeto
+                por el entrevistador.
+              </p>
+            </div>
+          </div>
+
+          <!-- tip 2 -->
+          <div class="carousel-item">
+            <div class="card p-4 shadow-sm text-center">
+              <h5 class="mb-3">Conoce tus fortalezas y debilidades</h5>
+              <p>
+                Prepárate para hablar de ellas con honestidad y cómo las estás
+                mejorando.
+              </p>
+            </div>
+          </div>
+
+          <!-- tip 3 -->
+          <div class="carousel-item">
+            <div class="card p-4 shadow-sm text-center">
+              <h5 class="mb-3">Aprende habilidades blandas</h5>
+              <p>
+                La comunicación, el trabajo en equipo y la empatía son clave
+                para cualquier puesto.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carruselTips"
+          data-bs-slide="prev"
+        >
+          <span
+            class="carousel-control-prev-icon bg-dark rounded-circle p-2"
+          ></span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carruselTips"
+          data-bs-slide="next"
+        >
+          <span
+            class="carousel-control-next-icon bg-dark rounded-circle p-2"
+          ></span>
+        </button>
+      </div>
+      <!-- fin yeste. -->
+
+      <br />
 
       <!-- testimonios -->
       <section class="bg-light py-5">
-  <div class="container text-center">
-    <h2 class="mb-4">Testimonios</h2>
-    <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <blockquote class="blockquote">
-            <p>“Gracias a GDA conseguí mi primer empleo como desarrollador.”</p>
-            <footer class="blockquote-footer">Elio Cantillo</footer>
-          </blockquote>
+        <div class="container text-center">
+          <h2 class="mb-4">Testimonios</h2>
+          <div
+            id="carouselTestimonios"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <blockquote class="blockquote">
+                  <p>
+                    “Gracias a GDA conseguí mi primer empleo como
+                    desarrollador.”
+                  </p>
+                  <footer class="blockquote-footer">Elio Cantillo</footer>
+                </blockquote>
+              </div>
+              <div class="carousel-item">
+                <blockquote class="blockquote">
+                  <p>
+                    “Publicamos una vacante y en 2 días contratamos al mejor
+                    candidato.”
+                  </p>
+                  <footer class="blockquote-footer">La Guaquita</footer>
+                </blockquote>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselTestimonios"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselTestimonios"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
         </div>
-        <div class="carousel-item">
-          <blockquote class="blockquote">
-            <p>“Publicamos una vacante y en 2 días contratamos al mejor candidato.”</p>
-            <footer class="blockquote-footer">La Guaquita</footer>
-          </blockquote>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-    </div>
-  </div>
-</section>
+      </section>
 
       <!-- fin de testimonios -->
 
       <!-- inicio de estadisticas -->
       <section class="container my-5">
-  <h2 class="text-center text-primary mb-4">Estadísticas Detalladas</h2>
-  <div class="row g-4">
-    <div class="col-md-6">
-      <canvas id="graficoVacantesCiudades"></canvas>
-    </div>
-    <div class="col-md-6">
-      <canvas id="graficoServiciosOfertados"></canvas>
-    </div>
-  </div>
-</section>
+        <h2 class="text-center text-primary mb-4">Estadísticas Detalladas</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <canvas id="graficoVacantesCiudades"></canvas>
+          </div>
+          <div class="col-md-6">
+            <canvas id="graficoServiciosOfertados"></canvas>
+          </div>
+        </div>
+      </section>
       <!-- fin de las estadisticas -->
 
       <!-- estadisticas -->
@@ -676,8 +823,8 @@
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       defer
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
