@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #e0eafc, #cfdef3);
+  background: linear-gradient( #cfdef3);
 }
 
 .logo{
@@ -22,7 +22,7 @@ body {
 }
 
 .centrado-vertical {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
