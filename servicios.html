@@ -104,22 +104,29 @@
   <form class="row g-3 justify-content-center my-4">
     <!-- Campo para el nombre del servicio -->
     <div class="col-md-6">
-      <label for="nombreServicio" class="form-label">Nombre del servicio</label>
+      <label for="nombreServicio" class="form-label">Nombre del servicio que ofreces</label>
       <input type="text" class="form-control" id="nombreServicio" placeholder="Ejemplo: Desarrollo Web">
     </div>
     <!-- Campo para la descripción -->
     <div class="col-md-6">
-      <label for="descripcionServicio" class="form-label">Descripción</label>
-      <input type="text" class="form-control" id="descripcionServicio" placeholder="Describe brevemente tu servicio">
+      <label for="descripcionServicio" class="form-label">Descripción de tu servicio</label>
+      <input type="text" class="form-control" id="descripcionServicio" placeholder="Ejemplo: Especializado en desarrollo de aplicasciones moviles">
     </div>
     <!-- Campo para contacto -->
     <div class="col-md-6">
       <label for="contactoServicio" class="form-label">Contacto</label>
-      <input type="email" class="form-control" id="contactoServicio" placeholder="valencastillo@gmail.com">
+      <input type="email" class="form-control" id="contactoServicio" placeholder="correo@ejemplo.com">
     </div>
     <!-- Botón para publicar -->
     <div class="col-12">
-      <button type="submit" class="btn btn-info">Publicar</button>
+      <div>
+        <select class="form-select" name="contacto">
+          <option value="">Con que pueden contactarte?</option>
+          <option value="correo">Correo electronico</option>
+          <option value="telefono">Numero de telefono</option>
+        </select>
+      </div>
+      <button class="btn btn-info">Publicar vacante</button>
     </div>
   </form>
 </div>
