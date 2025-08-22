@@ -107,3 +107,10 @@ footer a:hover i {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 15px;
 }
+body {
+  background: url("img/empleado.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+
