@@ -11,8 +11,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="styleform.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
-
   <body class="centrado-vertical">
 
     <!-- NAVBAR-->
@@ -34,44 +34,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a
-                title="Inicio"
-                class="nav-link nav-hover"
-                aria-current="page"
-                href="index.html"
-                >Inicio</a
-              >
+              <a title="Inicio" class="nav-link nav-hover" aria-current="page" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item"></li>
+              <a title="Servicios" class="nav-link nav-hover" href="servicios.html">Servicios</a>
+            </li>
+            <li class="nav-item"></li>
+              <a title="Vacantes" class="nav-link nav-hover" href="#">Vacantes</a>
             </li>
             <li class="nav-item">
-              <a
-                title="Servicios"
-                class="nav-link nav-hover"
-                href="servicios.html"
-                >Servicios</a
-              >
+              <a title="Nosotros" class="nav-link nav-hover" href="#">Nosotros</a>
             </li>
-            <li class="nav-item">
-              <a title="Vacantes" class="nav-link nav-hover" href="#"
-                >Vacantes</a
-              >
+            <li class="nav-item"></li>
+              <a title="Noticias" class="nav-link nav-hover" href="#">Noticias</a>
             </li>
-            <li class="nav-item">
-              <a title="Nosotros" class="nav-link nav-hover" href="#"
-                >Nosotros</a
-              >
-            </li>
-            <li class="nav-item">
-              <a title="Noticias" class="nav-link nav-hover" href="#"
-                >Noticias</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                title="Iniciar Sesión/Registrarse nav-hover"
-                class="nav-link active nav-hover"
-                href="login.html"
-                >Iniciar Sesión/Registrarse</a
-              >
+            <li class="nav-item"></li>
+              <a title="Iniciar Sesión/Registrarse" class="nav-link active nav-hover" href="login.html">Iniciar Sesión/Registrarse</a>
             </li>
           </ul>
           <a href="index.html" class="btn btn-outline-light">Volver al inicio</a>
@@ -79,105 +57,36 @@
       </div>
     </nav>
 
-<<<<<<< HEAD
-    <!-- zona hero -->
-         
-<section class="hero d-flex align-items-center justify-content-center text-center">
-  <div class="hero-content text-white">
-    <h1 class="fw-bold">Bienvenido a GDA</h1>
-    <p class="lead">Tu puente entre oportunidades laborales y talento profesional</p>
-    <button class="btn btn-light mt-3">Regístrate aquí</button>
-  </div>
-</section>
-=======
-    <!-- Agrega espacio para compensar el navbar fijo -->
+    <!-- Espacio para navbar fijo -->
     <div style="height: 80px;"></div>
->>>>>>> 0391e0003df7320c7b608149402de67e8c292d52
 
-    <!-- CONTENEDOR DEL FORMULARIO -->
-    <div class="card-container">
-      <div class="card" id="card">
-
-<<<<<<< HEAD
-
-<main class="container py-5">
-    <!-- inicio del filtro y búsqueda -->
-    <section class="container my-5">
-      <h2 class="text-center mb-4">Busca Vacantes o Servicios</h2>
-      <form class="row g-3 shadow p-4 rounded bg-light">
-        <!-- Barra de búsqueda -->
-        <div class="col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Desarrollador, Electricista, etc."
-            name="busqueda"
-          />
-        </div>
-        <!-- Filtro por tipo -->
-        <div class="col-md-3">
-          <select class="form-select" name="tipo">
-            <option value="">Tipo</option>
-            <option value="vacante">Vacante</option>
-            <option value="servicio">Servicio</option>
-          </select>
-        </div>
-        <!-- Filtro por ubicación -->
-        <div class="col-md-3">
-          <select class="form-select" name="ubicacion">
-            <option value="">Ubicación</option>
-            <option value="la_jagua">La Jagua</option>
-            <option value="aguachica">Aguachica</option>
-            <option value="becerril">Becerril</option>
-            <option value="la_paz">La Paz.</option>
-          </select>
-        </div>
-        <!-- Botón de búsqueda -->
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-primary px-4">
-            <i class="bi bi-search"></i> Buscar
-          </button>
-        </div>
-      </form>
+    <!-- Hero Section -->
+    <section class="hero d-flex align-items-center justify-content-center text-center" style="min-height: 60vh; background: #0d6efd;"></section>
+      <div class="hero-content text-white"></div>
+        <h1 class="fw-bold">Bienvenido a GDA</h1>
+        <p class="lead">Tu puente entre oportunidades laborales y talento profesional</p>
+        <button class="btn btn-light mt-3" onclick="document.getElementById('card').scrollIntoView({behavior:'smooth'})">Regístrate aquí</button>
+      </div>
     </section>
-    <!-- fin del filtro y búsqueda -->
 
-    <!-- servicios -->
-
-      <section class="text-center mb-5">
-        <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
-        <p class="lead text-secondary mx-auto" style="max-width: 600px">
-          Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y
-          tener éxito en el mercado actual.
-        </p>
-      </section>
-      <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Servicio 1 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-laptop-code text-danger fs-3"></i>
-=======
+    <!-- Contenedor del formulario -->
+    <div class="card-container my-5">
+      <div class="card" id="card"></div>
         <!-- LADO LOGIN -->
         <div class="face front">
           <div class="form-container">
             <h2>Iniciar Sesión</h2>
             <label for="tipoLogin">Tipo de usuario:</label>
-            <select id="tipoLogin">
+            <select id="tipoLogin"></select>
               <option value="natural">Persona natural</option>
               <option value="juridica">Persona jurídica</option>
             </select>
-            <form id="loginForm">
-              <div id="loginNatural">
+            <form id="loginForm"></form>
+              <div id="loginNatural"></div>
                 <input type="text" id="usuario" placeholder="Cédula" required />
                 <input type="password" id="clave" placeholder="Contraseña" required />
->>>>>>> 0391e0003df7320c7b608149402de67e8c292d52
               </div>
-              <div id="loginJuridica" style="display: none">
+              <div id="loginJuridica" style="display: none"></div>
                 <input type="text" id="nitLogin" placeholder="NIT" required />
                 <input type="password" id="claveJuridica" placeholder="Contraseña" required />
               </div>
@@ -189,19 +98,18 @@
             <a href="#" id="flipToRegister">¿No estás registrado? Regístrate</a>
           </div>
         </div>
-
         <!-- LADO REGISTRO -->
         <div class="face back">
-          <div class="form-container">
+          <div class="form-container"></div>
             <h2>Registro</h2>
             <label for="tipoRegistro">Tipo de usuario:</label>
-            <select id="tipoRegistro">
+            <select id="tipoRegistro"></select>
               <option value="natural">Persona natural</option>
               <option value="juridica">Persona jurídica</option>
             </select>
-            <form id="registerForm">
+            <form id="registerForm"></form>
               <!-- Natural -->
-              <div id="registroNatural">
+              <div id="registroNatural"></div>
                 <input type="text" id="cedula" placeholder="Cédula" />
                 <input type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento" />
                 <input type="text" id="nombre" placeholder="Nombre" />
@@ -210,17 +118,15 @@
                 <input type="password" id="confirmarClave" placeholder="Confirmar contraseña" />
                 <input type="text" id="area" placeholder="Área de conocimiento (opcional)" />
               </div>
-
               <!-- Jurídica -->
-              <div id="registroJuridica" style="display: none">
+              <div id="registroJuridica" style="display: none"></div>
                 <input type="text" id="nombreEmpresa" placeholder="Nombre de la empresa" />
                 <input type="text" id="nit" placeholder="NIT" />
                 <input type="text" id="direccion" placeholder="Dirección y ciudad" />
                 <input type="text" id="contacto" placeholder="Teléfono o correo electrónico" />
               </div>
-
               <p id="mensajeError" class="error"></p>
-              <div class="d-flex justify-content-center">
+              <div class="d-flex justify-content-center"></div>
                 <button type="submit">Registrar</button>
               </div>
             </form>
@@ -228,11 +134,51 @@
             <a href="#" id="flipToLogin">¿Ya tienes cuenta? Inicia sesión</a>
           </div>
         </div>
+      </div>
+    </div>
+
+    <main class="container py-5">
+      <!-- Filtro y búsqueda -->
+      <section class="container my-5"></section>
+        <h2 class="text-center mb-4">Busca Vacantes o Servicios</h2>
+        <form class="row g-3 shadow p-4 rounded bg-light">
+          <div class="col-md-6"></div>
+            <input type="text" class="form-control" placeholder="Desarrollador, Electricista, etc." name="busqueda" />
+          </div>
+          <div class="col-md-3">
+            <select class="form-select" name="tipo">
+              <option value="">Tipo</option>
+              <option value="vacante">Vacante</option>
+              <option value="servicio">Servicio</option>
+            </select>
+          </div>
+          <div class="col-md-3"></div>
+            <select class="form-select" name="ubicacion">
+              <option value="">Ubicación</option>
+              <option value="la_jagua">La Jagua</option>
+              <option value="aguachica">Aguachica</option>
+              <option value="becerril">Becerril</option>
+              <option value="la_paz">La Paz</option>
+            </select>
+          </div>
+          <div class="col-12 text-center"></div>
+            <button type="submit" class="btn btn-primary px-4">
+              <i class="bi bi-search"></i> Buscar
+            </button>
+          </div>
+        </form>
       </section>
 
-      <!-- fin de testimonios -->
+      <!-- Servicios -->
+      <section class="text-center mb-5"></section>
+        <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
+        <p class="lead text-secondary mx-auto" style="max-width: 600px"></p>
+          Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y tener éxito en el mercado actual.
+        </p>
+      </section>
+      <!-- Aquí puedes agregar cards de servicios -->
 
-      <!-- inicio de estadisticas -->
+      <!-- Estadísticas Detalladas -->
       <section class="container my-5">
         <h2 class="text-center text-primary mb-4">Estadísticas Detalladas</h2>
         <div class="row g-4">
@@ -244,21 +190,20 @@
           </div>
         </div>
       </section>
-      <!-- fin de las estadisticas -->
 
-      <!-- estadisticas -->
+      <!-- Estadísticas rápidas -->
       <section class="bg-white py-5 text-center">
         <div class="container">
           <div class="row g-4">
-            <div class="col">
+            <div class="col"></div>
               <h3 class="text-primary">+500</h3>
               <p>Usuarios Registrados</p>
             </div>
-            <div class="col">
+            <div class="col"></div>
               <h3 class="text-primary">+200</h3>
               <p>Vacantes Activas</p>
             </div>
-            <div class="col">
+            <div class="col"></div>
               <h3 class="text-primary">+100</h3>
               <p>Empresas Vinculadas</p>
             </div>
@@ -267,75 +212,57 @@
       </section>
     </main>
 
-    <!-- Botón Scroll hacia abajo y devuelve al inicio -->
+    <!-- Botón Scroll hacia arriba -->
     <button
       id="scrollToTopBtn"
       class="btn btn-primary"
-      style="
-        position: fixed;
-        bottom: 40px;
-        right: 30px;
-        z-index: 9999;
-        width: 50px;
-        height: 50px;
-        display: none;
-        align-items: center;
-        justify-content: center;
-      "
-    >
+      style="position: fixed; bottom: 40px; right: 30px; z-index: 9999; width: 50px; height: 50px; display: none; align-items: center; justify-content: center;">
       <i class="bi bi-arrow-up fs-3"></i>
     </button>
-    <!-- fin del boton de scroll -->
-</main>
-<!-- Footer -->
-<footer class="bg-dark text-white pt-5">
-  <div class="container-fluid">
-    <div class="row gy-4">
-      
-      <!-- Logo & descripción -->
-      <div class="col-lg-4 col-md-6">
-        <h3 class="fw-bold">GDA</h3>
-        <p class="mt-3">
-          GDA creando soluciones digitales con innovación,
-          creatividad y pasión por la tecnología.  
-        </p>
-      </div>
 
-      <!-- Enlaces rápidos -->
-      <div class="col-lg-2 col-md-6">
-        <h5 class="fw-bold mb-3">Enlaces</h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="footer-link">Inicio</a></li>
-          <li><a href="#" class="footer-link">Servicios</a></li>
-          <li><a href="#" class="footer-link">Proyectos</a></li>
-          <li><a href="#" class="footer-link">Contacto</a></li>
-        </ul>
-      </div>
-
-      <!-- Recursos -->
-      <div class="col-lg-3 col-md-6">
-        <h5 class="fw-bold mb-3">Recursos</h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="footer-link">Blog</a></li>
-          <li><a href="#" class="footer-link">FAQs</a></li>
-          <li><a href="#" class="footer-link">Soporte</a></li>
-          <li><a href="#" class="footer-link">Política de Privacidad</a></li>
-        </ul>
-      </div>
-
-      <!-- Redes sociales -->
-      <div class="col-lg-3 col-md-6">
-        <h5 class="fw-bold mb-3">Síguenos</h5>
-        <div class="d-flex gap-3">
-          <a href="#"><i class="bi bi-facebook fs-3 footer-icon"></i></a>
-          <a href="#"><i class="bi bi-instagram fs-3 footer-icon"></i></a>
-          <a href="#"><i class="bi bi-whatsapp fs-3 footer-icon"></i></a>
-          <a href="https://github.com/georgevfc13" target="_blank"><i class="bi bi-github fs-3 footer-icon"></i></a>
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5">
+      <div class="container-fluid"></div>
+        <div class="row gy-4"></div>
+          <div class="col-lg-4 col-md-6"></div>
+            <h3 class="fw-bold">GDA</h3>
+            <p class="mt-3"></p>
+              GDA creando soluciones digitales con innovación, creatividad y pasión por la tecnología.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6"></div>
+            <h5 class="fw-bold mb-3">Enlaces</h5>
+            <ul class="list-unstyled"></ul>
+              <li><a href="#" class="footer-link">Inicio</a></li>
+              <li><a href="#" class="footer-link">Servicios</a></li>
+              <li><a href="#" class="footer-link">Proyectos</a></li>
+              <li><a href="#" class="footer-link">Contacto</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="fw-bold mb-3">Recursos</h5>
+            <ul class="list-unstyled"></ul>
+              <li><a href="#" class="footer-link">Blog</a></li>
+              <li><a href="#" class="footer-link">FAQs</a></li>
+              <li><a href="#" class="footer-link">Soporte</a></li>
+              <li><a href="#" class="footer-link">Política de Privacidad</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="fw-bold mb-3">Síguenos</h5>
+            <div class="d-flex gap-3"></div>
+              <a href="#"><i class="bi bi-facebook fs-3 footer-icon"></i></a>
+              <a href="#"><i class="bi bi-instagram fs-3 footer-icon"></i></a>
+              <a href="#"><i class="bi bi-whatsapp fs-3 footer-icon"></i></a>
+              <a href="https://github.com/georgevfc13" target="_blank"><i class="bi bi-github fs-3 footer-icon"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center py-4 mt-4 border-top border-secondary"></div>
+          <p class="mb-0">&copy; 2025 GDA - los tres mosqueteros</p>
         </div>
       </div>
-    </div>
-
-    <!-- footer --> <footer class="bg-dark text-white text-center py-4 mt-5"> <p>&copy; 2025 GDA - los tres mosqueteros</p> <div> <a href="#"><i class="bi bi-facebook p-3"></i></a> <a href="#"><i class="bi bi-instagram p-3"></i></a> <a href="#"><i class="bi bi-whatsapp p-3"></i></a> <a href="https://github.com/georgevfc13" target="_blank" rel="noopener noreferrer" dame uno mucho mejor ><i class="bi bi-github p-3"></i ></a> </div> </footer>
+    </footer>
 
     <!-- SCRIPTS -->
     <script src="login.js"></script>
@@ -344,5 +271,13 @@
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // Mostrar botón scroll arriba
+      const scrollBtn = document.getElementById('scrollToTopBtn');
+      window.onscroll = function() {
+        scrollBtn.style.display = window.scrollY > 200 ? 'flex' : 'none';
+      };
+      scrollBtn.onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+    </script>
   </body>
 </html>
