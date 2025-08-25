@@ -1,8 +1,27 @@
-.pie_pagina{
-    background-color: black;
-    color: azure;
-    text-align: center;
-    height: 100%;
+/* Corrección del footer */
+footer {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    margin-top: auto;
+}
+
+footer .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 100%;
+}
+
+/* Asegurar que el body no tenga márgenes */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 
