@@ -15,6 +15,73 @@
 
   <body class="centrado-vertical">
 
+    <!-- NAVBAR-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+      <div class="container-fluid">
+        <img src="img/logo.jpg" alt="Logo" class="logo me-2 rounded" />
+        <a class="navbar-brand" href="#">GDA</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                title="Inicio"
+                class="nav-link nav-hover"
+                aria-current="page"
+                href="index.html"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                title="Servicios"
+                class="nav-link nav-hover"
+                href="servicios.html"
+                >Servicios</a
+              >
+            </li>
+            <li class="nav-item">
+              <a title="Vacantes" class="nav-link nav-hover" href="#"
+                >Vacantes</a
+              >
+            </li>
+            <li class="nav-item">
+              <a title="Nosotros" class="nav-link nav-hover" href="#"
+                >Nosotros</a
+              >
+            </li>
+            <li class="nav-item">
+              <a title="Noticias" class="nav-link nav-hover" href="#"
+                >Noticias</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                title="Iniciar Sesión/Registrarse nav-hover"
+                class="nav-link active nav-hover"
+                href="login.html"
+                >Iniciar Sesión/Registrarse</a
+              >
+            </li>
+          </ul>
+          <a href="index.html" class="btn btn-outline-light">Volver al inicio</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Agrega espacio para compensar el navbar fijo -->
+    <div style="height: 80px;"></div>
+
     <!-- CONTENEDOR DEL FORMULARIO -->
     <div class="card-container">
       <div class="card" id="card">
@@ -95,40 +162,4 @@
       crossorigin="anonymous"
     ></script>
   </body>
-  <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
-  <div class="container-fluid">
-    <img src="img/logo.jpg" alt="Logo" class="logo me-2 rounded" style="width:40px; height:40px;" />
-    <a class="navbar-brand fw-bold" href="#">GDA</a>
-
-    <!-- Botón responsive -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Vacantes</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Noticias</a></li>
-        <li class="nav-item"><a class="nav-link active" href="login.html">Iniciar Sesión</a></li>
-      </ul>
-      <a href="index.html" class="btn btn-outline-light ms-3">Volver al inicio</a>
-    </div>
-  </div>
-</nav>
-
-<!-- Espaciador para que no tape el contenido -->
-<div style="height: 80px;"></div>
-
 </html>
