@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inicio / Registro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styleform.css" />
+  </head>
+
+  <body class="centrado-vertical">
+
+    <!-- CONTENEDOR DEL FORMULARIO -->
+    <div class="card-container">
+      <div class="card" id="card">
+
+        <!-- LADO LOGIN -->
+        <div class="face front">
+          <div class="form-container">
+            <h2>Iniciar Sesión</h2>
+            <label for="tipoLogin">Tipo de usuario:</label>
+            <select id="tipoLogin">
+              <option value="natural">Persona natural</option>
+              <option value="juridica">Persona jurídica</option>
+            </select>
+            <form id="loginForm">
+              <div id="loginNatural">
+                <input type="text" id="usuario" placeholder="Cédula" required />
+                <input type="password" id="clave" placeholder="Contraseña" required />
+              </div>
+              <div id="loginJuridica" style="display: none">
+                <input type="text" id="nitLogin" placeholder="NIT" required />
+                <input type="password" id="claveJuridica" placeholder="Contraseña" required />
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit">Entrar</button>
+              </div>
+            </form>
+            <br />
+            <a href="#" id="flipToRegister">¿No estás registrado? Regístrate</a>
+          </div>
+        </div>
+
+        <!-- LADO REGISTRO -->
+        <div class="face back">
+          <div class="form-container">
+            <h2>Registro</h2>
+            <label for="tipoRegistro">Tipo de usuario:</label>
+            <select id="tipoRegistro">
+              <option value="natural">Persona natural</option>
+              <option value="juridica">Persona jurídica</option>
+            </select>
+            <form id="registerForm">
+              <!-- Natural -->
+              <div id="registroNatural">
+                <input type="text" id="cedula" placeholder="Cédula" />
+                <input type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento" />
+                <input type="text" id="nombre" placeholder="Nombre" />
+                <input type="text" id="apellido" placeholder="Apellido" />
+                <input type="password" id="claveNatural" placeholder="Contraseña" />
+                <input type="password" id="confirmarClave" placeholder="Confirmar contraseña" />
+                <input type="text" id="area" placeholder="Área de conocimiento (opcional)" />
+              </div>
+
+              <!-- Jurídica -->
+              <div id="registroJuridica" style="display: none">
+                <input type="text" id="nombreEmpresa" placeholder="Nombre de la empresa" />
+                <input type="text" id="nit" placeholder="NIT" />
+                <input type="text" id="direccion" placeholder="Dirección y ciudad" />
+                <input type="text" id="contacto" placeholder="Teléfono o correo electrónico" />
+              </div>
+
+              <p id="mensajeError" class="error"></p>
+              <div class="d-flex justify-content-center">
+                <button type="submit">Registrar</button>
+              </div>
+            </form>
+            <br />
+            <a href="#" id="flipToLogin">¿Ya tienes cuenta? Inicia sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="login.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+  <div class="container-fluid">
+    <img src="img/logo.jpg" alt="Logo" class="logo me-2 rounded" style="width:40px; height:40px;" />
+    <a class="navbar-brand fw-bold" href="#">GDA</a>
+
+    <!-- Botón responsive -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Vacantes</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Noticias</a></li>
+        <li class="nav-item"><a class="nav-link active" href="login.html">Iniciar Sesión</a></li>
+      </ul>
+      <a href="index.html" class="btn btn-outline-light ms-3">Volver al inicio</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Espaciador para que no tape el contenido -->
+<div style="height: 80px;"></div>
+
+</html>
