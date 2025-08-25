@@ -1,35 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Página</title>
+    <title>Inicio / Registro</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="styleform.css" />
   </head>
-  <body>
-    <!-- navbar -->
+
+  <body class="centrado-vertical">
+
+    <!-- NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
       <div class="container-fluid">
         <img src="img/logo.jpg" alt="Logo" class="logo me-2 rounded" />
@@ -50,7 +36,7 @@
             <li class="nav-item">
               <a
                 title="Inicio"
-                class="nav-link active nav-hover active"
+                class="nav-link nav-hover"
                 aria-current="page"
                 href="index.html"
                 >Inicio</a
@@ -82,17 +68,18 @@
             <li class="nav-item">
               <a
                 title="Iniciar Sesión/Registrarse nav-hover"
-                class="nav-link nav-hover"
+                class="nav-link active nav-hover"
                 href="login.html"
                 >Iniciar Sesión/Registrarse</a
               >
             </li>
           </ul>
+          <a href="index.html" class="btn btn-outline-light">Volver al inicio</a>
         </div>
       </div>
     </nav>
-    <!-- fin del navbar -->
 
+<<<<<<< HEAD
     <!-- zona hero -->
          
 <section class="hero d-flex align-items-center justify-content-center text-center">
@@ -102,8 +89,16 @@
     <button class="btn btn-light mt-3">Regístrate aquí</button>
   </div>
 </section>
+=======
+    <!-- Agrega espacio para compensar el navbar fijo -->
+    <div style="height: 80px;"></div>
+>>>>>>> 0391e0003df7320c7b608149402de67e8c292d52
 
+    <!-- CONTENEDOR DEL FORMULARIO -->
+    <div class="card-container">
+      <div class="card" id="card">
 
+<<<<<<< HEAD
 
 <main class="container py-5">
     <!-- inicio del filtro y búsqueda -->
@@ -166,664 +161,64 @@
                 style="width: 64px; height: 64px"
               >
                 <i class="fas fa-laptop-code text-danger fs-3"></i>
+=======
+        <!-- LADO LOGIN -->
+        <div class="face front">
+          <div class="form-container">
+            <h2>Iniciar Sesión</h2>
+            <label for="tipoLogin">Tipo de usuario:</label>
+            <select id="tipoLogin">
+              <option value="natural">Persona natural</option>
+              <option value="juridica">Persona jurídica</option>
+            </select>
+            <form id="loginForm">
+              <div id="loginNatural">
+                <input type="text" id="usuario" placeholder="Cédula" required />
+                <input type="password" id="clave" placeholder="Contraseña" required />
+>>>>>>> 0391e0003df7320c7b608149402de67e8c292d52
               </div>
-              <h5 class="card-title fw-bold">Desarrollo Web</h5>
-              <p class="card-text">
-                Desarrollo de sitios web a medida con tecnologías modernas.
-              </p>
-              <a href="#" class="btn btn-outline-danger btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Información del servicio</h6>
-                  <p>
-                    Hago desarrollo de sitios web modernos, responsivos y
-                    optimizados para tu negocio. ¡Contáctame para más detalles!
-                  </p>
-                </div>
+              <div id="loginJuridica" style="display: none">
+                <input type="text" id="nitLogin" placeholder="NIT" required />
+                <input type="password" id="claveJuridica" placeholder="Contraseña" required />
               </div>
-            </div>
-          </div>
-        </div>
-        <!-- Servicio 2 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-mobile-alt text-success fs-3"></i>
+              <div class="d-flex justify-content-center">
+                <button type="submit">Entrar</button>
               </div>
-              <h5 class="card-title fw-bold">Aplicaciones Móviles</h5>
-              <p class="card-text">
-                Apps móviles multiplataforma para iOS y Android.
-              </p>
-              <a href="#" class="btn btn-outline-success btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Información del servicio</h6>
-                  <p>
-                    Soy desarrollador de apps móviles personalizadas para tu
-                    empresa, compatibles con iOS y Android.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Servicio 3 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-chart-line text-warning fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Marketing Digital</h5>
-              <p class="card-text">
-                Estrategias digitales para aumentar tu presencia y ventas.
-              </p>
-              <a href="#" class="btn btn-outline-warning btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Información del servicio</h6>
-                  <p>
-                    Puedo impulsar tu marca con campañas de marketing digital
-                    efectivas y personalizadas.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Servicio 4 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-paint-brush text-info fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Diseño UI/UX</h5>
-              <p class="card-text">
-                Interfaces atractivas y funcionales para tus usuarios.
-              </p>
-              <a href="#" class="btn btn-outline-info btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Información del servicio</h6>
-                  <p>
-                    Soy diseñador de experiencias de usuario intuitivas y
-                    visualmente atractivas para tus proyectos.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Servicio 5 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-cloud text-dark fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Soluciones en la Nube</h5>
-              <p class="card-text">
-                Infraestructura escalable y servicios cloud para tu negocio.
-              </p>
-              <a href="#" class="btn btn-outline-dark btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Información del servicio</h6>
-                  <p>
-                    Implemento soluciones en la nube seguras y escalables para
-                    tu empresa.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Servicio 6 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-headset text-primary fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Soporte 24/7</h5>
-              <p class="card-text">
-                Soporte técnico permanente para que tu sistema nunca se detenga.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Información del servicio</h6>
-                  <p>
-                    Ofrezco soporte técnico profesional las 24 horas, todos los
-                    días.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- vacantes -->
-       <main class="container py-5">
-      <section class="text-center mb-5">
-        <h1 class="fw-bold text-primary mb-3">Nuestras Vacantes</h1>
-        <p class="lead text-secondary mx-auto" style="max-width: 600px">
-         En GDA conectamos tu talento con empresas líderes para impulsar tu crecimiento y éxito profesional.
-        </p>
-      </section>
-      <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Vacante 1. -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-user-tie text-success fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Analista de Datos</h5>
-              <p class="card-text">
-                Únete a nuestro equipo para analizar y transformar datos en
-                soluciones estratégicas.
-              </p>
-              <a href="#" class="btn btn-outline-success btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Detalles de la vacante</h6>
-                  <p>
-                    Requisitos: Experiencia en análisis de datos, manejo de SQL
-                    y Python. Ofrecemos salario competitivo, crecimiento
-                    profesional y ambiente colaborativo.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Vacante 2 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-code text-warning fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Desarrollador Frontend</h5>
-              <p class="card-text">
-                Buscamos talento creativo para crear interfaces web modernas y
-                funcionales.
-              </p>
-              <a href="#" class="btn btn-outline-warning btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Detalles de la vacante</h6>
-                  <p>
-                    Requisitos: Conocimientos en HTML, CSS, JavaScript y
-                    frameworks como React. Beneficios: Flexibilidad laboral,
-                    capacitaciones y proyectos innovadores.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Vacante 3 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-network-wired text-info fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Especialista en Redes</h5>
-              <p class="card-text">
-                Sé parte de nuestro equipo gestionando y optimizando
-                infraestructuras de red.
-              </p>
-              <a href="#" class="btn btn-outline-info btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Detalles de la vacante</h6>
-                  <p>
-                    Requisitos: Certificaciones en redes, experiencia en
-                    administración de servidores. Ofrecemos estabilidad,
-                    formación continua y excelente clima laboral.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Vacante 4 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-shield-alt text-danger fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Especialista en Ciberseguridad</h5>
-              <p class="card-text">
-                Protege sistemas y datos críticos en proyectos de alto impacto.
-              </p>
-              <a href="#" class="btn btn-outline-danger btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Detalles de la vacante</h6>
-                  <p>
-                    Requisitos: Experiencia en seguridad informática, manejo de
-                    herramientas de protección y auditoría. Beneficios: Bonos,
-                    capacitaciones y retos constantes.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Vacante 5 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-users text-primary fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Gestor de Talento Humano</h5>
-              <p class="card-text">
-                Ayuda a potenciar equipos y liderar procesos de selección y
-                capacitación.
-              </p>
-              <a href="#" class="btn btn-outline-primary btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Detalles de la vacante</h6>
-                  <p>
-                    Requisitos: Experiencia en RRHH, habilidades de liderazgo y
-                    comunicación. Ofrecemos desarrollo profesional y ambiente
-                    inclusivo.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Vacante 6 -->
-        <div class="col">
-          <div class="card h-100 shadow rounded-4">
-            <div class="card-body text-center">
-              <div
-                class="bg-secondary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                style="width: 64px; height: 64px"
-              >
-                <i class="fas fa-briefcase text-secondary fs-3"></i>
-              </div>
-              <h5 class="card-title fw-bold">Consultor Empresarial</h5>
-              <p class="card-text">
-                Brinda asesoría estratégica para el crecimiento y transformación
-                de empresas.
-              </p>
-              <a href="#" class="btn btn-outline-secondary btn-sm toggle-info"
-                >Ver más <i class="fas fa-arrow-right ms-1"></i
-              ></a>
-              <div class="info-extra collapse mt-3">
-                <div class="card card-body">
-                  <h6 class="fw-bold">Detalles de la vacante</h6>
-                  <p>
-                    Requisitos: Experiencia en consultoría, visión estratégica y
-                    capacidad analítica. Beneficios: Proyectos desafiantes y
-                    reconocimiento profesional.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- fin de vacantes -->
-
-      <!-- inicio del mapa de vacantes -->
-      <section class="container my-5">
-        <h2 class="text-center text-primary mb-4">Mapa de Vacantes</h2>
-        <div id="mapa" style="height: 400px; border-radius: 10px"></div>
-      </section>
-      <!-- fin del mapa -->
-
-      <!-- mapa de oportunidades de estudio -->
-      <h2 class="text-center my-4">Mapa de Estudio</h2>
-      <p class="text-center">
-        Educate y consigue nuevas habilidades y mas oportunidades de ser
-        contratado.
-      </p>
-      <div id="mapa-oportunidades" style="height: 500px"></div>
-      <!-- fin yeste -->
-
-      <!-- inicio pal bloc de noticias -->
-      <section class="container my-5">
-        <h2 class="text-center text-primary mb-4">
-          Consejos & Noticias laborales
-        </h2>
-        <div class="row g-4">
-          <!-- Tarjeta 1 -->
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-              <img src="img/entrevista.jpg" class="card-img-top" />
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">
-                  La IA va a cambiar la forma de conseguir empleo en Colombia
-                </h5>
-                <p class="card-text flex-grow-1">
-                  Pilla como la inteligencia artificial va a cambiar la forma de
-                  buscar trabajo.
-                </p>
-                <a
-                  href="https://www.rcnradio.com/tecnologia/la-ia-va-cambiar-la-forma-de-conseguir-empleo-en-colombia-asi-le-va-tocar-a-los-que-ya-estan-buscando-trabajo"
-                  target="_blank"
-                  class="btn btn-outline-primary mt-auto"
-                  >Ver mas</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- Tarjeta 2 -->
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-              <img
-                src="img/entrevista-otra.jpg"
-                class="card-img-top"
-                alt="Tips entrevista laboral Colombia"
-              />
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">
-                  Tips para una entrevista laboral exitosa
-                </h5>
-                <p class="card-text flex-grow-1">
-                  Aqui tienes seis claves para afrontar una entrevista de trabajo.
-                </p>
-                <a
-                  href="https://www.valoraanalitik.com/entrevista-laboral-seis-claves-para-conseguir-empleo-en-colombia"
-                  target="_blank"
-                  class="btn btn-outline-primary mt-auto"
-                  >Ver mas</a
-                >
-              </div>
-            </div>
-          </div>
-
-          <!-- Tarjeta 3 -->
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-0">
-              <img
-                src="img/trabajo.jpg"
-                class="card-img-top"
-                alt="Preguntas finales entrevista"
-              />
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title">
-                  ¿Qué preguntar al final de una entrevista?
-                </h5>
-                <p class="card-text flex-grow-1">
-                  Aprende preguntas pa haer en una entrevista de trabajo y dar
-                  una buena impresion.
-                </p>
-                <a
-                  href="https://www.semana.com/como/articulo/que-preguntas-hacer-al-final-de-una-entrevista-de-trabajo/202342/"
-                  target="_blank"
-                  class="btn btn-outline-primary mt-auto"
-                  >Ver mas</a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="text-center">
-            <button class="btn btn-outline-info">Ver mas noticias</button>
-          </div>
-        </div>
-      </section>
-      <!-- fin del coso ese -->
-
-      <!-- calendario -->
-      <h2 class="text-center my-4">Eventos y Oportunidades</h2>
-      <div id="calendario" class="container mb-5"></div>
-      <!-- fin del calendario -->
-
-      <!-- yeste. -->
-      <h2 class="text-center my-4">Tips Laborales</h2>
-
-      <div
-        id="carruselTips"
-        class="carousel slide container"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <!-- tip 1 -->
-          <div class="carousel-item active">
-            <div class="card p-4 shadow-sm text-center">
-              <h5 class="mb-3">Sé puntual en las entrevistas</h5>
-              <p>
-                Llegar a tiempo demuestra responsabilidad, compromiso y respeto
-                por el entrevistador.
-              </p>
-            </div>
-          </div>
-
-          <!-- tip 2 -->
-          <div class="carousel-item">
-            <div class="card p-4 shadow-sm text-center">
-              <h5 class="mb-3">Conoce tus fortalezas y debilidades</h5>
-              <p>
-                Prepárate para hablar de ellas con honestidad y cómo las estás
-                mejorando.
-              </p>
-            </div>
-          </div>
-
-          <!-- tip 3 -->
-          <div class="carousel-item">
-            <div class="card p-4 shadow-sm text-center">
-              <h5 class="mb-3">Aprende habilidades blandas</h5>
-              <p>
-                La comunicación, el trabajo en equipo y la empatía son clave
-                para cualquier puesto.
-              </p>
-            </div>
+            </form>
+            <br />
+            <a href="#" id="flipToRegister">¿No estás registrado? Regístrate</a>
           </div>
         </div>
 
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carruselTips"
-          data-bs-slide="prev"
-        >
-          <span
-            class="carousel-control-prev-icon bg-dark rounded-circle p-2"
-          ></span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carruselTips"
-          data-bs-slide="next"
-        >
-          <span
-            class="carousel-control-next-icon bg-dark rounded-circle p-2"
-          ></span>
-        </button>
-      </div>
-      <!-- fin yeste. -->
-
-      <br />
-
-      <!-- leyes y derechos -->
-      <h2 class="text-center my-5">Derechos del Trabajador en Colombia</h2>
-
-      <div class="accordion container" id="accordionDerechos">
-        <!-- Item 1: Tipos de contrato -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingContrato">
-            <button
-              class="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseContrato"
-              aria-expanded="true"
-            >
-              Tipos de contrato para el trabajo
-            </button>
-          </h2>
-          <div
-            id="collapseContrato"
-            class="accordion-collapse collapse show"
-            data-bs-parent="#accordionDerechos"
-          >
-            <div class="accordion-body">
-              En Colombia existen principalmente: <br />
-              - Contrato a término fijo <br />
-              - Contrato a término indefinido <br />
-              - Contrato por obra o labor <br /><br />
-              Todos deben estar por escrito, incluir salario, jornada y
-              condiciones claras.:
-              <a href="https://www.mintrabajo.gov.co/" target="_blank"
-                >MinTrabajo</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 2: Vacaciones -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingVacaciones">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseVacaciones"
-              aria-expanded="false"
-            >
-              Derecho a las Vacaciones
-            </button>
-          </h2>
-          <div
-            id="collapseVacaciones"
-            class="accordion-collapse collapse"
-            data-bs-parent="#accordionDerechos"
-          >
-            <div class="accordion-body">
-              Todo trabajador tiene derecho a
-              <strong>15 días hábiles de vacaciones</strong> por cada año
-              trabajado. Deben pagarse antes de iniciar el descanso. Si no las
-              toma, se deben compensar en dinero. Fuente: Código Sustantivo del
-              Trabajo.
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 3: Acoso laboral -->
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingAcoso">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseAcoso"
-              aria-expanded="false"
-            >
-              ¿Qué es el acoso laboral?
-            </button>
-          </h2>
-          <div
-            id="collapseAcoso"
-            class="accordion-collapse collapse"
-            data-bs-parent="#accordionDerechos"
-          >
-            <div class="accordion-body">
-              Es toda conducta persistente que humilla, intimida o perjudica al
-              trabajador. Está penado por la Ley 1010 de 2006. Se puede
-              denunciar ante el comité de convivencia laboral o el Ministerio de
-              Trabajo.
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- flojera -->
-
-      <br />
-
-      <!-- testimonios -->
-      <section class="bg-light py-5">
-        <div class="container text-center">
-          <h2 class="mb-4">Testimonios</h2>
-          <div
-            id="carouselTestimonios"
-            class="carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <blockquote class="blockquote">
-                  <p>
-                    “Gracias a GDA conseguí mi primer empleo como
-                    desarrollador.”
-                  </p>
-                  <footer class="blockquote-footer">loly mileida</footer>
-                </blockquote>
+        <!-- LADO REGISTRO -->
+        <div class="face back">
+          <div class="form-container">
+            <h2>Registro</h2>
+            <label for="tipoRegistro">Tipo de usuario:</label>
+            <select id="tipoRegistro">
+              <option value="natural">Persona natural</option>
+              <option value="juridica">Persona jurídica</option>
+            </select>
+            <form id="registerForm">
+              <!-- Natural -->
+              <div id="registroNatural">
+                <input type="text" id="cedula" placeholder="Cédula" />
+                <input type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento" />
+                <input type="text" id="nombre" placeholder="Nombre" />
+                <input type="text" id="apellido" placeholder="Apellido" />
+                <input type="password" id="claveNatural" placeholder="Contraseña" />
+                <input type="password" id="confirmarClave" placeholder="Confirmar contraseña" />
+                <input type="text" id="area" placeholder="Área de conocimiento (opcional)" />
               </div>
-              <div class="carousel-item">
-                <blockquote class="blockquote">
-                  <p>
-                    “Publicamos una vacante y en 2 días contratamos al mejor
-                    candidato.”
-                  </p>
+
+              <!-- Jurídica -->
+              <div id="registroJuridica" style="display: none">
+                <input type="text" id="nombreEmpresa" placeholder="Nombre de la empresa" />
+                <input type="text" id="nit" placeholder="NIT" />
+                <input type="text" id="direccion" placeholder="Dirección y ciudad" />
+                <input type="text" id="contacto" placeholder="Teléfono o correo electrónico" />
+              </div>
+
                   <footer class="blockquote-footer">La Guaquita</footer>
                 </blockquote>
               </div>
@@ -831,21 +226,12 @@
             <button
               class="carousel-control-prev"
               type="button"
-              data-bs-target="#carouselTestimonios"
-              data-bs-slide="prev"
-            >
-              <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselTestimonios"
-              data-bs-slide="next"
-            >
-              <span class="carousel-control-next-icon"></span>
-            </button>
+            </form>
+            <br />
+            <a href="#" id="flipToLogin">¿Ya tienes cuenta? Inicia sesión</a>
           </div>
         </div>
+<<<<<<< HEAD
       </section>
 
       <!-- fin de testimonios -->
@@ -950,33 +336,20 @@
           <a href="#"><i class="bi bi-whatsapp fs-3 footer-icon"></i></a>
           <a href="https://github.com/georgevfc13" target="_blank"><i class="bi bi-github fs-3 footer-icon"></i></a>
         </div>
+=======
+>>>>>>> 0391e0003df7320c7b608149402de67e8c292d52
       </div>
     </div>
 
-    <hr class="border-light my-4">
+    <!-- footer --> <footer class="bg-dark text-white text-center py-4 mt-5"> <p>&copy; 2025 GDA - los tres mosqueteros</p> <div> <a href="#"><i class="bi bi-facebook p-3"></i></a> <a href="#"><i class="bi bi-instagram p-3"></i></a> <a href="#"><i class="bi bi-whatsapp p-3"></i></a> <a href="https://github.com/georgevfc13" target="_blank" rel="noopener noreferrer" dame uno mucho mejor ><i class="bi bi-github p-3"></i ></a> </div> </footer>
 
-    <!-- Créditos -->
-    <div class="text-center pb-3">
-      <p class="mb-1">&copy; 2025 <strong>GDA -</strong>. Todos los derechos reservados.</p>
-    </div>
-  </div>
-</footer>
-
-
-
-    <!-- fin del footer -->
-
+    <!-- SCRIPTS -->
+    <script src="login.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      defer
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
