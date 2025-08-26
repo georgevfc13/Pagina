@@ -1,7 +1,7 @@
 <?php
 class Database {
     private $host = "localhost";
-    private $db_name = "mvc";
+    private $db_name = "gda";
     private $username = "root";
     private $password = "";
     public $conn;
