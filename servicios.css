@@ -68,3 +68,12 @@ body{
     transition: transform 0.2s;
     box-shadow: 0 0 30px 0 rgba(0, 123, 255, 0.3);
 }
+
+
+.container{
+    margin-top: 20px;
+}
+
+.btn{
+    margin-top: 15px;
+}

@@ -3,3 +3,46 @@
     width: 50px;
     height: 50px;
 }
+
+
+.historia{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 3rem;
+    
+}
+
+.contenido{
+  
+  margin: 0 auto; /* centra el contenido */
+  display: flex; /* para poner imagen a la izquierda y texto a la derecha */
+  align-items: center;
+  gap: 20px; /* espacio entre la imagen y el texto */
+}
+
+.div-historia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  background-color: gray;
+    margin-top: 30px;
+    width: 100%;
+    margin: 30px;
+    
+}
+
+.p-historia{
+    width: 50%;
+    text-align: justify;
+    font-size: 20px;
+    color: white;
+    margin-left: 20px;
+}
+
+.imagen_esa{
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+ 
+}
