@@ -40,22 +40,25 @@ document.querySelectorAll('.toggle-info').forEach(btn => {
 
 // el script del mapa
 document.addEventListener("DOMContentLoaded", function () {
-  // Mapa de vacantes
+  // Coordenadas centrales (La Jagua de Ibirico)
+  const centro = [9.564642895405072, -73.33608547628114];
+
+  // === MAPA DE VACANTES ===
   const mapaVacantes = L.map('mapa', {
     scrollWheelZoom: false
-  }).setView([9.564642895405072, -73.33608547628114], 14);
+  }).setView(centro, 14);
 
-  // Cargar mapa base de OpenStreetMap para vacantes
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  // Capa satelital Esri
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri — Source: Esri, Earthstar Geographics, CNES/Airbus DS, USGS, USDA, AEX, GeoEye',
+    maxZoom: 18,
   }).addTo(mapaVacantes);
 
   const vacantes = [
     {
       titulo: "Celador",
-      lat: 9.555774159560068,
-      lng: -73.33499886092615,
+      lat: 9.55559786573379,
+      lng: -73.33501448639316,
     },
     {
       titulo: "Alguien pa que puye",
@@ -69,24 +72,28 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  // Agregar marcadores de vacantes
   vacantes.forEach((vacante) => {
+    const urlGoogleMaps = `https://www.google.com/maps?q=${vacante.lat},${vacante.lng}`;
     L.marker([vacante.lat, vacante.lng])
       .addTo(mapaVacantes)
-      .bindPopup(`<b>${vacante.titulo}</b><br>La Jagua de Ibirico`);
+      .bindPopup(`
+        <b>${vacante.titulo}</b><br>
+        La Jagua de Ibirico<br>
+        <a href="${urlGoogleMaps}" target="_blank" style="color: blue; text-decoration: underline;">Ver en Google Maps</a>
+      `);
   });
 
-  // Mapa de oportunidades de estudio
+  // === MAPA DE OPORTUNIDADES DE ESTUDIO ===
   const mapaEstudio = L.map('mapa-oportunidades', {
     scrollWheelZoom: false
-  }).setView([9.564642895405072, -73.33608547628114], 14);
+  }).setView(centro, 14);
 
-  // Cargar mapa base de OpenStreetMap para estudio
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
+  // Capa satelital Esri
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri — Source: Esri, Earthstar Geographics, CNES/Airbus DS, USGS, USDA, AEX, GeoEye',
+    maxZoom: 18,
   }).addTo(mapaEstudio);
 
-  // Lista de instituciones o empresas
   const lugares = [
     {
       nombre: "SENA subsede La Jagua de Ibirico",
@@ -97,19 +104,23 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  // Añadir marcadores al mapa de estudio
   lugares.forEach(lugar => {
+    const [lat, lng] = lugar.coordenadas;
+    const urlGoogleMaps = `https://www.google.com/maps?q=${lat},${lng}`;
+
     const marcador = L.marker(lugar.coordenadas).addTo(mapaEstudio);
     marcador.bindPopup(`
       <strong>${lugar.nombre}</strong><br>
       <img src="${lugar.imagen}" width="100"><br>
       ${lugar.descripcion}<br>
-      <a href="${lugar.enlace}" target="_blank">Ver más</a>
+      <a href="${lugar.enlace}" target="_blank">Ver más</a><br>
+      <a href="${urlGoogleMaps}" target="_blank" style="color: blue; text-decoration: underline;">Ver en Google Maps</a>
     `);
   });
 });
 
 //graficos
+
 //pueblos con más vacantes
 new Chart(document.getElementById("graficoVacantesCiudades"), {
   type: "bar",
