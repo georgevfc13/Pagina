@@ -130,11 +130,11 @@ footer a:hover i {
 }
 
 .hero {
-  background-image: url("img/empleado.jpg"); /* cambia por tu ruta */
-  background-size: cover;       /* La imagen cubre todo */
-  background-position: center;  /* Centrada */
-  background-repeat: no-repeat; /* No se repite */
-  min-height: 400px;            /* Ajusta el alto mínimo */
+  background-image: url("../img/empleado.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 400px;
   position: relative;
 }
 

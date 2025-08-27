@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
       coordenadas: [9.560627800125882, -73.34501507183114],
       descripcion: "Centro de formación profesional del SENA en La Jagua de Ibirico.",
       enlace: "https://www.sena.edu.co/",
-      imagen: "img/logo-sena.png"
+      imagen: "assets/img/logo-sena.png"
     },
   ];
 
