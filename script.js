@@ -196,6 +196,50 @@ new Chart(document.getElementById("graficoServiciosOfertados"), {
     calendar.render();
   });
 
+//Pa que los numeros de las estadisticas se muevan
+  const counters = document.querySelectorAll(".counter");
+  let countersStarted = false;
+
+  function animateCounters() {
+    if (countersStarted) return; // Solo ejecutar una vez
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      let count = 0;
+      const increment = target / 100; // Ajusta la velocidad aquí
+
+      const updateCounter = () => {
+        if (count < target) {
+          count += increment;
+          counter.textContent = Math.ceil(count);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target;
+        }
+      };
+
+      updateCounter();
+    });
+    countersStarted = true;
+  }
+
+  // Detectar si el contenedor está visible en el viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  // Escucha de scroll
+  window.addEventListener("scroll", () => {
+    const statsSection = document.querySelector(".counter").parentElement.parentElement;
+    if (isInViewport(statsSection)) {
+      animateCounters();
+    }
+  });
+
+
 //boton de scroll
 // Mostrar/ocultar el botón al hacer scroll
 window.addEventListener('scroll', function () {
