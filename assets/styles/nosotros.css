@@ -89,3 +89,23 @@
     margin-right: 20px;
  
 }
+
+.links_footer{
+    text-decoration: none;
+    color: #4FC3F7;
+    transition: color 0.3s ease-in-out;
+}
+
+.links_footer:hover {
+    color: #0d6efd;
+    text-decoration: underline;
+}
+
+.footer-icon {
+    color: #ffffff;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-icon:hover {
+    color: #b3b6ba;
+}
