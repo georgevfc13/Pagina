@@ -75,13 +75,24 @@ main{
     perspective: 1000px;
 }
 
-footer a i {
-    color: #fff !important;
-    transition: color 0.2s;
+.links_footer{
+    text-decoration: none;
+    color: #4FC3F7;
+    transition: color 0.3s ease-in-out;
 }
 
-footer a:hover i {
-    color: #ddd !important;
+.links_footer:hover {
+    color: #0d6efd;
+    text-decoration: underline;
+}
+
+.footer-icon {
+    color: #ffffff;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-icon:hover {
+    color: #b3b6ba;
 }
 
 .info-extra.collapse {
