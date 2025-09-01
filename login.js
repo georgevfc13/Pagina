@@ -104,5 +104,3 @@ document.getElementById("registerForm").addEventListener("submit", function (e) 
     alert("Registro exitoso");
   }
 });
-
-

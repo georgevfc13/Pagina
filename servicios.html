@@ -1,18 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nosotros</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-    <link rel="stylesheet" href="assets/styles/nosotros.css">
+    <title>Servicios</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="assets/styles/servicios.css">
   </head>
   <body>
-    
-
 <!-- inicio del nadvar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
       <div class="container-fluid">
@@ -43,7 +51,7 @@
             <li class="nav-item">
               <a
                 title="Servicios"
-                class="nav-link nav-hover"
+                class="nav-link active nav-hover"
                 href="servicios.html"
                 >Servicios</a
               >
@@ -54,7 +62,7 @@
               >
             </li>
             <li class="nav-item">
-              <a title="Nosotros" class="nav-link active nav-hover" href="nosotros.html"
+              <a title="Nosotros" class="nav-link nav-hover" href="nosotros.html"
                 >Nosotros</a
               >
             </li>
@@ -78,74 +86,93 @@
     </nav>
 <!-- fin del nadvar -->
 
-
 <!-- seccion hero -->
     <section class="bg-primary text-white text-center py-5">
         <div>
-            <h2 class="display-5 fw-bold">Nosotros</h2>
-            <p class="lead">¿Quiénes somos?</p>
-            <p class="lead">Somos una empresa dedicada a brindar soluciones a lo que necesitas, comprometidos con la excelencia y la satisfacción de nuestros clientes.</p>
-
+            <h2 class="display-5 fw-bold">Nuestros Servicios Profesionales</h2>
+            <p class="lead">Soluciones integrales para la gestión del talento humano y desarrollo organizacional</p>
         </div>
     </section>
 <!-- fin seccion hero -->
 
-
-
-<!-- seccion de historia -->
-
-<section class=" text-white">
-  <h2 class="text-center py-3 text-dark historia"><strong>Historia</strong></h2>
-  <div class="container-fluid bg-secondary py-5">
-    <div class="row align-items-center justify-content-center">
-      
-      <!-- Imagen -->
-      <div class="col-md-4 text-center mb-3 mb-md-0">
-        <img src="assets/img/empresa.jpg" alt="empresa" class="imagen_esa img-fluid rounded">
+<!-- inicio de servicios -->
+<main>
+  <!-- publicar servicio -->
+<div class="container text-center">
+  <h3>Publica tu servicio aqui</h3>
+  <!-- Sección para publicar vacante -->
+  <form class="row g-3 justify-content-center my-4">
+    <!-- Campo para el nombre del servicio -->
+    <div class="col-md-6">
+      <label for="nombreServicio" class="form-label">Nombre del servicio que ofreces</label>
+      <input type="text" class="form-control" id="nombreServicio" placeholder="Ejemplo: Desarrollo Web">
+    </div>
+    <!-- Campo para la descripción -->
+    <div class="col-md-6">
+      <label for="descripcionServicio" class="form-label">Descripción de tu servicio</label>
+      <input type="text" class="form-control" id="descripcionServicio" placeholder="Ejemplo: Especializado en desarrollo de aplicasciones moviles">
+    </div>
+    <!-- Campo para contacto -->
+    <div class="col-md-6">
+      <label for="contactoServicio" class="form-label">Contacto</label>
+      <input type="email" class="form-control" id="contactoServicio" placeholder="correo@ejemplo.com">
+    </div>
+    <!-- Botón para publicar -->
+    <div class="col-12">
+      <div>
+        <select class="form-select" name="contacto">
+          <option value="">Con que pueden contactarte?</option>
+          <option value="correo">Correo electronico</option>
+          <option value="telefono">Numero de telefono</option>
+        </select>
       </div>
-
-      <!-- Texto -->
-      <div class="col-md-6">
-        <p class="text-center">
-          Iniciamos en el año 2025 con el objetivo de facilitar a las personas a encontrar lo que necesiten en el área laboral, 
-          enfocándonos en permitir ofrecer vacantes y adquirir servicios. Desde entonces hemos trabajado con clientes de diferentes sectores, 
-          logrando crecer y consolidarnos en el mercado. Con el tiempo, hemos trabajado con clientes de diferentes sectores, 
-          logrando crecer, innovar y consolidarnos como una plataforma confiable y dinámica. Nuestro compromiso sigue siendo conectar a las personas 
-          con oportunidades que transformen su vida profesional.
-        </p>
+      <button class="btn btn-info">Publicar vacante</button>
+    </div>
+  </form>
+</div>
+  <!-- fin de publicar servicio -->
+  <div class="container py-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <!-- Servicio 1 -->
+      <div class="col">
+        <div class="card h-100 shadow rounded-4 border-secondary-subtle">
+          <div class="card-body text-center">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+              <i class="fas fa-laptop-code text-primary fs-3"></i>
+            </div>
+            <h5 class="card-title fw-bold">Ingeniería en Sistemas</h5>
+            <p class="card-text">Especialistas en desarrollo de aplicaciones móviles</p>
+          </div>
+        </div>
       </div>
-
+      <!-- Servicio 2 -->
+      <div class="col">
+        <div class="card h-100 shadow rounded-4 border-secondary-subtle">
+          <div class="card-body text-center">
+            <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+              <i class="fas fa-users text-success fs-3"></i>
+            </div>
+            <h5 class="card-title fw-bold">Gestión de Talento Humano</h5>
+            <p class="card-text">Reclutamiento, selección y capacitación para potenciar el capital humano de tu empresa.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Servicio 3 -->
+      <div class="col">
+        <div class="card h-100 shadow rounded-4 border-secondary-subtle">
+          <div class="card-body text-center">
+            <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+              <i class="fas fa-chart-line text-warning fs-3"></i>
+            </div>
+            <h5 class="card-title fw-bold">Desarrollo Organizacional</h5>
+            <p class="card-text">Consultoría para mejorar procesos, clima laboral y productividad empresarial.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
-
-<!-- Mision, vision y valores -->
-  <section class="container py-5">
-  <div class="row text-center">
-    <div class="col-md-4">
-      <h4>Misión</h4>
-      <p>Facilitar el acceso a oportunidades laborales y servicios a través de soluciones digitales confiables e innovadoras.</p>
-    </div>
-    <div class="col-md-4">
-      <h4>Visión</h4>
-      <p>Ser la plataforma líder en conectar talento con oportunidades, impulsando el crecimiento profesional y empresarial en Latinoamérica.</p>
-    </div>
-    <div class="col-md-4">
-      <h4>Valores</h4>
-      <ul class="list-unstyled">
-        <li>✔ Compromiso</li>
-        <li>✔ Transparencia</li>
-        <li>✔ Innovación</li>
-        <li>✔ Empatía</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<!-- fin de la cosa esa larga -->
-
-<!-- equipo -->
-  
-<!-- fin de equipo -->
+</main>
+<!-- fin de servicios -->
 
 
  <!-- Botón Scroll hacia abajo y devuelve al inicio -->
@@ -167,9 +194,7 @@
       <i class="bi bi-arrow-up fs-3"></i>
     </button>
     <!-- fin del boton de scroll -->
-
-
-
+     
 <!-- Footer -->
 <footer class="bg-dark text-white pt-5">
   <div class="container-fluid">
@@ -233,13 +258,9 @@
 
 
 
-
-
-
-
-
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
  <script src="scroll.js"></script>
-
   </body>
+ 
+  
 </html>
