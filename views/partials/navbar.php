@@ -22,7 +22,7 @@
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'servicios') echo 'active'; ?>" href="servicios.php">Servicios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'vacantes') echo 'active'; ?>" href="#">Vacantes</a>
+          <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'vacantes') echo 'active'; ?>" href="vacantes.php">Vacantes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'nosotros') echo 'active'; ?>" href="nosotros.php">Nosotros</a>

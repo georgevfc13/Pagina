@@ -43,7 +43,7 @@
         <hr class="border-light my-4">
         <!-- Créditos -->
         <div class="text-center pb-3">
-            <p class="mb-1">&copy; 2025 <strong>GDA -</strong>. Todos los derechos reservados.</p>
+            <p class="mb-1">&copy; 2025 <strong>GDA -</strong> Todos los derechos reservados.</p>
         </div>
     </div>
 </footer>

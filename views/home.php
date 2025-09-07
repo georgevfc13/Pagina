@@ -455,7 +455,7 @@
             <!-- fin del mapa -->
 
             <!-- mapa de oportunidades de estudio -->
-            <h2 class="text-center my-4">Mapa de Estudio</h2>
+            <h2 class="text-center my-4 text-primary">Mapa de Estudio</h2>
             <p class="text-center">
                 Educate y consigue nuevas habilidades y mas oportunidades de ser
                 contratado.
@@ -730,9 +730,9 @@
                                 <blockquote class="blockquote">
                                     <p>
                                         “Gracias a GDA conseguí mi primer empleo como
-                                        desarrollador.”
+                                        jugadora de roblox.”
                                     </p>
-                                    <footer class="blockquote-footer">loly mileida</footer>
+                                    <footer class="blockquote-footer">Sarah Bello</footer>
                                 </blockquote>
                             </div>
                             <div class="carousel-item">
@@ -769,7 +769,7 @@
 
             <!-- inicio de estadisticas -->
             <section class="container my-5">
-                <h2 class="text-center text-primary mb-4">Estadísticas Detalladas</h2>
+                <h2 class="text-center text-primary mb-4">Estadísticas</h2>
                 <div class="row g-4">
                     <div class="col-md-6">
                         <canvas id="graficoVacantesCiudades"></canvas>
