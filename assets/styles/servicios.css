@@ -2,12 +2,17 @@
 /* ========= Estilos generales para la página de servicios ========= */
 /* ========================================================== */
 
-html, body {
+body{
+    background-image: url("../img/fondo.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa; /* Fondo gris claro */
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    color: #343a40; /* Texto principal en gris oscuro */
+    overflow-x: hidden;
 }
 
 
