@@ -739,7 +739,7 @@
                                 <blockquote class="blockquote">
                                     <p>
                                         “Publicamos una vacante y en 2 días contratamos al mejor
-                                        candidato.”
+                                        candidato. aury daño todo”
                                     </p>
                                     <footer class="blockquote-footer">La Guaquita</footer>
                                 </blockquote>
