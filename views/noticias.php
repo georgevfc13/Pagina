@@ -13,7 +13,7 @@
         <main class="container py-5">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="ruta/imagen.jpg" class="card-img-top" alt="..." />
+                    <img src="../assets/img/freelance.png" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">
                             Cómo destacar tu perfil en plataformas de empleo freelance
@@ -33,14 +33,7 @@
                 </div>
             </div>
         </main>
-        <!-- Footer -->
-        <footer class="bg-dark text-white pt-5">
-            <div class="container-fluid">
-                <div class="row gy-4">
-                    <!-- Logo & descripción -->
-                    <div class="col-lg-4 col-md-6">
-                        <h3 class="fw-bold">GDA</h3>
-                        <p class="mt-3">
-                            GDA creando soluciones digitales con innovación, creatividad y
-                        <?php include 'partials/footer.php'; ?>
-                        </p>
+
+        <?php include 'partials/footer.php'; ?>
+    </body>
+</html>

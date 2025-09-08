@@ -18,7 +18,7 @@
     <div class="hero-content text-white">
         <h1 class="fw-bold">Bienvenido a GDA</h1>
         <p class="lead">Tu puente entre oportunidades laborales y talento profesional</p>
-        <button class="btn btn-light mt-3">Regístrate aquí</button>
+        <a href="../views/login.php" class="btn btn-light mt-3">Regístrate aquí</a>
     </div>
 </section>
 
