@@ -561,9 +561,9 @@
                 class="carousel slide container"
                 data-bs-ride="carousel"
             >
-                <div class="carousel-inner">
+                <div class="carousel-inner transparente">
                     <!-- tip 1 -->
-                    <div class="carousel-item active">
+                    <div class="carousel-item active ">
                         <div class="card p-4 shadow-sm text-center">
                             <h5 class="mb-3">Sé puntual en las entrevistas</h5>
                             <p>
