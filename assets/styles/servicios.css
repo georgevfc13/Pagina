@@ -1,9 +1,6 @@
-.pie_pagina{
-    background-color: black;
-    color: azure;
-    text-align: center;
-    height: 100%;
-}
+/* ========================================================== */
+/* ========= Estilos generales para la página de servicios ========= */
+/* ========================================================== */
 
 body{
     background-image: url("../img/fondo.jpeg");
@@ -18,87 +15,244 @@ body{
     overflow-x: hidden;
 }
 
-.logo{
+
+/* ========================================================== */
+/* ============= Estilos de la barra de navegación ============= */
+/* ========================================================== */
+
+.nav {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    font-size: 1rem;
+}
+
+.logo {
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.nav{
-    background-color: gray;
-    height: 4rem;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.nav-hover {
-    position: relative;
-    display: inline-block;
-    padding: 8px 12px;
-
-    text-decoration: none;
+.nav-link {
+    font-weight: 500;
+    color: #495057 !important;
     transition: color 0.3s ease-in-out;
 }
 
-.nav-hover::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0%;
-    background-color: #0d6efd;
-    transition: width 0.3s ease-in-out;
+.nav-link:hover {
+    color: #007bff !important;
 }
 
-.nav-hover:hover::after {
-    width: 100%;
-}
-
-.nav-hover:hover {
-    color: #0d6efd;
-}
-
-.nav-hover.active::after {
-    width: 100%;
+.nav-link.active {
+    color: #007bff !important;
+    font-weight: 600;
+    border-bottom: 2px solid #007bff;
 }
 
 
-.burger{
-    background-color: white;
+/* ========================================================== */
+/* ============ Sección Hero (Encabezado Azul) ============== */
+/* ========================================================== */
+
+.hero-section {
+    background-color: #007bff; /* Azul Bootstrap */
+    color: #fff;
+    padding: 4rem 0;
+    text-align: center;
 }
 
-.card:hover {
-    transform: scale(1.03);
-    transition: transform 0.2s;
-    box-shadow: 0 0 30px 0 rgba(0, 123, 255, 0.3);
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-top: 1rem;
 }
 
 
-.container{
-    margin-top: 20px;
+/* ========================================================== */
+/* =========== Sección de formulario para servicios ========= */
+/* ========================================================== */
+
+.form-section {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 0 !important;
+    position: relative;
+    z-index: 10;
 }
 
-.btn{
-    margin-top: 15px;
+.form-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
 }
 
-.links_footer{
+.form-section p {
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+
+/* ========================================================== */
+/* =========== Sección de listado de servicios ============= */
+/* ========================================================== */
+
+.services-list-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.services-list-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.services-list-section p {
+    color: #7f8c8d;
+    margin-bottom: 3rem;
+}
+
+
+/* =========== Estilos para las tarjetas de servicios =========== */
+
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.service-icon-box {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+}
+
+.service-card .card-title {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.service-card .card-text {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.service-card .btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+.service-card .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+/* ========================================================== */
+/* ================ Estilos del pie de página ================ */
+/* ========================================================== */
+
+.pie_pagina {
+    background-color: #343a40;
+    color: #adb5bd;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.links_footer {
+    color: #adb5bd;
     text-decoration: none;
-    color: #4FC3F7;
     transition: color 0.3s ease-in-out;
 }
 
 .links_footer:hover {
-    color: #0d6efd;
-    text-decoration: underline;
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .footer-icon {
-    color: #ffffff;
-    transition: color 0.3s ease-in-out;
+    font-size: 1.5rem;
+    color: #adb5bd;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease-in-out, transform 0.3s ease;
 }
 
 .footer-icon:hover {
-    color: #b3b6ba;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+
+/* ========================================================== */
+/* ============ Botón de "Volver arriba" =================== */
+/* ========================================================== */
+
+#scrollToTopBtn {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s, transform 0.3s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#scrollToTopBtn:hover {
+    transform: translateY(-3px);
+    background-color: #0056b3;
+}
+
+
+/* ========================================================== */
+/* =================== Animaciones ========================== */
+/* ========================================================== */
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
