@@ -140,7 +140,9 @@ main{
   z-index: 2; /* Para que el texto quede por encima del fondo */
 }
 
-.transparente{
+.transparente
+
+{
     .card {
   background-color: rgba(255, 255, 255, 0); /* Totalmente transparente */
   /* O usa un valor como 0.7 para semi-transparente */
