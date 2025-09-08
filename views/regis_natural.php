@@ -37,10 +37,12 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Registro Persona Natural</title>
+    <link rel="stylesheet" href="../assets/styles/login.css">
 </head>
 <body>
-  <h2>Registro Persona Natural</h2>
+
   <form method="POST" action="">
+      <h2>Registro Persona Natural</h2>
     <label>Nombre:</label>
     <input type="text" name="nombre" required><br><br>
 
@@ -74,6 +76,10 @@ $conn->close();
     </label><br><br>
 
     <button type="submit">Registrarse</button>
+    <p>¿Ya tienes una cuenta? <a href="login_natural.php">Iniciar Sesión</a></p>
+  </form>
+
+    
   </form>
 </body>
 </html>

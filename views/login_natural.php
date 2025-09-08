@@ -44,11 +44,15 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Login Persona Natural</title>
-  <link rel="stylesheet" href="../assets/styles/login.css">
+     <link rel="stylesheet" href="../assets/styles/nosotros.css" />
+    <link rel="stylesheet" href="../assets/styles/login.css">
 </head>
 <body>
-  <h2>Iniciar sesión - Persona Natural</h2>
+
+    <main class="container py-5">
+
   <form method="POST" action="">
+      <h2>Iniciar sesión - Persona Natural</h2>
     <label>Correo / Contacto:</label>
     <input type="text" name="correo" required><br><br>
 
@@ -56,6 +60,8 @@ $conn->close();
     <input type="password" name="password" required><br><br>
 
     <button type="submit">Ingresar</button>
+
+    <p>¿No tienes una cuenta? <a href="regis_natural.php">Regístrate aquí</a></p>
   </form>
 </body>
 </html>
