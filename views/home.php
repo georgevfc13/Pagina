@@ -563,7 +563,7 @@
             >
                 <div class="carousel-inner">
                     <!-- tip 1 -->
-                    <div class="carousel-item active">
+                    <div class="carousel-item active transparente">
                         <div class="card p-4 shadow-sm text-center">
                             <h5 class="mb-3">Sé puntual en las entrevistas</h5>
                             <p>
