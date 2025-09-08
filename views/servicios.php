@@ -1,125 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Servicios</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../assets/styles/servicios.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    </head>
-    <body>
-        <?php $activePage = 'servicios'; include 'partials/navbar.php'; ?>
-        <!-- seccion hero -->
-        <section class="bg-primary text-white text-center py-5">
-                <div>
-                        <h2 class="display-5 fw-bold">Nuestros Servicios Profesionales</h2>
-                        <p class="lead">Soluciones integrales para la gestión del talento humano y desarrollo organizacional</p>
-                </div>
-        </section>
-        <!-- fin seccion hero -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nuestros Servicios Profesionales - Tu Empresa</title>
 
-        <!-- inicio de servicios -->
-        <main>
-            <!-- publicar servicio -->
-        <div class="container text-center">
-            <h3>Publica tu servicio aqui</h3>
-            <!-- Sección para publicar vacante -->
-            <form class="row g-3 justify-content-center my-4">
-                <!-- Campo para el nombre del servicio -->
+    <!-- Bootstrap y otros estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <?php $activePage = 'servicios'; include 'partials/navbar.php'; ?>
+
+    <!-- Encabezado con fondo azul (como en Vacantes) -->
+    <header class="hero-section bg-primary text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Nuestros Servicios Profesionales</h1>
+            <p class="lead mt-3">Soluciones integrales para la gestión del talento humano y el desarrollo de tu organización.</p>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section class="container py-5 form-section mt-0">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Publica tu Servicio</h2>
+                <p class="text-muted">¿Eres un profesional? Comparte tu experiencia y conecta con empresas que necesitan tus habilidades.</p>
+            </div>
+
+            <form class="row g-4 justify-content-center">
                 <div class="col-md-6">
-                    <label for="nombreServicio" class="form-label">Nombre del servicio que ofreces</label>
-                    <input type="text" class="form-control" id="nombreServicio" placeholder="Ejemplo: Desarrollo Web">
+                    <label for="serviceName" class="form-label">Nombre del servicio que ofreces</label>
+                    <input type="text" class="form-control" id="serviceName" placeholder="Ej: Consultoría en Marketing Digital" required>
                 </div>
-                <!-- Campo para la descripción -->
                 <div class="col-md-6">
-                    <label for="descripcionServicio" class="form-label">Descripción de tu servicio</label>
-                    <input type="text" class="form-control" id="descripcionServicio" placeholder="Ejemplo: Especializado en desarrollo de aplicasciones moviles">
+                    <label for="serviceDescription" class="form-label">Descripción de tu servicio</label>
+                    <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Ej: Especializado en creación de estrategias de SEO y campañas de publicidad en redes sociales para startups." required></textarea>
                 </div>
-                <!-- Campo para contacto -->
                 <div class="col-md-6">
-                    <label for="contactoServicio" class="form-label">Contacto</label>
-                    <input type="email" class="form-control" id="contactoServicio" placeholder="correo@ejemplo.com">
+                    <label for="contactMethod" class="form-label">Método de contacto preferido</label>
+                    <select class="form-select" id="contactMethod" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="email">Correo electrónico</option>
+                        <option value="phone">Número de teléfono</option>
+                        <option value="whatsapp">WhatsApp</option>
+                    </select>
                 </div>
-                <!-- Botón para publicar -->
-                <div class="col-12">
-                    <div>
-                        <select class="form-select" name="contacto">
-                            <option value="">Con que pueden contactarte?</option>
-                            <option value="correo">Correo electronico</option>
-                            <option value="telefono">Numero de telefono</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-info">Publicar vacante</button>
+                <div class="col-md-6">
+                    <label for="contactInfo" class="form-label">Información de contacto</label>
+                    <input type="text" class="form-control" id="contactInfo" placeholder="ejemplo@correo.com o +123456789" required>
+                </div>
+                <div class="col-12 text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg px-5">Publicar Servicio</button>
                 </div>
             </form>
-        </div>
-            <!-- fin de publicar servicio -->
-            <div class="container py-5">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    <!-- Servicio 1 -->
-                    <div class="col">
-                        <div class="card h-100 shadow rounded-4 border-secondary-subtle">
-                            <div class="card-body text-center">
-                                <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
-                                    <i class="fas fa-laptop-code text-primary fs-3"></i>
-                                </div>
-                                <h5 class="card-title fw-bold">Ingeniería en Sistemas</h5>
-                                <p class="card-text">Especialistas en desarrollo de aplicaciones móviles</p>
+        </section>
+
+        <section class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Explora los Servicios Disponibles</h2>
+                <p class="text-muted">Descubre a los profesionales que pueden ayudarte a llevar tu empresa al siguiente nivel.</p>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <!-- Tarjeta 1 -->
+                <div class="col">
+                    <div class="card service-card h-100 shadow-sm rounded-4">
+                        <div class="card-body text-center d-flex flex-column align-items-center">
+                            <div class="service-icon-box bg-primary bg-opacity-10 text-primary rounded-circle mb-4">
+                                <i class="fas fa-laptop-code"></i>
                             </div>
+                            <h5 class="card-title fw-bold">Ingeniería en Sistemas</h5>
+                            <p class="card-text text-muted mb-4">Especialistas en desarrollo de aplicaciones móviles, web y soluciones de software a medida.</p>
+                            <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
                         </div>
                     </div>
-                    <!-- Servicio 2 -->
-                    <div class="col">
-                        <div class="card h-100 shadow rounded-4 border-secondary-subtle">
-                            <div class="card-body text-center">
-                                <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
-                                    <i class="fas fa-users text-success fs-3"></i>
-                                </div>
-                                <h5 class="card-title fw-bold">Gestión de Talento Humano</h5>
-                                <p class="card-text">Reclutamiento, selección y capacitación para potenciar el capital humano de tu empresa.</p>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="col">
+                    <div class="card service-card h-100 shadow-sm rounded-4">
+                        <div class="card-body text-center d-flex flex-column align-items-center">
+                            <div class="service-icon-box bg-success bg-opacity-10 text-success rounded-circle mb-4">
+                                <i class="fas fa-users"></i>
                             </div>
+                            <h5 class="card-title fw-bold">Gestión de Talento Humano</h5>
+                            <p class="card-text text-muted mb-4">Servicios de reclutamiento, selección y capacitación para potenciar el capital humano de tu empresa.</p>
+                            <a href="#" class="btn btn-outline-success mt-auto">Ver más</a>
                         </div>
                     </div>
-                    <!-- Servicio 3 -->
-                    <div class="col">
-                        <div class="card h-100 shadow rounded-4 border-secondary-subtle">
-                            <div class="card-body text-center">
-                                <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
-                                    <i class="fas fa-chart-line text-warning fs-3"></i>
-                                </div>
-                                <h5 class="card-title fw-bold">Desarrollo Organizacional</h5>
-                                <p class="card-text">Consultoría para mejorar procesos, clima laboral y productividad empresarial.</p>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="col">
+                    <div class="card service-card h-100 shadow-sm rounded-4">
+                        <div class="card-body text-center d-flex flex-column align-items-center">
+                            <div class="service-icon-box bg-warning bg-opacity-10 text-warning rounded-circle mb-4">
+                                <i class="fas fa-chart-line"></i>
                             </div>
+                            <h5 class="card-title fw-bold">Desarrollo Organizacional</h5>
+                            <p class="card-text text-muted mb-4">Consultoría para mejorar procesos, clima laboral y productividad empresarial de forma sostenible.</p>
+                            <a href="#" class="btn btn-outline-warning mt-auto">Ver más</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-        <!-- fin de servicios -->
+        </section>
+    </main>
 
-         <!-- Botón Scroll hacia abajo y devuelve al inicio -->
-                <button
-                    id="scrollToTopBtn"
-                    class="btn btn-primary"
-                    style="
-                        position: fixed;
-                        bottom: 40px;
-                        right: 30px;
-                        z-index: 9999;
-                        width: 50px;
-                        height: 50px;
-                        display: none;
-                        align-items: center;
-                        justify-content: center;
-                    "
-                >
-                    <i class="bi bi-arrow-up fs-3"></i>
-                </button>
-                <!-- fin del boton de scroll -->
-         
+    <!-- Botón de volver arriba -->
+    <button id="scrollToTopBtn" class="btn btn-dark rounded-circle shadow-lg" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; width: 50px; height: 50px;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Pie de página -->
     <?php include 'partials/footer.php'; ?>
-        <script src="scroll.js"></script>
-    </body>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="scroll.js"></script>
+</body>
 </html>
