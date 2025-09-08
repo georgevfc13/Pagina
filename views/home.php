@@ -561,7 +561,7 @@
                 class="carousel slide container"
                 data-bs-ride="carousel"
             >
-                <div class="carousel-inner">
+                <div class="carousel-inner transparente">
                     <!-- tip 1 -->
                     <div class="carousel-item active transparente">
                         <div class="card p-4 shadow-sm text-center">
