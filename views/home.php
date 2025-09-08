@@ -783,7 +783,7 @@
 
             <!-- estadisticas -->
                 <section class="bg-white py-5 text-center">
-                    <div class="container">
+                    <div class="container transparente">
                         <div class="row g-4">
                             <div class="col">
                                 <h3 class="text-primary counter" data-target="500">0</h3>
