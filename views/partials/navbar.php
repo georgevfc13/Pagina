@@ -31,11 +31,9 @@
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'noticias') echo 'active'; ?>" href="noticias.php">Noticias</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login_natural.php">Iniciar Sesión persona natural</a>
+          <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login_juridica.php">Iniciar Sesión persona jurídica</a>
-        </li>
+       
       </ul>
     </div>
   </div>

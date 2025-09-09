@@ -2,27 +2,37 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "gda"; // tu base de datos
+$dbname = "gda";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
+$mensaje = ""; // <-- Variable para guardar el mensaje
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $razon_social = $_POST['razon_social'];
     $correo = $_POST['correo'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
     $terminos = isset($_POST['terminos']) ? 1 : 0;
 
-    $sql = "INSERT INTO usuarios_juridicos 
-            (razon_social, correo, password, terminos) 
-            VALUES ('$razon_social', '$correo', '$password', '$terminos')";
+   $stmt = $conn->prepare("INSERT INTO usuarios_juridicos
+    (razon_social, correo, password, terminos) 
+    VALUES (?, ?, ?, ?, ?)");
 
-    if ($conn->query($sql) === TRUE) {
-        echo "✅ Registro de persona jurídica exitoso";
+$stmt->bind_param("sssi", 
+    $razon_social,
+    $correo,
+    $password,
+    $terminos 
+);
+
+
+    if ($stmt->execute()) {
+        $mensaje = "✅ Registro de persona jurídica exitoso";
     } else {
-        echo "❌ Error: " . $conn->error;
+        $mensaje = "❌ Error: " . $conn->error;
     }
 }
 $conn->close();
@@ -33,24 +43,49 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Registro Persona Jurídica</title>
+  <link rel="stylesheet" href="../assets/styles/login.css">
+  <style>
+      .mensaje {
+          margin: 10px 0;
+          padding: 10px;
+          border-radius: 5px;
+          font-weight: bold;
+      }
+      .exito { background: #d4edda; color: #155724; }
+      .error { background: #f8d7da; color: #721c24; }
+  </style>
 </head>
 <body>
-  <h2>Registro Persona Jurídica</h2>
+
+ 
+
+
   <form method="POST" action="">
-    <label>Razón Social:</label>
-    <input type="text" name="razon_social" required><br><br>
+      <h2>Registro Persona Natural</h2>
 
-    <label>Correo:</label>
-    <input type="email" name="correo" required><br><br>
+      <!-- Mostrar el mensaje aquí -->
+      <?php if ($mensaje != ""): ?>
+          <div class="mensaje <?php echo (strpos($mensaje, '✅') !== false) ? 'exito' : 'error'; ?>">
+              <?php echo $mensaje; ?>
+          </div>
+      <?php endif; ?>
 
-    <label>Contraseña:</label>
-    <input type="password" name="password" required><br><br>
+      <label>Razón Social:</label>
+      <input type="text" name="razon_social" required><br><br>
 
-    <label>
-      <input type="checkbox" name="terminos" required> Acepto los términos y condiciones
-    </label><br><br>
+      <label>Correo:</label>
+      <input type="email" name="correo" required><br><br>
 
-    <button type="submit">Registrarse</button>
+      <label>Contraseña:</label>
+      <input type="password" name="password" required><br><br>
+
+      <label>
+        <input type="checkbox" name="terminos" required> Acepto los términos y condiciones
+      </label><br><br>
+
+      <button type="submit">Registrarse</button>
+      <p>¿Ya tienes una cuenta? <a href="login_natural.php">Iniciar Sesión</a></p>
   </form>
+
 </body>
 </html>
