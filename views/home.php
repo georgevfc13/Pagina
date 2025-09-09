@@ -563,7 +563,7 @@
             >
                 <div class="carousel-inner transparente">
                     <!-- tip 1 -->
-                    <div class="carousel-item active ">
+                    <div class="carousel-item active transparente">
                         <div class="card p-4 shadow-sm text-center">
                             <h5 class="mb-3">Sé puntual en las entrevistas</h5>
                             <p>
@@ -769,8 +769,13 @@
             <!-- fin de las estadisticas -->
 
             <!-- estadisticas -->
+<<<<<<< HEAD
                 <section class="estadisticas-transparente py-5 text-center">
                     <div class="container">
+=======
+                <section class="bg-white py-5 text-center">
+                    <div class="container transparente">
+>>>>>>> main
                         <div class="row g-4">
                             <div class="col">
                                 <h3 class="text-primary counter" data-target="500">0</h3>
