@@ -140,18 +140,30 @@ main{
   z-index: 2; /* Para que el texto quede por encima del fondo */
 }
 
-.transparente
+.transparente {
+    background-color: rgba(255, 255, 255, 0); /* Fondo totalmente transparente */
 
-{
-    .card {
-  background-color: rgba(255, 255, 255, 0); /* Totalmente transparente */
-  /* O usa un valor como 0.7 para semi-transparente */
-  /* background-color: rgba(255, 255, 255, 0.7); */
-
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
 
+.transparente .blockquote {
+    background-color: rgba(255, 255, 255, 0); /* Fondo semi-transparente para el texto */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+/* Aplica transparencia a las tarjetas del carrusel */
+.carousel-inner .card {
+    background-color: rgba(255, 255, 255, 0.2); /* 0 = transparente, 1 = opaco */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: #000; /* Asegura que el texto sea visible sobre el fondo */
+}
+
+.estadisticas-transparente {
+    background-color: rgba(255, 255, 255, 0.3); /* Ajusta el 0.3 según el nivel de transparencia */
+    backdrop-filter: blur(5px); /* Opcional: efecto de desenfoque del fondo */
+    border-radius: 10px;
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Opcional */
 }

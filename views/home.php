@@ -717,53 +717,40 @@
             <br />
 
             <!-- testimonios -->
-            <section class="bg-light py-5">
-                <div class="container text-center">
-                    <h2 class="mb-4">Testimonios</h2>
-                    <div
-                        id="carouselTestimonios"
-                        class="carousel slide"
-                        data-bs-ride="carousel"
-                    >
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <blockquote class="blockquote">
-                                    <p>
-                                        “Gracias a GDA conseguí mi primer empleo como
-                                        jugadora de roblox.”
-                                    </p>
-                                    <footer class="blockquote-footer">Sarah Bello</footer>
-                                </blockquote>
-                            </div>
-                            <div class="carousel-item">
-                                <blockquote class="blockquote">
-                                    <p>
-                                        “Publicamos una vacante y en 2 días contratamos al mejor
-                                        candidato. aury daño todo”
-                                    </p>
-                                    <footer class="blockquote-footer">La Guaquita</footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <button
-                            class="carousel-control-prev"
-                            type="button"
-                            data-bs-target="#carouselTestimonios"
-                            data-bs-slide="prev"
-                        >
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button
-                            class="carousel-control-next"
-                            type="button"
-                            data-bs-target="#carouselTestimonios"
-                            data-bs-slide="next"
-                        >
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
-                    </div>
+<section class="transparente py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Testimonios</h2>
+        <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <blockquote class="blockquote">
+                        <p>
+                            “Gracias a GDA conseguí mi primer empleo como
+                            jugadora de roblox.”
+                        </p>
+                        <footer class="blockquote-footer">Sarah Bello</footer>
+                    </blockquote>
                 </div>
-            </section>
+                <div class="carousel-item">
+                    <blockquote class="blockquote">
+                        <p>
+                            “Publicamos una vacante y en 2 días contratamos al mejor
+                            candidato. aury daño todo”
+                        </p>
+                        <footer class="blockquote-footer">La Guaquita</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
 
             <!-- fin de testimonios -->
 
@@ -782,7 +769,7 @@
             <!-- fin de las estadisticas -->
 
             <!-- estadisticas -->
-                <section class="bg-white py-5 text-center">
+                <section class="estadisticas-transparente py-5 text-center">
                     <div class="container">
                         <div class="row g-4">
                             <div class="col">

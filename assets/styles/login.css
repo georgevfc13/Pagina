@@ -85,3 +85,19 @@ button:hover {
     padding: 20px;
   }
 }
+
+.transparente
+
+{
+    .card {
+  background-color: rgba(255, 255, 255, 0); /* Totalmente transparente */
+  /* O usa un valor como 0.7 para semi-transparente */
+  /* background-color: rgba(255, 255, 255, 0.7); */
+
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+}
