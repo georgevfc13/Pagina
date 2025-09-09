@@ -478,7 +478,7 @@
                                     La IA va a cambiar la forma de conseguir empleo en Colombia
                                 </h5>
                                 <p class="card-text flex-grow-1">
-                                    Pilla como la inteligencia artificial va a cambiar la forma de
+                                    Observa como la inteligencia artificial va a cambiar la forma de
                                     buscar trabajo.
                                 </p>
                                 <a
@@ -495,7 +495,7 @@
                     <div class="col-md-4">
                         <div class="card h-100 shadow-sm border-0">
                             <img
-                                src="../assets/img/entrevista-otra.jpg"
+                                src="https://cdn.pixabay.com/photo/2019/04/16/11/15/job-4131482_1280.jpg"
                                 class="card-img-top"
                                 alt="Tips entrevista laboral Colombia"
                             />
@@ -504,7 +504,7 @@
                                     Tips para una entrevista laboral exitosa
                                 </h5>
                                 <p class="card-text flex-grow-1">
-                                    Aqui tienes seis claves para afrontar una entrevista de trabajo.
+                                    Investiga la empresa, practica tus respuestas y demuestra confianza para destacar como el candidato ideal.
                                 </p>
                                 <a
                                     href="https://www.valoraanalitik.com/entrevista-laboral-seis-claves-para-conseguir-empleo-en-colombia"
