@@ -805,6 +805,7 @@
                 display: none;
                 align-items: center;
                 justify-content: center;
+                border-radius: 50%;
             "
         >
             <i class="bi bi-arrow-up fs-3"></i>
