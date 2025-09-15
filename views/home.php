@@ -513,7 +513,7 @@ $tipo   = $_SESSION['tipo'] ?? '';
                     <div class="col-md-4">
                         <div class="card h-100 shadow-sm border-0">
                             <img
-                                src="https://cdn.pixabay.com/photo/2019/04/16/11/15/job-4131482_1280.jpg"
+                                src="../assets/img/entrevista_de_carne.jpg"
                                 class="card-img-top"
                                 alt="Tips entrevista laboral Colombia"
                             />
