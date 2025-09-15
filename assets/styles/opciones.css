@@ -38,6 +38,8 @@ body {
 
 }
 
+
+
 .a{
    margin-inline-start: 1rem;
     text-align: center;
@@ -61,4 +63,6 @@ body {
     gap: 8px;
 padding: 5px 5px;
 cursor: pointer;
+text-decoration: none;
+
   }
