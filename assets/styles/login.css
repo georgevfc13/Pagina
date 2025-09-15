@@ -23,9 +23,14 @@ form {
   text-align: center;
 }
 
-a{
+.a{
   color: #2577f1;
   text-decoration: none;
+}
+
+.a2{
+  text-decoration: none;
+  color: white;
 }
 
 /* ==== Encabezado ==== */

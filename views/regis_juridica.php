@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    $stmt = $conn->prepare("INSERT INTO usuarios_juridicos
     (razon_social, correo, password, terminos) 
-    VALUES (?, ?, ?, ?, )");
+    VALUES (?, ?, ?, ? )");
 
 $stmt->bind_param("sssi", 
     $razon_social,

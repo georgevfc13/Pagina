@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// Si no hay sesión activa, redirigimos al login
+if (!isset($_SESSION['id'])) {
+    header("Location: login_natural.php");
+    exit();
+}
+
+// Guardamos en variables los datos de sesión
+$nombre = $_SESSION['nombre'] ?? 'Invitado';
+$tipo   = $_SESSION['tipo'] ?? '';
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -16,8 +32,10 @@
         <!-- zona hero -->
 <section class="hero d-flex align-items-center justify-content-center text-center">
     <div class="hero-content text-white">
-        <h1 class="fw-bold">Bienvenido a GDA</h1>
-        <p class="lead">Tu puente entre oportunidades laborales y talento profesional</p>
+        <h1 class="fw-bold">Hola, <?php echo htmlspecialchars($nombre); ?> 👋</h1>
+<p class="lead">Bienvenido a GDA, tu puente entre oportunidades laborales y talento profesional</p>
+
+
         <a href="registro.php" class="btn btn-light mt-3">Regístrate aquí</a>
     </div>
 </section>
