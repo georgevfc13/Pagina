@@ -17,7 +17,7 @@
     <?php $activePage = 'servicios'; include 'partials/navbar.php'; ?>
 
     <!-- Encabezado con fondo azul (como en Vacantes) -->
-    <header class="hero-section bg-primary text-white text-center py-5">
+    <header class="hero-section text-black text-center py-5">
         <div class="container">
             <h1 class="display-4 fw-bold">Nuestros Servicios Profesionales</h1>
             <p class="lead mt-3">Soluciones integrales para la gestión del talento humano y el desarrollo de tu organización.</p>
