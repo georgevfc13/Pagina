@@ -1,13 +1,14 @@
 /* ==== Estilos Generales ==== */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, white);
+  background: linear-gradient(135deg, rgb(247, 247, 247));
   height: 100vh;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 /* ==== Contenedor del formulario ==== */
 form {
@@ -16,8 +17,13 @@ form {
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   text-align: center;
+}
+
+a{
+  color: #2577f1;
+  text-decoration: none;
 }
 
 /* ==== Encabezado ==== */
@@ -61,7 +67,7 @@ input[type="checkbox"] {
 
 /* ==== Botón ==== */
 button {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  background: #2577f1;
   color: white;
   font-size: 15px;
   font-weight: bold;
@@ -74,7 +80,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  background: #0d6efd;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
