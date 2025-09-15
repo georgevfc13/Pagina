@@ -184,7 +184,6 @@ main{
     transition: transform 0.3s ease;
 }
 
-/* Efecto cuando pasas el mouse */
 #scrollToTopBtn:hover i {
     animation: bounceArrow 0.6s infinite alternate;
 }
