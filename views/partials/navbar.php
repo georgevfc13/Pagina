@@ -33,6 +33,10 @@
         <li class="nav-item">
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
         </li>
+
+         <li class="nav-item">
+          <a href="logout.php" class="btn btn-outline-light ms-3">Cerrar sesión</a>
+        </li>
        
       </ul>
     </div>

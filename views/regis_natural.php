@@ -18,9 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genero = $_POST['genero'];
     $contacto = $_POST['contacto'];
     $tipo_contacto = $_POST['tipo_contacto'];
-    $password = $_POST['password'];
+   $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $terminos = isset($_POST['terminos']) ? 1 : 0;
-
    $stmt = $conn->prepare("INSERT INTO usuarios_naturales 
     (nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, password, terminos) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -32,7 +31,7 @@ $stmt->bind_param("sssssssi",
     $genero, 
     $contacto, 
     $tipo_contacto, 
-    $password,   // <-- aquí se guarda tal cual
+    $passwordHash,   // <-- aquí se guarda tal cual
     $terminos
 );
 
