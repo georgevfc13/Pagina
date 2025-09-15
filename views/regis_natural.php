@@ -51,7 +51,7 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Registro Persona Natural</title>
-  <link rel="stylesheet" href="../assets/styles/login.css">
+  <link rel="stylesheet" href="../assets/styles/regis.css">
   <style>
       .mensaje {
           margin: 10px 0;

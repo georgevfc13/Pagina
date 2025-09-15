@@ -44,7 +44,7 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Login Persona Natural</title>
-     <link rel="stylesheet" href="../assets/styles/nosotros.css" />
+
     <link rel="stylesheet" href="../assets/styles/login.css">
 </head>
 <body>
