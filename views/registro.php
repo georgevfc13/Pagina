@@ -14,8 +14,8 @@
   
     <div class="container">
   <h2 class="h2">Selecciona tipo de usuario</h2>
-  <button class="opcion"><a href="regis_natural.php" class="a">👤 Persona Natural</a></button>  
-  <button class="opcion"><a href="regis_juridica.php" class="a">🏢 Persona Jurídica</a></button>
+  <a href="regis_natural.php"  class="opcion btn-primary">👤 Persona Natural</a>
+ <a href="regis_juridica.php" class="opcion btn-primary">🏢 Persona Jurídica</a>
   </div>
 </body>
 </html>
