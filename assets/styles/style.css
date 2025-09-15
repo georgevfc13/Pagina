@@ -111,9 +111,8 @@ main{
 }
 
 #calendario {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 15px;
 }
 
@@ -140,16 +139,28 @@ main{
   z-index: 2; /* Para que el texto quede por encima del fondo */
 }
 
-.transparente{
-    .card {
-  background-color: rgba(255, 255, 255, 0); /* Totalmente transparente */
-  /* O usa un valor como 0.7 para semi-transparente */
-  /* background-color: rgba(255, 255, 255, 0.7); */
+.transparente {
+    background-color: rgba(255, 255, 255, 0); 
 
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
 
+.transparente .blockquote {
+    background-color: rgba(255, 255, 255, 0);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+
+/* Aplica transparencia a las tarjetas del carrusel */
+.carousel-inner .card {
+    background-color: rgba(255, 255, 255, 0.2); /* 0 = transparente, 1 = opaco */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    color: #000; /* Asegura que el texto sea visible sobre el fondo */
+}
+
+.estadisticas-transparente {
+    background-color: rgba(255, 255, 255, 0); /* Ajusta el 0.3 según el nivel de transparencia */
+    border-radius: 10px;
+    padding: 20px 0;
 }

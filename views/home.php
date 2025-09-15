@@ -26,7 +26,7 @@
         <!-- inicio del filtro y búsqueda -->
         <section class="container my-5">
             <h2 class="text-center mb-4">Busca Vacantes o Servicios</h2>
-            <form action="../resultados.php" class="row g-3 shadow p-4 rounded bg-light">
+            <form action="../resultados.php" class="row g-3 shadow p-4 rounded bg-light ">
                 <!-- Barra de búsqueda -->
                 <div class="col-md-6">
                     <input
@@ -478,7 +478,7 @@
                                     La IA va a cambiar la forma de conseguir empleo en Colombia
                                 </h5>
                                 <p class="card-text flex-grow-1">
-                                    Pilla como la inteligencia artificial va a cambiar la forma de
+                                    Observa como la inteligencia artificial va a cambiar la forma de
                                     buscar trabajo.
                                 </p>
                                 <a
@@ -495,7 +495,7 @@
                     <div class="col-md-4">
                         <div class="card h-100 shadow-sm border-0">
                             <img
-                                src="../assets/img/entrevista-otra.jpg"
+                                src="https://cdn.pixabay.com/photo/2019/04/16/11/15/job-4131482_1280.jpg"
                                 class="card-img-top"
                                 alt="Tips entrevista laboral Colombia"
                             />
@@ -504,7 +504,7 @@
                                     Tips para una entrevista laboral exitosa
                                 </h5>
                                 <p class="card-text flex-grow-1">
-                                    Aqui tienes seis claves para afrontar una entrevista de trabajo.
+                                    Investiga la empresa, practica tus respuestas y demuestra confianza para destacar como el candidato ideal.
                                 </p>
                                 <a
                                     href="https://www.valoraanalitik.com/entrevista-laboral-seis-claves-para-conseguir-empleo-en-colombia"
@@ -717,53 +717,40 @@
             <br />
 
             <!-- testimonios -->
-            <section class="bg-light py-5">
-                <div class="container text-center">
-                    <h2 class="mb-4">Testimonios</h2>
-                    <div
-                        id="carouselTestimonios"
-                        class="carousel slide"
-                        data-bs-ride="carousel"
-                    >
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <blockquote class="blockquote">
-                                    <p>
-                                        “Gracias a GDA conseguí mi primer empleo como
-                                        jugadora de roblox.”
-                                    </p>
-                                    <footer class="blockquote-footer">Sarah Bello</footer>
-                                </blockquote>
-                            </div>
-                            <div class="carousel-item">
-                                <blockquote class="blockquote">
-                                    <p>
-                                        “Publicamos una vacante y en 2 días contratamos al mejor
-                                        candidato. aury daño todo”
-                                    </p>
-                                    <footer class="blockquote-footer">La Guaquita</footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                        <button
-                            class="carousel-control-prev"
-                            type="button"
-                            data-bs-target="#carouselTestimonios"
-                            data-bs-slide="prev"
-                        >
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button
-                            class="carousel-control-next"
-                            type="button"
-                            data-bs-target="#carouselTestimonios"
-                            data-bs-slide="next"
-                        >
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
-                    </div>
+<section class="transparente py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Testimonios</h2>
+        <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <blockquote class="blockquote">
+                        <p>
+                            “Gracias a GDA conseguí mi primer empleo como
+                            jugadora de roblox.”
+                        </p>
+                        <footer class="blockquote-footer">Sarah Bello</footer>
+                    </blockquote>
                 </div>
-            </section>
+                <div class="carousel-item">
+                    <blockquote class="blockquote">
+                        <p>
+                            “Publicamos una vacante y en 2 días contratamos al mejor
+                            candidato. aury daño todo”
+                        </p>
+                        <footer class="blockquote-footer">La Guaquita</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
 
             <!-- fin de testimonios -->
 
@@ -782,8 +769,8 @@
             <!-- fin de las estadisticas -->
 
             <!-- estadisticas -->
-                <section class="bg-white py-5 text-center">
-                    <div class="container transparente">
+                <section class="estadisticas-transparente py-5 text-center">
+                    <div class="container">
                         <div class="row g-4">
                             <div class="col">
                                 <h3 class="text-primary counter" data-target="500">0</h3>
@@ -818,6 +805,7 @@
                 display: none;
                 align-items: center;
                 justify-content: center;
+                border-radius: 50%;
             "
         >
             <i class="bi bi-arrow-up fs-3"></i>
