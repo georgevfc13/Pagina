@@ -1,3 +1,28 @@
+
+
+<?php
+include '../config/dataBase.php';  // Ajusta la ruta si es necesario
+
+// Aquí va el código para procesar el formulario
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $serviceName = $conn->real_escape_string($_POST['serviceName']);
+    $serviceDescription = $conn->real_escape_string($_POST['serviceDescription']);
+    $contactMethod = $conn->real_escape_string($_POST['contactMethod']);
+    $contactInfo = $conn->real_escape_string($_POST['contactInfo']);
+
+    $sql = "INSERT INTO servicios (service_name, service_description, contact_method, contact_info) 
+            VALUES ('$serviceName', '$serviceDescription', '$contactMethod', '$contactInfo')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<div class='alert alert-success text-center mt-3'>Servicio publicado con éxito.</div>";
+    } else {
+        echo "<div class='alert alert-danger text-center mt-3'>Error al publicar el servicio: " . $conn->error . "</div>";
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -1,61 +1,91 @@
+<?php
+include '../config/dataBase.php'; // Ajusta esta ruta si es necesario
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Recoger y sanitizar datos del formulario
+    $nombreVacante = $conn->real_escape_string($_POST['Vacante']);
+    $descripcionVacante = $conn->real_escape_string($_POST['descripcionVacante']);
+    $contactoVacante = $conn->real_escape_string($_POST['contactoVacante']);
+    $tipoContacto = $conn->real_escape_string($_POST['tipoContacto']);
+
+    // Insertar datos en la tabla vacantes
+    $sql = "INSERT INTO vacantes (nombre_vacante, descripcion_vacante, contacto, tipo_contacto) VALUES ('$nombreVacante', '$descripcionVacante', '$contactoVacante', '$tipoContacto')";
+
+    if ($conn->query($sql) === TRUE) {
+        $mensaje = "Vacante publicada con éxito.";
+    } else {
+        $mensaje = "Error al publicar la vacante: " . $conn->error;
+    }
+}
+?>
+
 <!doctype html>
 <html lang="es">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Servicios</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../assets/styles/vacantes.css" />
+        <link rel="stylesheet" href="../assets/styles/vacantes.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     </head>
     <body>
         <?php $activePage = 'vacantes'; include 'partials/navbar.php'; ?>
+
+        <?php if (isset($mensaje)) : ?>
+            <div class="container mt-3">
+                <div class="alert alert-info text-center"><?php echo $mensaje; ?></div>
+            </div>
+        <?php endif; ?>
+
         <!-- seccion hero -->
         <section class="bg-primary text-white text-center py-5">
-                <div>
-                        <h2 class="display-5 fw-bold">Nuestras Vacantes Profesionales</h2>
-                        <p class="lead">Encuentra al mejor candidato que se ajuste a tus necesidades</p>
-                </div>
+            <div>
+                <h2 class="display-5 fw-bold">Nuestras Vacantes Profesionales</h2>
+                <p class="lead">Encuentra al mejor candidato que se ajuste a tus necesidades</p>
+            </div>
         </section>
         <!-- fin seccion hero -->
 
         <!-- inicio de servicios -->
         <main>
             <!-- publicar servicio -->
-        <div class="container text-center">
-            <h3>Publica tu vacante aqui</h3>
-            <!-- Sección para publicar vacante -->
-            <form class="row g-3 justify-content-center my-4">
-                <!-- Campo para el nombre de la vacante -->
-                <div class="col-md-6">
-                    <label for="nombreVacante" class="form-label">Que vacante deseas publicar?</label>
-                    <input type="text" class="form-control" id="nombreVacante" placeholder="Ejemplo: Desarrollador Web">
-                </div>
-                <!-- Campo para la descripción -->
-                <div class="col-md-6">
-                    <label for="descripcionVacante" class="form-label">Descripción de la vacante</label>
-                    <input type="text" class="form-control" id="descripcionVacante" placeholder="Ejemplo: Especializado en desarrollo de aplicaciones móviles">
-                </div>
-                <!-- Campo para contacto -->
-                <div class="col-md-6">
-                    <label for="contactoVacante" class="form-label">Contacto</label>
-                    <input type="email" class="form-control" id="contactoVacante" placeholder="correo@ejemplo.com">
-                </div>
-                <!-- Botón para publicar -->
-                <div class="col-12">
-                    <div>
-                        <select class="form-select" name="contacto">
-                            <option value="">Con que pueden contactarte?</option>
-                            <option value="correo">Correo electronico</option>
-                            <option value="telefono">Numero de telefono</option>
+            <div class="container text-center">
+                <h3>Publica tu vacante aqui</h3>
+                <!-- Sección para publicar vacante -->
+                <form method="POST" class="row g-3 justify-content-center my-4">
+                    <!-- Campo para el nombre de la vacante -->
+                    <div class="col-md-6">
+                        <label for="nombreVacante" class="form-label">Que vacante deseas publicar?</label>
+                        <input type="text" class="form-control" id="nombreVacante" name="nombreVacante" placeholder="Ejemplo: Desarrollador Web" required />
+                    </div>
+                    <!-- Campo para la descripción -->
+                    <div class="col-md-6">
+                        <label for="descripcionVacante" class="form-label">Descripción de la vacante</label>
+                        <input type="text" class="form-control" id="descripcionVacante" name="descripcionVacante" placeholder="Ejemplo: Especializado en desarrollo de aplicaciones móviles" required />
+                    </div>
+                    <!-- Campo para contacto -->
+                    <div class="col-md-6">
+                        <label for="contactoVacante" class="form-label">Contacto</label>
+                        <input type="email" class="form-control" id="contactoVacante" name="contactoVacante" placeholder="correo@ejemplo.com" required />
+                    </div>
+                    <!-- Tipo de contacto -->
+                    <div class="col-md-6">
+                        <label for="tipoContacto" class="form-label">Con que pueden contactarte?</label>
+                        <select class="form-select" id="tipoContacto" name="tipoContacto" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="correo">Correo electrónico</option>
+                            <option value="telefono">Número de teléfono</option>
                         </select>
                     </div>
-                    <button class="btn btn-info">Publicar vacante</button>
-                </div>
-            </form>
-        </div>
-            <!-- fin de publicar servicio -->
+                    <!-- Botón para publicar -->
+                    <div class="col-12">
+                        <button class="btn btn-info" type="submit">Publicar vacante</button>
+                    </div>
+                </form>
+            </div>
+
             <div class="container py-5">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <!-- Servicio 1 -->
@@ -99,27 +129,27 @@
         </main>
         <!-- fin de servicios -->
 
-         <!-- Botón Scroll hacia abajo y devuelve al inicio -->
-                <button
-                    id="scrollToTopBtn"
-                    class="btn btn-primary"
-                    style="
-                        position: fixed;
-                        bottom: 40px;
-                        right: 30px;
-                        z-index: 9999;
-                        width: 50px;
-                        height: 50px;
-                        display: none;
-                        align-items: center;
-                        justify-content: center;
-                    "
-                >
-                    <i class="bi bi-arrow-up fs-3"></i>
-                </button>
-                <!-- fin del boton de scroll -->
-         
-    <?php include 'partials/footer.php'; ?>
+        <!-- Botón Scroll hacia abajo y devuelve al inicio -->
+        <button
+            id="scrollToTopBtn"
+            class="btn btn-primary"
+            style="
+                position: fixed;
+                bottom: 40px;
+                right: 30px;
+                z-index: 9999;
+                width: 50px;
+                height: 50px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            "
+        >
+            <i class="bi bi-arrow-up fs-3"></i>
+        </button>
+        <!-- fin del boton de scroll -->
+
+        <?php include 'partials/footer.php'; ?>
         <script src="scroll.js"></script>
     </body>
 </html>
