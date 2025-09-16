@@ -1,3 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
   <div class="container-fluid">
   <img src="../assets/img/logo.jpg" alt="Logo" class="logo me-2 rounded" onerror="this.onerror=null;this.src='assets/img/logo.jpg';" />
@@ -30,14 +37,23 @@
         <li class="nav-item">
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'noticias') echo 'active'; ?>" href="noticias.php">Noticias</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
-        </li>
+       <?php if (isset($_SESSION['id'])): ?>
+          <!-- Usuario logueado -->
+          <li class="nav-item">
+            <span class="navbar-text text-white ms-3">
+              👋 Hola, <?php echo htmlspecialchars($_SESSION['nombre']); ?>
+            </span>
+          </li>
+          <li class="nav-item">
+            <a href="logout.php" class="btn btn-outline-light ms-3">Cerrar sesión</a>
+          </li>
+        <?php else: ?>
+          <!-- Invitado -->
+          <li class="nav-item">
+            <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
+          </li>
+        <?php endif; ?>
 
-         <li class="nav-item">
-          <a href="logout.php" class="btn btn-outline-light ms-3">Cerrar sesión</a>
-        </li>
-       
       </ul>
     </div>
   </div>

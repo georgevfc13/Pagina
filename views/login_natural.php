@@ -85,8 +85,8 @@ $conn->close();
     <p>¿No tienes una cuenta? <a href="regis_natural.php" class="a">Regístrate aquí</a>
  </p>
 
- <p>o</p>
 
- <button><a href="home.php" class="btn-primary ">Continúa como invitado</a></button>
+
+
   </form>
 </main>

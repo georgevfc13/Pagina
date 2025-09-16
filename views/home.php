@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-// Si no hay sesión activa, redirigimos al login
-if (!isset($_SESSION['id'])) {
-    header("Location: login_natural.php");
-    exit();
+// Si hay sesión activa
+if (isset($_SESSION['id'])) {
+    $nombre = $_SESSION['nombre'] ?? 'Usuario';
+    $tipo   = $_SESSION['tipo'] ?? '';
+} else {
+    // Si no hay sesión, es invitado
+    $nombre = 'Invitado';
+    $tipo   = 'invitado';
 }
-
-// Guardamos en variables los datos de sesión
-$nombre = $_SESSION['nombre'] ?? 'Invitado';
-$tipo   = $_SESSION['tipo'] ?? '';
 ?>
 
 

@@ -9,11 +9,10 @@
    
 </head>
 <body>
-  
-    <div class="container">
-  <h2>Selecciona tipo de usuario</h2>
-  <button class="opcion-registro"><a href="login_natural.php" class="a">👤 Persona Natural</a></button>  
-  <button class="opcion-registro"><a href="login_juridica.php" class="a">🏢 Persona Jurídica</a></button>
+   <div class="container">
+  <h2 class="h2">Selecciona tipo de usuario</h2>
+  <a href="login_natural.php"  class="opcion btn-primary">👤 Persona Natural</a>
+ <a href="login_juridica.php" class="opcion btn-primary">🏢 Persona Jurídica</a>
   </div>
 </body>
 </html>

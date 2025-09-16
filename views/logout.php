@@ -1,9 +1,13 @@
 <?php
-session_start();       // Inicia la sesión
-session_unset();       // Limpia todas las variables de sesión
+session_start();
+session_unset();       // Limpia todas las variables
 session_destroy();     // Destruye la sesión
 
-// Redirige al login
-header("Location: login_natural.php");
+// Creamos una sesión nueva como visitante
+session_start();
+$_SESSION['tipo'] = "invitado";
+
+// Redirigimos al home
+header("Location: home.php");
 exit();
 ?>
