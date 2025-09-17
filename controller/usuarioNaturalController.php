@@ -22,8 +22,16 @@ class UsuarioNaturalController {
         $this->usuario->password = password_hash($data['password'], PASSWORD_DEFAULT);
         $this->usuario->terminos = isset($data['terminos']) ? 1 : 0;
 
-        return $this->usuario->registrar()
-            ? "✅ Registro exitoso"
-            : "❌ Error al registrar";
+        $resultado = $this->usuario->registrar();
+        
+            if ($resultado === true) {
+        return "✅ Registro exitoso";
+    } elseif ($resultado === false) {
+        return "❌ Error al registrar";
+    } else {
+        // Si devuelve string (ejemplo: "⚠️ La cédula ya está registrada")
+        return $resultado;
+    }
+            
     }
 }
