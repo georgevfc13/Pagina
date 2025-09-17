@@ -1,20 +1,33 @@
 <?php
-include '../config/dataBase.php'; // Ajusta esta ruta si es necesario
+include '../config/dataBase.php';
+$db = new Database();
+$conn = $db->getConnection();
+$mensaje = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Recoger y sanitizar datos del formulario
-    $nombreVacante = $conn->real_escape_string($_POST['Vacante']);
-    $descripcionVacante = $conn->real_escape_string($_POST['descripcionVacante']);
-    $contactoVacante = $conn->real_escape_string($_POST['contactoVacante']);
-    $tipoContacto = $conn->real_escape_string($_POST['tipoContacto']);
+    $nombreVacante = isset($_POST['nombreVacante']) ? trim($_POST['nombreVacante']) : '';
+    $descripcionVacante = isset($_POST['descripcionVacante']) ? trim($_POST['descripcionVacante']) : '';
+    $ubicacion = isset($_POST['ubicacion']) ? trim($_POST['ubicacion']) : '';
+    $salario = isset($_POST['salario']) ? trim($_POST['salario']) : '';
+    $fecha_publicacion = isset($_POST['fecha_publicacion']) ? trim($_POST['fecha_publicacion']) : '';
 
-    // Insertar datos en la tabla vacantes
-    $sql = "INSERT INTO vacantes (nombre_vacante, descripcion_vacante, contacto, tipo_contacto) VALUES ('$nombreVacante', '$descripcionVacante', '$contactoVacante', '$tipoContacto')";
-
-    if ($conn->query($sql) === TRUE) {
-        $mensaje = "Vacante publicada con éxito.";
+    if ($nombreVacante && $descripcionVacante && $salario && $fecha_publicacion && $ubicacion) {
+        $sql = "INSERT INTO vacantes (nombre_vacante, descripcion_vacante, ubicacion, salario, fecha_publicacion) VALUES (:nombreVacante, :descripcionVacante, :ubicacion, :salario, :fecha_publicacion,)";
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->execute([
+            ':nombreVacante' => $nombreVacante,
+            ':descripcionVacante' => $descripcionVacante,
+            ':ubicacion' =>  $ubicacion,
+            ':salario' =>  $salario,
+            ':fecha_publicacion' => $fecha_publicacion
+        ]);
+        if ($result) {
+            $mensaje = "Vacante publicada con éxito.";
+        } else {
+            $mensaje = "Error al publicar la vacante.";
+        }
     } else {
-        $mensaje = "Error al publicar la vacante: " . $conn->error;
+        $mensaje = "Todos los campos son obligatorios.";
     }
 }
 ?>
