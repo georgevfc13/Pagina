@@ -1,31 +1,11 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gda"; // tu base de datos
+require_once __DIR__ . "/../controller/usuarioJuridicoController.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
-
+$mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $razon_social = $_POST['razon_social'];
-    $correo = $_POST['correo'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $terminos = isset($_POST['terminos']) ? 1 : 0;
-
-    $sql = "INSERT INTO usuarios_juridicos 
-            (razon_social, correo, password, terminos) 
-            VALUES ('$razon_social', '$correo', '$password', '$terminos')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "✅ Registro de persona jurídica exitoso";
-    } else {
-        echo "❌ Error: " . $conn->error;
-    }
+    $controller = new usuarioJuridicoController();
+    $mensaje = $controller->registrar($_POST);
 }
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -33,24 +13,35 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Registro Persona Jurídica</title>
+  <link rel="stylesheet" href="../assets/styles/login.css">
+  
 </head>
 <body>
-  <h2>Registro Persona Jurídica</h2>
+
+ 
+
+
   <form method="POST" action="">
-    <label>Razón Social:</label>
-    <input type="text" name="razon_social" required><br><br>
+      <h2>Registro Persona Natural</h2>
 
-    <label>Correo:</label>
-    <input type="email" name="correo" required><br><br>
+      
 
-    <label>Contraseña:</label>
-    <input type="password" name="password" required><br><br>
+      <label>Razón Social:</label>
+      <input type="text" name="razon_social" required><br><br>
 
-    <label>
-      <input type="checkbox" name="terminos" required> Acepto los términos y condiciones
-    </label><br><br>
+      <label>Correo:</label>
+      <input type="email" name="correo" required><br><br>
 
-    <button type="submit">Registrarse</button>
+      <label>Contraseña:</label>
+      <input type="password" name="password" required><br><br>
+
+      <label>
+        <input type="checkbox" name="terminos" required> Acepto los términos y condiciones
+      </label><br><br>
+
+      <button type="submit">Registrarse</button>
+      <p>¿Ya tienes una cuenta? <a href="login_natural.php">Iniciar Sesión</a></p>
   </form>
+
 </body>
 </html>

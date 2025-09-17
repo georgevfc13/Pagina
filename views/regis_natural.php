@@ -1,79 +1,74 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gda"; // tu base de datos
+require_once __DIR__ . "/../controller/usuarioNaturalController.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
-
+$mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
-    $cedula = $_POST['cedula'];
-    $fecha_nacimiento = $_POST['fecha_nacimiento'];
-    $genero = $_POST['genero'];
-    $contacto = $_POST['contacto'];
-    $tipo_contacto = $_POST['tipo_contacto'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $terminos = isset($_POST['terminos']) ? 1 : 0;
-
-    $sql = "INSERT INTO usuarios_naturales 
-            (nombre, cedula, fecha_nacimiento, genero, contacto, tipo_contacto, password, terminos) 
-            VALUES ('$nombre', '$cedula', '$fecha_nacimiento', '$genero', '$contacto', '$tipo_contacto', '$password', '$terminos')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "✅ Registro de persona natural exitoso";
-    } else {
-        echo "❌ Error: " . $conn->error;
-    }
+  $controller = new usuarioNaturalController();
+  $mensaje = $controller->registrar($_POST);
 }
-$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Registro Persona Natural</title>
+  <link rel="stylesheet" href="../assets/styles/regis.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
+
 <body>
-  <h2>Registro Persona Natural</h2>
-  <form method="POST" action="">
-    <label>Nombre:</label>
-    <input type="text" name="nombre" required><br><br>
+  <?php $activePage = 'login';
+  include 'partials/navbar.php'; ?>
 
-    <label>Cédula:</label>
-    <input type="text" name="cedula" required><br><br>
+  <main>
 
-    <label>Fecha de Nacimiento:</label>
-    <input type="date" name="fecha_nacimiento" required><br><br>
+    <form method="POST">
+      <h2>Registro Persona Natural</h2>
 
-    <label>Género:</label>
-    <select name="genero" required>
-      <option value="Masculino">Masculino</option>
-      <option value="Femenino">Femenino</option>
-      <option value="Otro">Otro</option>
-    </select><br><br>
+      <?php if ($mensaje != ""): ?>
+        <div><?php echo $mensaje; ?></div>
+      <?php endif; ?>
 
-    <label>Contacto:</label>
-    <input type="text" name="contacto" required><br><br>
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required><br><br>
 
-    <label>Tipo de Contacto:</label>
-    <select name="tipo_contacto" required>
-      <option value="correo">Correo</option>
-      <option value="telefono">Teléfono</option>
-    </select><br><br>
+      <label>Identificación:</label>
+      <input type="text" name="identificacion" required><br><br>
 
-    <label>Contraseña:</label>
-    <input type="password" name="password" required><br><br>
+      <label>Fecha de Nacimiento:</label>
+      <input type="date" name="fecha_nacimiento" required><br><br>
 
-    <label>
-      <input type="checkbox" name="terminos" required> Acepto los términos y condiciones
-    </label><br><br>
+      <label>Género:</label>
+      <select name="genero" required>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Otro">Otro</option>
+      </select><br><br>
 
-    <button type="submit">Registrarse</button>
-  </form>
+      <label>Contacto:</label>
+      <input type="text" name="contacto" required><br><br>
+
+      <label>Tipo de Contacto:</label>
+      <select name="tipo_contacto" required>
+        <option value="correo">Correo</option>
+        <option value="telefono">Teléfono</option>
+      </select><br><br>
+
+      <label>Contraseña:</label>
+      <input type="password" name="password" required><br><br>
+
+      <label>
+        <input type="checkbox" name="terminos" required> Acepto los <a href="terminos_y_condiciones.php">términos y condiciones</a>
+      </label><br><br>
+
+      <button type="submit">Registrarse</button>
+      <p>¿Ya tienes una cuenta? <a href="login_natural.php">Iniciar Sesión</a></p>
+    </form>
+
+  </main>
+    <?php include 'partials/footer.php'; ?>
 </body>
 </html>

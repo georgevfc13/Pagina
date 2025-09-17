@@ -1,12 +1,69 @@
-/* ==== Estilos Generales ==== */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, white);
-  height: 100vh;
+  background-image: url("../img/fondo.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
   margin: 0;
+  padding: 0;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+}
+
+.logo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.nav {
+  background-color: gray;
+  height: 4rem;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-hover {
+  position: relative;
+  display: inline-block;
+  padding: 8px 12px;
+
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #0d6efd;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-hover:hover::after {
+  width: 100%;
+}
+
+.nav-hover:hover {
+  color: #ffffff;
+}
+
+.nav-hover.active::after {
+  width: 100%;
+}
+
+.burger {
+  background-color: white;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 /* ==== Contenedor del formulario ==== */
@@ -16,8 +73,18 @@ form {
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   text-align: center;
+}
+
+.a{
+  color: #2577f1;
+  text-decoration: none;
+}
+
+.a2{
+  text-decoration: none;
+  color: white;
 }
 
 /* ==== Encabezado ==== */
@@ -37,9 +104,9 @@ label {
 }
 
 /* ==== Inputs ==== */
-input, select {
+input, select, textarea {
   width: 100%;
-  padding: 10px 12px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
   margin-bottom: 15px;
@@ -48,7 +115,7 @@ input, select {
   transition: 0.3s;
 }
 
-input:focus, select:focus {
+input:focus, select:focus , textarea:focus {
   border-color: #4facfe;
   box-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
 }
@@ -61,7 +128,7 @@ input[type="checkbox"] {
 
 /* ==== Botón ==== */
 button {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  background: #2577f1;
   color: white;
   font-size: 15px;
   font-weight: bold;
@@ -74,7 +141,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  background: #0d6efd;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
@@ -89,7 +156,7 @@ button:hover {
 .transparente
 
 {
-    .card {
+    .transparente.card {
   background-color: rgba(255, 255, 255, 0); /* Totalmente transparente */
   /* O usa un valor como 0.7 para semi-transparente */
   /* background-color: rgba(255, 255, 255, 0.7); */
@@ -100,4 +167,28 @@ button:hover {
   text-align: center;
 }
 
+}
+
+footer{
+  margin-top: auto;
+}
+
+.links_footer {
+  text-decoration: none;
+  color: #4fc3f7;
+  transition: color 0.3s ease-in-out;
+}
+
+.links_footer:hover {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.footer-icon {
+  color: #ffffff;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-icon:hover {
+  color: #b3b6ba;
 }

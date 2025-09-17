@@ -44,10 +44,12 @@ $conn->close();
 <head>
   <meta charset="UTF-8">
   <title>Login Persona Jurídica</title>
+  <link rel="stylesheet" href="../assets/styles/login.css">
 </head>
 <body>
-  <h2>Iniciar sesión - Persona Jurídica</h2>
+
   <form method="POST" action="">
+      <h2>Iniciar sesión - Persona Jurídica</h2>
     <label>Correo:</label>
     <input type="email" name="correo" required><br><br>
 
@@ -55,6 +57,8 @@ $conn->close();
     <input type="password" name="password" required><br><br>
 
     <button type="submit">Ingresar</button>
+
+     <p>¿No tienes una cuenta? <a href="regis_juridica.php">Regístrate aquí</a></p>
   </form>
 </body>
 </html>
