@@ -1,23 +1,24 @@
 
-
 <?php
-include '../config/dataBase.php';  // Ajusta la ruta si es necesario
-
-// Aquí va el código para procesar el formulario
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $serviceName = $conn->real_escape_string($_POST['serviceName']);
-    $serviceDescription = $conn->real_escape_string($_POST['serviceDescription']);
-    $contactMethod = $conn->real_escape_string($_POST['contactMethod']);
-    $contactInfo = $conn->real_escape_string($_POST['contactInfo']);
-
-    $sql = "INSERT INTO servicios (service_name, service_description, contact_method, contact_info) 
-            VALUES ('$serviceName', '$serviceDescription', '$contactMethod', '$contactInfo')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "<div class='alert alert-success text-center mt-3'>Servicio publicado con éxito.</div>";
-    } else {
-        echo "<div class='alert alert-danger text-center mt-3'>Error al publicar el servicio: " . $conn->error . "</div>";
+require_once '../controller/ServicioController.php';
+$mensaje = null;
+$controller = new ServicioController();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $resultado = $controller->registrarServicio();
+    if ($resultado === true) {
+        // Redirigir con mensaje para evitar reenvío del formulario
+        header('Location: servicios.php?exito=1');
+        exit();
+    } elseif (is_string($resultado)) {
+        // Redirigir con mensaje de error
+        header('Location: servicios.php?error=' . urlencode($resultado));
+        exit();
     }
+}
+if (isset($_GET['exito'])) {
+    $mensaje = "Servicio publicado con éxito.";
+} elseif (isset($_GET['error'])) {
+    $mensaje = $_GET['error'];
 }
 ?>
 
@@ -51,39 +52,57 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <!-- Contenido principal -->
     <main>
-        <section class="container py-5 form-section mt-0">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Publica tu Servicio</h2>
-                <p class="text-muted">¿Eres un profesional? Comparte tu experiencia y conecta con empresas que necesitan tus habilidades.</p>
+        <section class="text-black text-center py-5">
+            <div>
+                <h2 class="display-5 fw-bold">Publica tu Servicio</h2>
+                <p class="lead">Ofrece tu talento o el de tu empresa a quienes lo necesitan</p>
             </div>
-
-            <form class="row g-4 justify-content-center">
-                <div class="col-md-6">
-                    <label for="serviceName" class="form-label">Nombre del servicio que ofreces</label>
-                    <input type="text" class="form-control" id="serviceName" placeholder="Ej: Consultoría en Marketing Digital" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="serviceDescription" class="form-label">Descripción de tu servicio</label>
-                    <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Ej: Especializado en creación de estrategias de SEO y campañas de publicidad en redes sociales para startups." required></textarea>
-                </div>
-                <div class="col-md-6">
-                    <label for="contactMethod" class="form-label">Método de contacto preferido</label>
-                    <select class="form-select" id="contactMethod" required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="email">Correo electrónico</option>
-                        <option value="phone">Número de teléfono</option>
-                        <option value="whatsapp">WhatsApp</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="contactInfo" class="form-label">Información de contacto</label>
-                    <input type="text" class="form-control" id="contactInfo" placeholder="ejemplo@correo.com o +123456789" required>
-                </div>
-                <div class="col-12 text-center mt-4">
-                    <button type="submit" class="btn btn-primary btn-lg px-5">Publicar Servicio</button>
-                </div>
-            </form>
         </section>
+        <main>
+            <div class="container text-center">
+                <h3>Publica tu servicio aquí</h3>
+                <form method="POST" class="row g-3 justify-content-center my-4">
+                    <?php if (isset($mensaje)) : ?>
+                        <div class="alert alert-info text-center"> <?php echo $mensaje; ?> </div>
+                    <?php endif; ?>
+                    <div class="col-md-6">
+                        <label for="titulo" class="form-label">Título del servicio</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ejemplo: Clases de matemáticas, Reparación de PC" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="descripcion" class="form-label">Descripción del servicio</label>
+                        <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Describe brevemente lo que ofreces" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="ubicacion" class="form-label">Ubicación</label>
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" placeholder="Ejemplo: Bogotá, Virtual, a domicilio" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tipo" class="form-label">Tipo de servicio</label>
+                        <select class="form-select" id="tipo" name="tipo" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="Reparaciones">Reparaciones</option>
+                            <option value="Clases particulares">Clases particulares</option>
+                            <option value="Transporte">Transporte</option>
+                            <option value="Cuidado personal">Cuidado personal</option>
+                            <option value="Tecnología">Tecnología</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="empresa" class="form-label">Empresa (opcional)</label>
+                        <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nombre de la empresa o deja vacío si eres independiente" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="precio" class="form-label">Precio (opcional)</label>
+                        <input type="text" class="form-control" id="precio" name="precio" placeholder="Ejemplo: $50.000 por hora, a convenir" />
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-info" type="submit">Publicar servicio</button>
+                    </div>
+                </form>
+            </div>
+        </main>
 
         <section class="container py-5">
             <div class="text-center mb-5">
@@ -92,47 +111,62 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- Tarjeta 1 -->
-                <div class="col">
-                    <div class="card service-card h-100 shadow-sm rounded-4">
-                        <div class="card-body text-center d-flex flex-column align-items-center">
-                            <div class="service-icon-box bg-primary bg-opacity-10 text-primary rounded-circle mb-4">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Ingeniería en Sistemas</h5>
-                            <p class="card-text text-muted mb-4">Especialistas en desarrollo de aplicaciones móviles, web y soluciones de software a medida.</p>
-                            <a href="#" class="btn btn-outline-primary mt-auto">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                require_once __DIR__ . '/../config/dataBase.php';
+                $database = new Database();
+                $conn = $database->getConnection();
 
-                <!-- Tarjeta 2 -->
-                <div class="col">
-                    <div class="card service-card h-100 shadow-sm rounded-4">
-                        <div class="card-body text-center d-flex flex-column align-items-center">
-                            <div class="service-icon-box bg-success bg-opacity-10 text-success rounded-circle mb-4">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Gestión de Talento Humano</h5>
-                            <p class="card-text text-muted mb-4">Servicios de reclutamiento, selección y capacitación para potenciar el capital humano de tu empresa.</p>
-                            <a href="#" class="btn btn-outline-success mt-auto">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tarjeta 3 -->
-                <div class="col">
-                    <div class="card service-card h-100 shadow-sm rounded-4">
-                        <div class="card-body text-center d-flex flex-column align-items-center">
-                            <div class="service-icon-box bg-warning bg-opacity-10 text-warning rounded-circle mb-4">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Desarrollo Organizacional</h5>
-                            <p class="card-text text-muted mb-4">Consultoría para mejorar procesos, clima laboral y productividad empresarial de forma sostenible.</p>
-                            <a href="#" class="btn btn-outline-warning mt-auto">Ver más</a>
-                        </div>
-                    </div>
-                </div>
+                $sql = "SELECT * FROM servicios ORDER BY id DESC";
+                $stmt = $conn->query($sql);
+                if ($stmt && $stmt->rowCount() > 0) {
+                    $modalIndex = 0;
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $modalId = 'modalServicio' . $modalIndex;
+                        echo "<div class='col'>
+                                <div class='card h-100 shadow-sm border-0 rounded-4' style='background:rgba(255,255,255,0.95);'>
+                                    <div class='card-body d-flex flex-column'>
+                                        <h5 class='card-title fw-bold mb-2 text-primary'>" . htmlspecialchars($row['titulo']) . "</h5>
+                                        <p class='card-text mb-1'>" . htmlspecialchars($row['descripcion']) . "</p>
+                                        <p class='card-text mb-1'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</p>
+                                        <p class='card-text mb-1'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</p>";
+                        if (!empty($row['empresa'])) {
+                            echo "<p class='card-text mb-1'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</p>";
+                        }
+                        if (!empty($row['precio'])) {
+                            echo "<p class='card-text mb-3'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</p>";
+                        }
+                        echo    "<button class='btn btn-info mt-auto' onclick=\"openModal('$modalId')\">Contratar</button>
+                                    </div>
+                                </div>
+                                <!-- Modal personalizado -->
+                                <div id='$modalId' class='custom-modal'>
+                                    <div class='custom-modal-content'>
+                                        <span class='custom-close' onclick=\"closeModal('$modalId')\">&times;</span>
+                                        <h4 class='mb-3 text-primary'>¿Deseas contratar este servicio?</h4>
+                                        <div class='mb-2'><strong>Servicio:</strong> " . htmlspecialchars($row['titulo']) . "</div>
+                                        <div class='mb-2'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</div>
+                                        <div class='mb-2'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</div>
+                                        <div class='mb-2'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
+                        if (!empty($row['empresa'])) {
+                            echo "<div class='mb-2'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</div>";
+                        }
+                        if (!empty($row['precio'])) {
+                            echo "<div class='mb-2'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</div>";
+                        }
+                        echo    "<div class='d-flex justify-content-center gap-3 mt-4'>
+                                            <button class='btn btn-success' onclick=\"confirmarAplicacion('$modalId')\">Sí, contratar</button>
+                                            <button class='btn btn-outline-secondary' onclick=\"closeModal('$modalId')\">Cancelar</button>
+                                        </div>
+                                        <div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has contratado este servicio!</div>
+                                    </div>
+                                </div>
+                            </div>";
+                        $modalIndex++;
+                    }
+                } else {
+                    echo "<p class='text-center'>No hay servicios disponibles en este momento. ¡Sé el primero en publicar uno!</p>";
+                }
+                ?>
             </div>
         </section>
     </main>
@@ -144,8 +178,57 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <!-- Pie de página -->
     <?php include 'partials/footer.php'; ?>
-
-    <!-- Scripts -->
+    <style>
+    .custom-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0; top: 0; width: 100vw; height: 100vh;
+        background: rgba(0, 123, 255, 0.15);
+        justify-content: center;
+        align-items: center;
+    }
+    .custom-modal-content {
+        background: #fff;
+        border-radius: 18px;
+        padding: 2.5rem 2rem 2rem 2rem;
+        box-shadow: 0 8px 32px rgba(0,123,255,0.18);
+        max-width: 420px;
+        width: 95vw;
+        position: relative;
+        text-align: left;
+    }
+    .custom-close {
+        position: absolute;
+        top: 18px; right: 22px;
+        font-size: 2rem;
+        color: #0d6efd;
+        cursor: pointer;
+    }
+    .custom-modal-content h4 {
+        font-weight: 700;
+    }
+    .custom-modal-content button {
+        min-width: 120px;
+    }
+    .d-none { display: none !important; }
+    </style>
+    <script>
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+        // Oculta mensaje de confirmación si se reabre
+        var conf = document.getElementById('confirmacion-' + id);
+        if(conf) conf.classList.add('d-none');
+    }
+    function confirmarAplicacion(id) {
+        var conf = document.getElementById('confirmacion-' + id);
+        if(conf) conf.classList.remove('d-none');
+        setTimeout(function(){ closeModal(id); }, 1500);
+    }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="scroll.js"></script>
 </body>
