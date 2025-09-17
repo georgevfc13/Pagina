@@ -3,26 +3,33 @@ require_once __DIR__ . "/../controller/usuarioNaturalController.php";
 
 $mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $controller = new usuarioNaturalController();
-    $mensaje = $controller->registrar($_POST);
+  $controller = new usuarioNaturalController();
+  $mensaje = $controller->registrar($_POST);
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Registro Persona Natural</title>
   <link rel="stylesheet" href="../assets/styles/regis.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
-<body>
- 
 
-  <form method="POST">
+<body>
+  <?php $activePage = 'login';
+  include 'partials/navbar.php'; ?>
+
+  <main>
+
+    <form method="POST">
       <h2>Registro Persona Natural</h2>
 
       <?php if ($mensaje != ""): ?>
-          <div><?php echo $mensaje; ?></div>
+        <div><?php echo $mensaje; ?></div>
       <?php endif; ?>
 
       <label>Nombre:</label>
@@ -54,11 +61,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input type="password" name="password" required><br><br>
 
       <label>
-        <input type="checkbox" name="terminos" required> Acepto los términos y condiciones
+        <input type="checkbox" name="terminos" required> Acepto los <a href="terminos_y_condiciones.php">términos y condiciones</a>
       </label><br><br>
 
       <button type="submit">Registrarse</button>
       <p>¿Ya tienes una cuenta? <a href="login_natural.php">Iniciar Sesión</a></p>
-  </form>
+    </form>
+
+  </main>
+    <?php include 'partials/footer.php'; ?>
 </body>
 </html>

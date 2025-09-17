@@ -1,17 +1,70 @@
-/* ==== Estilos Generales ==== */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, rgb(247, 247, 247));
-  height: 100vh;
+  background-image: url("../img/fondo.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
   margin: 0;
+  padding: 0;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-
-  
+  flex-direction: column;
 }
 
+.logo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
 
+.nav {
+  background-color: gray;
+  height: 4rem;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+.nav-hover {
+  position: relative;
+  display: inline-block;
+  padding: 8px 12px;
+
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #0d6efd;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-hover:hover::after {
+  width: 100%;
+}
+
+.nav-hover:hover {
+  color: #ffffff;
+}
+
+.nav-hover.active::after {
+  width: 100%;
+}
+
+.burger {
+  background-color: white;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
 
 /* ==== Contenedor del formulario ==== */
@@ -110,4 +163,28 @@ button:hover {
   text-align: center;
 }
 
+}
+
+footer{
+  margin-top: auto;
+}
+
+.links_footer {
+  text-decoration: none;
+  color: #4fc3f7;
+  transition: color 0.3s ease-in-out;
+}
+
+.links_footer:hover {
+  color: #0d6efd;
+  text-decoration: underline;
+}
+
+.footer-icon {
+  color: #ffffff;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-icon:hover {
+  color: #b3b6ba;
 }

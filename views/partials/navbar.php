@@ -37,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="nav-item">
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'noticias') echo 'active'; ?>" href="noticias.php">Noticias</a>
         </li>
-       <?php if (isset($_SESSION['id'])): ?>
+        <?php if (isset($_SESSION['id'])): ?>
           <!-- Usuario logueado -->
           <li class="nav-item">
             <span class="navbar-text text-white ms-3">
@@ -50,7 +50,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php else: ?>
           <!-- Invitado -->
           <li class="nav-item">
-            <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
+            <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión/Registrarse</a>
           </li>
         <?php endif; ?>
 
