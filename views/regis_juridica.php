@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <meta charset="UTF-8">
   <title>Registro Persona Jurídica</title>
   <link rel="stylesheet" href="../assets/styles/login.css">
+  <link rel="stylesheet" href="../assets/styles/regis.css">
   
 </head>
 <body>

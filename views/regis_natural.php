@@ -27,10 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form method="POST">
       <h2>Registro Persona Natural</h2>
-
-      <?php if ($mensaje != ""): ?>
-        <div><?php echo $mensaje; ?></div>
-      <?php endif; ?>
+ <?php if (!empty($mensaje)): ?>
+    <div style="padding:10px; margin:10px 0; border-radius:5px; color:red;">
+        <?php echo $mensaje; ?>
+    </div>
+<?php endif; ?>
+    
 
       <label>Nombre:</label>
       <input type="text" name="nombre" required><br><br>

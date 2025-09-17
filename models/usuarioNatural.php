@@ -3,6 +3,7 @@ class UsuarioNatural {
     private $conn;
     private $table = "usuarios_naturales";
 
+    public $id;
     public $nombre;
     public $identificacion;
     public $fecha_nacimiento;
@@ -16,10 +17,23 @@ class UsuarioNatural {
         $this->conn = $db;
     }
 
+    public function existeIdentificacion($identificacion) {
+    $sql = "SELECT id FROM " . $this->table . " WHERE identificacion = :identificacion LIMIT 1";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(":identificacion", $identificacion);
+    $stmt->execute();
+
+    return $stmt->rowCount() > 0; // true si ya existe
+}
+
+
     public function registrar() {
+    if ($this->existeIdentificacion($this->identificacion)) {
+        return "⚠️ El usuario ya está registrado";
+    }
         $sql = "INSERT INTO " . $this->table . " 
             (nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, password, terminos) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            VALUES (:nombre, :identificacion, :fecha_nacimiento, :genero, :contacto, :tipo_contacto, :password, :terminos)";
 
         $stmt = $this->conn->prepare($sql);
          // Sanitizar
@@ -42,7 +56,15 @@ class UsuarioNatural {
         $stmt->bindParam(":password", $this->password);
         $stmt->bindParam(":terminos", $this->terminos);
 
-        return $stmt->execute();
+        if  ($stmt->execute()){
+            return true;
+            }
+
+            else {
+            return false;
+            }
+
+
     }
 }
 ?>
