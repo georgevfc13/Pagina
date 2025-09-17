@@ -1,42 +1,26 @@
 <?php
+
 session_start();
+require_once __DIR__ . "/../controller/UsuarioJuridicoController.php";
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gda"; // tu base de datos
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
-
+$mensaje = "";
+$tipo_mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $correo = $_POST['correo'];
-    $password = $_POST['password'];
-
-    // Buscar en la tabla de personas jurídicas
-    $sql = "SELECT * FROM usuarios_juridicos WHERE correo='$correo'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['razon_social'] = $row['razon_social'];
-            $_SESSION['tipo'] = "juridica";
-
-            header("Location: dashboard_juridico.php");
-            exit();
-        } else {
-            echo "❌ Contraseña incorrecta";
-        }
+    $controller = new UsuarioNaturalController();
+    $resultado = $controller->login($_POST);
+    if ($resultado['success']) {
+        $_SESSION['id'] = $resultado['usuario']['id'];
+        $_SESSION['nombre'] = $resultado['usuario']['nombre'];
+        $_SESSION['tipo'] = "natural";
+        header("Location: home.php");
+        exit();
     } else {
-        echo "❌ Empresa no encontrada";
+        $mensaje = $resultado['mensaje'];
+        $tipo_mensaje = "danger";
     }
 }
-$conn->close();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +29,33 @@ $conn->close();
   <meta charset="UTF-8">
   <title>Login Persona Jurídica</title>
   <link rel="stylesheet" href="../assets/styles/login.css">
+
+
+  <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5; /* Fondo opcional */
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+
+        </style>
 </head>
 <body>
 

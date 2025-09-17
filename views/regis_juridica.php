@@ -2,9 +2,17 @@
 require_once __DIR__ . "/../controller/usuarioJuridicoController.php";
 
 $mensaje = "";
+$tipo_mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new usuarioJuridicoController();
-    $mensaje = $controller->registrar($_POST);
+    $resultado = $controller->registrar($_POST);
+    if ($resultado === true) {
+        $mensaje = "✅ Registro exitoso";
+        $tipo_mensaje = "success";
+    } else {
+        $mensaje = $resultado;
+        $tipo_mensaje = "danger";
+    }
 }
 ?>
 
@@ -16,6 +24,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="../assets/styles/login.css">
   <link rel="stylesheet" href="../assets/styles/regis.css">
   
+ <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5; /* Fondo opcional */
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+
+        </style>
+
 </head>
 <body>
 
@@ -24,7 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <form method="POST" action="">
       <h2>Registro Persona Natural</h2>
-
+ <?php if (!empty($mensaje)): ?>
+    <div class="alert alert-<?php echo $tipo_mensaje; ?>">
+        <?php echo $mensaje; ?>
+    </div>
+<?php endif; ?>
       
 
       <label>Razón Social:</label>

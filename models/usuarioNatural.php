@@ -1,5 +1,21 @@
 <?php
 class UsuarioNatural {
+    public function login($contacto, $password) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE contacto = :contacto LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":contacto", $contacto);
+        $stmt->execute();
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($usuario && password_verify($password, $usuario['password'])) {
+            return $usuario;
+        } else if ($usuario) {
+            return "❌ Contraseña incorrecta";
+        } else {
+            return "❌ Usuario no encontrado";
+        }
+    }
+
+
     private $conn;
     private $table = "usuarios_naturales";
 
@@ -29,7 +45,7 @@ class UsuarioNatural {
 
     public function registrar() {
     if ($this->existeIdentificacion($this->identificacion)) {
-        return "⚠️ El usuario ya está registrado";
+        return "⚠️ El ususario ya está registrado";
     }
         $sql = "INSERT INTO " . $this->table . " 
             (nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, password, terminos) 
