@@ -69,7 +69,7 @@ if (isset($_SESSION['id'])) {
                         <option value="la_jagua">La Jagua</option>
                         <option value="aguachica">Aguachica</option>
                         <option value="becerril">Becerril</option>
-                        <option value="la_paz">La Paz.</option>
+                        <option value="la_paz">La Paz</option>
                     </select>
                 </div>
                 <!-- Botón de búsqueda -->
