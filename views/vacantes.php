@@ -12,7 +12,7 @@
     <body>
         <?php $activePage = 'vacantes'; include 'partials/navbar.php'; ?>
         <!-- seccion hero -->
-        <section class="bg-primary text-white text-center py-5">
+        <section class="text-black text-center py-5">
                 <div>
                         <h2 class="display-5 fw-bold">Nuestras Vacantes Profesionales</h2>
                         <p class="lead">Encuentra al mejor candidato que se ajuste a tus necesidades</p>

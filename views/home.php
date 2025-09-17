@@ -16,31 +16,34 @@ if (isset($_SESSION['id'])) {
 
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Página</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
-        <link rel="stylesheet" href="../assets/styles/style.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
-    </head>
-    <body>
-        <?php $activePage = 'home'; include 'partials/navbar.php'; ?>
-        <!-- zona hero -->
-<section class="hero d-flex align-items-center justify-content-center text-center">
-    <div class="hero-content text-white">
-        <h1 class="fw-bold">Hola, <?php echo htmlspecialchars($nombre); ?> 👋</h1>
-<p class="lead">Bienvenido a GDA, tu puente entre oportunidades laborales y talento profesional</p>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <?php $activePage = 'home';
+    include 'partials/navbar.php'; ?>
+    <!-- zona hero -->
+    <section class="hero d-flex align-items-center justify-content-center text-center">
+        <div class="hero-content text-white">
+            <h1 class="fw-bold">Hola, <?php echo htmlspecialchars($nombre); ?> 👋</h1>
+            <p class="lead">Bienvenido a GDA, tu puente entre oportunidades laborales y talento profesional</p>
 
 
-        <a href="registro.php" class="btn btn-light mt-3">Regístrate aquí</a>
-    </div>
-</section>
+            <a href="registro.php" class="btn btn-light mt-3">Regístrate aquí</a>
+        </div>
+    </section>
 
-<main class="container py-5">
+    <main class="container py-5">
         <!-- inicio del filtro y búsqueda -->
         <section class="container my-5">
             <h2 class="text-center mb-4">Busca Vacantes o Servicios</h2>
@@ -51,8 +54,7 @@ if (isset($_SESSION['id'])) {
                         type="text"
                         class="form-control"
                         placeholder="Desarrollador, Electricista, etc."
-                        name="busqueda"
-                    />
+                        name="busqueda" />
                 </div>
                 <!-- Filtro por tipo -->
                 <div class="col-md-3">
@@ -84,196 +86,178 @@ if (isset($_SESSION['id'])) {
 
         <!-- servicios -->
 
-            <section class="text-center mb-5">
-                <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
-                <p class="lead text-secondary mx-auto" style="max-width: 600px">
-                    Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y
-                    tener éxito en el mercado actual.
-                </p>
-            </section>
-            <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- Servicio 1 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
-                                <i class="fas fa-laptop-code text-danger fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Desarrollo Web</h5>
-                            <p class="card-text">
-                                Desarrollo de sitios web a medida con tecnologías modernas.
-                            </p>
-                            <a href="#" class="btn btn-outline-danger btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Información del servicio</h6>
-                                    <p>
-                                        Hago desarrollo de sitios web modernos, responsivos y
-                                        optimizados para tu negocio. ¡Contáctame para más detalles!
-                                    </p>
-                                </div>
+        <section class="text-center mb-5">
+            <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
+            <p class="lead text-secondary mx-auto" style="max-width: 600px">
+                Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y
+                tener éxito en el mercado actual.
+            </p>
+        </section>
+        <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Servicio 1 -->
+            <div class="col">
+                <div class="card h-100 shadow rounded-4">
+                    <div class="card-body text-center">
+                        <div
+                            class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width: 64px; height: 64px">
+                            <i class="fas fa-laptop-code text-danger fs-3"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Desarrollo Web</h5>
+                        <p class="card-text">
+                            Desarrollo de sitios web a medida con tecnologías modernas.
+                        </p>
+                        <a href="#" class="btn btn-outline-danger btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="info-extra collapse mt-3">
+                            <div class="card card-body">
+                                <h6 class="fw-bold">Información del servicio</h6>
+                                <p>
+                                    Hago desarrollo de sitios web modernos, responsivos y
+                                    optimizados para tu negocio. ¡Contáctame para más detalles!
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Servicio 2 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
-                                <i class="fas fa-mobile-alt text-success fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Aplicaciones Móviles</h5>
-                            <p class="card-text">
-                                Apps móviles multiplataforma para iOS y Android.
-                            </p>
-                            <a href="#" class="btn btn-outline-success btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Información del servicio</h6>
-                                    <p>
-                                        Soy desarrollador de apps móviles personalizadas para tu
-                                        empresa, compatibles con iOS y Android.
-                                    </p>
-                                </div>
+            </div>
+            <!-- Servicio 2 -->
+            <div class="col">
+                <div class="card h-100 shadow rounded-4">
+                    <div class="card-body text-center">
+                        <div
+                            class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width: 64px; height: 64px">
+                            <i class="fas fa-mobile-alt text-success fs-3"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Aplicaciones Móviles</h5>
+                        <p class="card-text">
+                            Apps móviles multiplataforma para iOS y Android.
+                        </p>
+                        <a href="#" class="btn btn-outline-success btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="info-extra collapse mt-3">
+                            <div class="card card-body">
+                                <h6 class="fw-bold">Información del servicio</h6>
+                                <p>
+                                    Soy desarrollador de apps móviles personalizadas para tu
+                                    empresa, compatibles con iOS y Android.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Servicio 3 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
-                                <i class="fas fa-chart-line text-warning fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Marketing Digital</h5>
-                            <p class="card-text">
-                                Estrategias digitales para aumentar tu presencia y ventas.
-                            </p>
-                            <a href="#" class="btn btn-outline-warning btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Información del servicio</h6>
-                                    <p>
-                                        Puedo impulsar tu marca con campañas de marketing digital
-                                        efectivas y personalizadas.
-                                    </p>
-                                </div>
+            </div>
+            <!-- Servicio 3 -->
+            <div class="col">
+                <div class="card h-100 shadow rounded-4">
+                    <div class="card-body text-center">
+                        <div
+                            class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width: 64px; height: 64px">
+                            <i class="fas fa-chart-line text-warning fs-3"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Marketing Digital</h5>
+                        <p class="card-text">
+                            Estrategias digitales para aumentar tu presencia y ventas.
+                        </p>
+                        <a href="#" class="btn btn-outline-warning btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="info-extra collapse mt-3">
+                            <div class="card card-body">
+                                <h6 class="fw-bold">Información del servicio</h6>
+                                <p>
+                                    Puedo impulsar tu marca con campañas de marketing digital
+                                    efectivas y personalizadas.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Servicio 4 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4" >
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
-                                <i class="fas fa-paint-brush text-info fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Diseño UI/UX</h5>
-                            <p class="card-text">
-                                Interfaces atractivas y funcionales para tus usuarios.
-                            </p>
-                            <a href="#" class="btn btn-outline-info btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Información del servicio</h6>
-                                    <p>
-                                        Soy diseñador de experiencias de usuario intuitivas y
-                                        visualmente atractivas para tus proyectos.
-                                    </p>
-                                </div>
+            </div>
+            <!-- Servicio 4 -->
+            <div class="col">
+                <div class="card h-100 shadow rounded-4">
+                    <div class="card-body text-center">
+                        <div
+                            class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width: 64px; height: 64px">
+                            <i class="fas fa-paint-brush text-info fs-3"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Diseño UI/UX</h5>
+                        <p class="card-text">
+                            Interfaces atractivas y funcionales para tus usuarios.
+                        </p>
+                        <a href="#" class="btn btn-outline-info btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="info-extra collapse mt-3">
+                            <div class="card card-body">
+                                <h6 class="fw-bold">Información del servicio</h6>
+                                <p>
+                                    Soy diseñador de experiencias de usuario intuitivas y
+                                    visualmente atractivas para tus proyectos.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Servicio 5 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
-                                <i class="fas fa-cloud text-dark fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Soluciones en la Nube</h5>
-                            <p class="card-text">
-                                Infraestructura escalable y servicios cloud para tu negocio.
-                            </p>
-                            <a href="#" class="btn btn-outline-dark btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Información del servicio</h6>
-                                    <p>
-                                        Implemento soluciones en la nube seguras y escalables para
-                                        tu empresa.
-                                    </p>
-                                </div>
+            </div>
+            <!-- Servicio 5 -->
+            <div class="col">
+                <div class="card h-100 shadow rounded-4">
+                    <div class="card-body text-center">
+                        <div
+                            class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width: 64px; height: 64px">
+                            <i class="fas fa-cloud text-dark fs-3"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Soluciones en la Nube</h5>
+                        <p class="card-text">
+                            Infraestructura escalable y servicios cloud para tu negocio.
+                        </p>
+                        <a href="#" class="btn btn-outline-dark btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="info-extra collapse mt-3">
+                            <div class="card card-body">
+                                <h6 class="fw-bold">Información del servicio</h6>
+                                <p>
+                                    Implemento soluciones en la nube seguras y escalables para
+                                    tu empresa.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Servicio 6 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
-                                <i class="fas fa-headset text-primary fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Soporte 24/7</h5>
-                            <p class="card-text">
-                                Soporte técnico permanente para que tu sistema nunca se detenga.
-                            </p>
-                            <a href="#" class="btn btn-outline-primary btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Información del servicio</h6>
-                                    <p>
-                                        Ofrezco soporte técnico profesional las 24 horas, todos los
-                                        días.
-                                    </p>
-                                </div>
+            </div>
+            <!-- Servicio 6 -->
+            <div class="col">
+                <div class="card h-100 shadow rounded-4">
+                    <div class="card-body text-center">
+                        <div
+                            class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                            style="width: 64px; height: 64px">
+                            <i class="fas fa-headset text-primary fs-3"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Soporte 24/7</h5>
+                        <p class="card-text">
+                            Soporte técnico permanente para que tu sistema nunca se detenga.
+                        </p>
+                        <a href="#" class="btn btn-outline-primary btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="info-extra collapse mt-3">
+                            <div class="card card-body">
+                                <h6 class="fw-bold">Información del servicio</h6>
+                                <p>
+                                    Ofrezco soporte técnico profesional las 24 horas, todos los
+                                    días.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- vacantes -->
-    <main class="container py-5">
+        <!-- vacantes -->
+        <main class="container py-5">
             <section class="text-center mb-5">
                 <h1 class="fw-bold text-primary mb-3">Nuestras Vacantes</h1>
                 <p class="lead text-secondary mx-auto" style="max-width: 600px">
-                 En GDA conectamos tu talento con empresas líderes para impulsar tu crecimiento y éxito profesional.
+                    En GDA conectamos tu talento con empresas líderes para impulsar tu crecimiento y éxito profesional.
                 </p>
             </section>
             <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -283,8 +267,7 @@ if (isset($_SESSION['id'])) {
                         <div class="card-body text-center">
                             <div
                                 class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
+                                style="width: 64px; height: 64px">
                                 <i class="fas fa-user-tie text-success fs-3"></i>
                             </div>
                             <h5 class="card-title fw-bold">Analista de Datos</h5>
@@ -292,9 +275,7 @@ if (isset($_SESSION['id'])) {
                                 Únete a nuestro equipo para analizar y transformar datos en
                                 soluciones estratégicas.
                             </p>
-                            <a href="#" class="btn btn-outline-success btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
+                            <a href="#" class="btn btn-outline-success btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                             <div class="info-extra collapse mt-3">
                                 <div class="card card-body">
                                     <h6 class="fw-bold">Detalles de la vacante</h6>
@@ -314,8 +295,7 @@ if (isset($_SESSION['id'])) {
                         <div class="card-body text-center">
                             <div
                                 class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
+                                style="width: 64px; height: 64px">
                                 <i class="fas fa-code text-warning fs-3"></i>
                             </div>
                             <h5 class="card-title fw-bold">Desarrollador Frontend</h5>
@@ -323,9 +303,7 @@ if (isset($_SESSION['id'])) {
                                 Buscamos talento creativo para crear interfaces web modernas y
                                 funcionales.
                             </p>
-                            <a href="#" class="btn btn-outline-warning btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
+                            <a href="#" class="btn btn-outline-warning btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                             <div class="info-extra collapse mt-3">
                                 <div class="card card-body">
                                     <h6 class="fw-bold">Detalles de la vacante</h6>
@@ -345,8 +323,7 @@ if (isset($_SESSION['id'])) {
                         <div class="card-body text-center">
                             <div
                                 class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
+                                style="width: 64px; height: 64px">
                                 <i class="fas fa-network-wired text-info fs-3"></i>
                             </div>
                             <h5 class="card-title fw-bold">Especialista en Redes</h5>
@@ -354,9 +331,7 @@ if (isset($_SESSION['id'])) {
                                 Sé parte de nuestro equipo gestionando y optimizando
                                 infraestructuras de red.
                             </p>
-                            <a href="#" class="btn btn-outline-info btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
+                            <a href="#" class="btn btn-outline-info btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                             <div class="info-extra collapse mt-3">
                                 <div class="card card-body">
                                     <h6 class="fw-bold">Detalles de la vacante</h6>
@@ -376,17 +351,14 @@ if (isset($_SESSION['id'])) {
                         <div class="card-body text-center">
                             <div
                                 class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
+                                style="width: 64px; height: 64px">
                                 <i class="fas fa-shield-alt text-danger fs-3"></i>
                             </div>
                             <h5 class="card-title fw-bold">Especialista en Ciberseguridad</h5>
                             <p class="card-text">
                                 Protege sistemas y datos críticos en proyectos de alto impacto.
                             </p>
-                            <a href="#" class="btn btn-outline-danger btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
+                            <a href="#" class="btn btn-outline-danger btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                             <div class="info-extra collapse mt-3">
                                 <div class="card card-body">
                                     <h6 class="fw-bold">Detalles de la vacante</h6>
@@ -406,8 +378,7 @@ if (isset($_SESSION['id'])) {
                         <div class="card-body text-center">
                             <div
                                 class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
+                                style="width: 64px; height: 64px">
                                 <i class="fas fa-users text-primary fs-3"></i>
                             </div>
                             <h5 class="card-title fw-bold">Gestor de Talento Humano</h5>
@@ -415,9 +386,7 @@ if (isset($_SESSION['id'])) {
                                 Ayuda a potenciar equipos y liderar procesos de selección y
                                 capacitación.
                             </p>
-                            <a href="#" class="btn btn-outline-primary btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
+                            <a href="#" class="btn btn-outline-primary btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                             <div class="info-extra collapse mt-3">
                                 <div class="card card-body">
                                     <h6 class="fw-bold">Detalles de la vacante</h6>
@@ -437,8 +406,7 @@ if (isset($_SESSION['id'])) {
                         <div class="card-body text-center">
                             <div
                                 class="bg-secondary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px"
-                            >
+                                style="width: 64px; height: 64px">
                                 <i class="fas fa-briefcase text-secondary fs-3"></i>
                             </div>
                             <h5 class="card-title fw-bold">Consultor Empresarial</h5>
@@ -446,9 +414,7 @@ if (isset($_SESSION['id'])) {
                                 Brinda asesoría estratégica para el crecimiento y transformación
                                 de empresas.
                             </p>
-                            <a href="#" class="btn btn-outline-secondary btn-sm toggle-info"
-                                >Ver más <i class="fas fa-arrow-right ms-1"></i
-                            ></a>
+                            <a href="#" class="btn btn-outline-secondary btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                             <div class="info-extra collapse mt-3">
                                 <div class="card card-body">
                                     <h6 class="fw-bold">Detalles de la vacante</h6>
@@ -502,9 +468,7 @@ if (isset($_SESSION['id'])) {
                                 <a
                                     href="https://www.rcnradio.com/tecnologia/la-ia-va-cambiar-la-forma-de-conseguir-empleo-en-colombia-asi-le-va-tocar-a-los-que-ya-estan-buscando-trabajo"
                                     target="_blank"
-                                    class="btn btn-outline-primary mt-auto"
-                                    >Ver mas</a
-                                >
+                                    class="btn btn-outline-primary mt-auto">Ver mas</a>
                             </div>
                         </div>
                     </div>
@@ -515,8 +479,7 @@ if (isset($_SESSION['id'])) {
                             <img
                                 src="../assets/img/entrevista_de_carne.jpg"
                                 class="card-img-top"
-                                alt="Tips entrevista laboral Colombia"
-                            />
+                                alt="Tips entrevista laboral Colombia" />
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">
                                     Tips para una entrevista laboral exitosa
@@ -527,9 +490,7 @@ if (isset($_SESSION['id'])) {
                                 <a
                                     href="https://www.valoraanalitik.com/entrevista-laboral-seis-claves-para-conseguir-empleo-en-colombia"
                                     target="_blank"
-                                    class="btn btn-outline-primary mt-auto"
-                                    >Ver mas</a
-                                >
+                                    class="btn btn-outline-primary mt-auto">Ver mas</a>
                             </div>
                         </div>
                     </div>
@@ -540,8 +501,7 @@ if (isset($_SESSION['id'])) {
                             <img
                                 src="../assets/img/trabajo.jpg"
                                 class="card-img-top"
-                                alt="Preguntas finales entrevista"
-                            />
+                                alt="Preguntas finales entrevista" />
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">
                                     ¿Qué preguntar al final de una entrevista?
@@ -553,9 +513,7 @@ if (isset($_SESSION['id'])) {
                                 <a
                                     href="https://www.semana.com/como/articulo/que-preguntas-hacer-al-final-de-una-entrevista-de-trabajo/202342/"
                                     target="_blank"
-                                    class="btn btn-outline-primary mt-auto"
-                                    >Ver mas</a
-                                >
+                                    class="btn btn-outline-primary mt-auto">Ver mas</a>
                             </div>
                         </div>
                     </div>
@@ -577,8 +535,7 @@ if (isset($_SESSION['id'])) {
             <div
                 id="carruselTips"
                 class="carousel slide container"
-                data-bs-ride="carousel"
-            >
+                data-bs-ride="carousel">
                 <div class="carousel-inner transparente">
                     <!-- tip 1 -->
                     <div class="carousel-item active transparente">
@@ -618,21 +575,17 @@ if (isset($_SESSION['id'])) {
                     class="carousel-control-prev"
                     type="button"
                     data-bs-target="#carruselTips"
-                    data-bs-slide="prev"
-                >
+                    data-bs-slide="prev">
                     <span
-                        class="carousel-control-prev-icon bg-dark rounded-circle p-2"
-                    ></span>
+                        class="carousel-control-prev-icon bg-dark rounded-circle p-2"></span>
                 </button>
                 <button
                     class="carousel-control-next"
                     type="button"
                     data-bs-target="#carruselTips"
-                    data-bs-slide="next"
-                >
+                    data-bs-slide="next">
                     <span
-                        class="carousel-control-next-icon bg-dark rounded-circle p-2"
-                    ></span>
+                        class="carousel-control-next-icon bg-dark rounded-circle p-2"></span>
                 </button>
             </div>
             <!-- fin yeste. -->
@@ -651,16 +604,14 @@ if (isset($_SESSION['id'])) {
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapseContrato"
-                            aria-expanded="true"
-                        >
+                            aria-expanded="true">
                             Tipos de contrato para el trabajo
                         </button>
                     </h2>
                     <div
                         id="collapseContrato"
                         class="accordion-collapse collapse show"
-                        data-bs-parent="#accordionDerechos"
-                    >
+                        data-bs-parent="#accordionDerechos">
                         <div class="accordion-body">
                             En Colombia existen principalmente: <br />
                             - Contrato a término fijo <br />
@@ -668,9 +619,7 @@ if (isset($_SESSION['id'])) {
                             - Contrato por obra o labor <br /><br />
                             Todos deben estar por escrito, incluir salario, jornada y
                             condiciones claras.:
-                            <a href="https://www.mintrabajo.gov.co/" target="_blank"
-                                >MinTrabajo</a
-                            >
+                            <a href="https://www.mintrabajo.gov.co/" target="_blank">MinTrabajo</a>
                         </div>
                     </div>
                 </div>
@@ -683,16 +632,14 @@ if (isset($_SESSION['id'])) {
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapseVacaciones"
-                            aria-expanded="false"
-                        >
+                            aria-expanded="false">
                             Derecho a las Vacaciones
                         </button>
                     </h2>
                     <div
                         id="collapseVacaciones"
                         class="accordion-collapse collapse"
-                        data-bs-parent="#accordionDerechos"
-                    >
+                        data-bs-parent="#accordionDerechos">
                         <div class="accordion-body">
                             Todo trabajador tiene derecho a
                             <strong>15 días hábiles de vacaciones</strong> por cada año
@@ -711,16 +658,14 @@ if (isset($_SESSION['id'])) {
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapseAcoso"
-                            aria-expanded="false"
-                        >
+                            aria-expanded="false">
                             ¿Qué es el acoso laboral?
                         </button>
                     </h2>
                     <div
                         id="collapseAcoso"
                         class="accordion-collapse collapse"
-                        data-bs-parent="#accordionDerechos"
-                    >
+                        data-bs-parent="#accordionDerechos">
                         <div class="accordion-body">
                             Es toda conducta persistente que humilla, intimida o perjudica al
                             trabajador. Está penado por la Ley 1010 de 2006. Se puede
@@ -735,39 +680,39 @@ if (isset($_SESSION['id'])) {
             <br />
 
             <!-- testimonios -->
-<section class="transparente py-5">
-    <div class="container text-center">
-        <h2 class="mb-4">Testimonios</h2>
-        <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <blockquote class="blockquote">
-                        <p>
-                            “Gracias a GDA conseguí mi primer empleo como
-                            jugadora de roblox.”
-                        </p>
-                        <footer class="blockquote-footer">Sarah Bello</footer>
-                    </blockquote>
+            <section class="transparente py-5">
+                <div class="container text-center">
+                    <h2 class="mb-4">Testimonios</h2>
+                    <div id="carouselTestimonios" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <blockquote class="blockquote">
+                                    <p>
+                                        “Gracias a GDA conseguí mi primer empleo como
+                                        jugadora de roblox.”
+                                    </p>
+                                    <footer class="blockquote-footer">Sarah Bello</footer>
+                                </blockquote>
+                            </div>
+                            <div class="carousel-item">
+                                <blockquote class="blockquote">
+                                    <p>
+                                        “Publicamos una vacante y en 2 días contratamos al mejor
+                                        candidato. aury daño todo”
+                                    </p>
+                                    <footer class="blockquote-footer">La Guaquita</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <blockquote class="blockquote">
-                        <p>
-                            “Publicamos una vacante y en 2 días contratamos al mejor
-                            candidato. aury daño todo”
-                        </p>
-                        <footer class="blockquote-footer">La Guaquita</footer>
-                    </blockquote>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonios" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-        </div>
-    </div>
-</section>
+            </section>
 
 
             <!-- fin de testimonios -->
@@ -787,33 +732,33 @@ if (isset($_SESSION['id'])) {
             <!-- fin de las estadisticas -->
 
             <!-- estadisticas -->
-                <section class="estadisticas-transparente py-5 text-center">
-                    <div class="container">
-                        <div class="row g-4">
-                            <div class="col">
-                                <h3 class="text-primary counter" data-target="500">0</h3>
-                                <p>Usuarios Registrados</p>
-                            </div>
-                            <div class="col">
-                                <h3 class="text-primary counter" data-target="200">0</h3>
-                                <p>Vacantes Activas</p>
-                            </div>
-                            <div class="col">
-                                <h3 class="text-primary counter" data-target="100">0</h3>
-                                <p>Empresas Vinculadas.</p>
-                            </div>
+            <section class="estadisticas-transparente py-5 text-center">
+                <div class="container">
+                    <div class="row g-4">
+                        <div class="col">
+                            <h3 class="text-primary counter" data-target="500">0</h3>
+                            <p>Usuarios Registrados</p>
+                        </div>
+                        <div class="col">
+                            <h3 class="text-primary counter" data-target="200">0</h3>
+                            <p>Vacantes Activas</p>
+                        </div>
+                        <div class="col">
+                            <h3 class="text-primary counter" data-target="100">0</h3>
+                            <p>Empresas Vinculadas.</p>
                         </div>
                     </div>
-                </section>
-</main>
+                </div>
+            </section>
+        </main>
 
     </main>
 
-        <!-- Botón Scroll hacia abajo y devuelve al inicio -->
-        <button
-            id="scrollToTopBtn"
-            class="btn btn-primary"
-            style="
+    <!-- Botón Scroll hacia abajo y devuelve al inicio -->
+    <button
+        id="scrollToTopBtn"
+        class="btn btn-primary"
+        style="
                 position: fixed;
                 bottom: 40px;
                 right: 30px;
@@ -824,28 +769,26 @@ if (isset($_SESSION['id'])) {
                 align-items: center;
                 justify-content: center;
                 border-radius: 50%;
-            "
-        >
-            <i class="bi bi-arrow-up fs-3"></i>
-        </button>
-        <!-- fin del boton de scroll -->
+            ">
+        <i class="bi bi-arrow-up fs-3"></i>
+    </button>
+    <!-- fin del boton de scroll -->
 
-<!-- Footer -->
+    <!-- Footer -->
     <?php include 'partials/footer.php'; ?>
-<!-- fin del footer -->
+    <!-- fin del footer -->
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            defer
-        ></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-        <script src="../assets/js/script.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script src="../assets/js/script.js"></script>
 
-    </body>
+</body>
+
 </html>
