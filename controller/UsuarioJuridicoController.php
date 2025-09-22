@@ -12,7 +12,7 @@ public function login($data) {
             return [
                 'success' => true,
                 'usuario' => $resultado,
-                'mensaje' => '✅ Bienvenido, ' . $resultado['nombre'],
+                'mensaje' => '✅ Bienvenido, ' . $resultado['razon_social'],
             ];
         } else {
             // Error de login

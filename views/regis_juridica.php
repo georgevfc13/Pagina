@@ -20,44 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro Persona Jurídica</title>
-  <link rel="stylesheet" href="../assets/styles/login.css">
+  <title>Registro Persona Natural</title>
   <link rel="stylesheet" href="../assets/styles/regis.css">
-  
- <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #f5f5f5; /* Fondo opcional */
-        }
-
-        .form-container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-            width: 400px;
-            text-align: center;
-        }
-
-        .form-container h2 {
-            margin-bottom: 20px;
-        }
-
-        </style>
-
+  <link rel="stylesheet" href="../assets/styles/login.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
-<body>
+        
 
+
+<body>
+<?php $activePage = 'login';
+  include 'partials/navbar.php'; ?>
  
 
 
   <form method="POST" action="">
-      <h2>Registro Persona Natural</h2>
+      <h2>Registro Persona Jurídica</h2>
  <?php if (!empty($mensaje)): ?>
     <div class="alert alert-<?php echo $tipo_mensaje; ?>">
         <?php echo $mensaje; ?>
@@ -79,8 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </label><br><br>
 
       <button type="submit">Registrarse</button>
-      <p>¿Ya tienes una cuenta? <a href="login_natural.php">Iniciar Sesión</a></p>
+      <p>¿Ya tienes una cuenta? <a href="login_juridica.php">Iniciar Sesión</a></p>
   </form>
-
+    <?php include 'partials/footer.php'; ?>
 </body>
 </html>

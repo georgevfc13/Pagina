@@ -6,12 +6,12 @@ require_once __DIR__ . "/../controller/UsuarioJuridicoController.php";
 $mensaje = "";
 $tipo_mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $controller = new UsuarioNaturalController();
+    $controller = new UsuarioJuridicoController();
     $resultado = $controller->login($_POST);
     if ($resultado['success']) {
         $_SESSION['id'] = $resultado['usuario']['id'];
-        $_SESSION['nombre'] = $resultado['usuario']['nombre'];
-        $_SESSION['tipo'] = "natural";
+        $_SESSION['nombre'] = $resultado['usuario']['razon_social'];
+        $_SESSION['tipo'] = "juridico";
         header("Location: home.php");
         exit();
     } else {

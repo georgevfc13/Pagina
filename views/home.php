@@ -10,6 +10,9 @@ if (isset($_SESSION['id'])) {
     $nombre = 'Invitado';
     $tipo   = 'invitado';
 }
+
+
+
 ?>
 
 
