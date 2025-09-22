@@ -13,7 +13,7 @@ class ServicioController {
                 'precio' => $_POST['precio'] ?? ''
             ];
             // Validación básica
-            if (empty($data['titulo']) || empty($data['descripcion']) || empty($data['ubicacion']) || empty($data['tipo']) || empty($data['empresa'])) {
+            if (empty($data['titulo']) || empty($data['descripcion']) || empty($data['ubicacion']) || empty($data['tipo'])) {
                 return 'Todos los campos obligatorios deben ser completados.';
             }
             $servicio = new Servicio();

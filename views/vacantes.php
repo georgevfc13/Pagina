@@ -164,57 +164,8 @@ if ($resultado === true) {
         <!-- fin del boton de scroll -->
 
         <?php include 'partials/footer.php'; ?>
-        <style>
-        .custom-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 123, 255, 0.15);
-            justify-content: center;
-            align-items: center;
-        }
-        .custom-modal-content {
-            background: #fff;
-            border-radius: 18px;
-            padding: 2.5rem 2rem 2rem 2rem;
-            box-shadow: 0 8px 32px rgba(0,123,255,0.18);
-            max-width: 420px;
-            width: 95vw;
-            position: relative;
-            text-align: left;
-        }
-        .custom-close {
-            position: absolute;
-            top: 18px; right: 22px;
-            font-size: 2rem;
-            color: #0d6efd;
-            cursor: pointer;
-        }
-        .custom-modal-content h4 {
-            font-weight: 700;
-        }
-        .custom-modal-content button {
-            min-width: 120px;
-        }
-        .d-none { display: none !important; }
-        </style>
-        <script>
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-            // Oculta mensaje de confirmación si se reabre
-            var conf = document.getElementById('confirmacion-' + id);
-            if(conf) conf.classList.add('d-none');
-        }
-        function confirmarAplicacion(id) {
-            var conf = document.getElementById('confirmacion-' + id);
-            if(conf) conf.classList.remove('d-none');
-            setTimeout(function(){ closeModal(id); }, 1500);
-        }
-        </script>
+        
         <script src="scroll.js"></script>
+        <script src="../assets/js/vacantes.js"></script>
     </body>
 </html>
