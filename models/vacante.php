@@ -45,11 +45,7 @@ class Vacante {
             $stmt->bindParam(':vacante_id', $vacante_id);
             $stmt->bindParam(':usuario_id', $usuario_id);
             $stmt->execute();
-            // Actualizar contador de vacantes_disponibles
-            $sql2 = "UPDATE vacantes SET vacantes_disponibles = vacantes_disponibles + 1 WHERE id = :vacante_id";
-            $stmt2 = $this->conn->prepare($sql2);
-            $stmt2->bindParam(':vacante_id', $vacante_id);
-            $stmt2->execute();
+            // NO modificar vacantes_disponibles
             return true;
         } catch (PDOException $e) {
             return $e->getMessage();
