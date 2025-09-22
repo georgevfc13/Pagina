@@ -26,4 +26,19 @@ class ServicioController {
         }
         return null;
     }
+    /**
+     * Editar un servicio existente
+     */
+    public function editarServicio($id, $data) {
+        $servicio = new Servicio();
+        return $servicio->editarServicio($id, $data);
+    }
+
+    /**
+     * Eliminar un servicio por su ID
+     */
+    public function eliminarServicio($id) {
+        $servicio = new Servicio();
+        return $servicio->eliminarServicio($id);
+    }
 }

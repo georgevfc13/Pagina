@@ -26,4 +26,19 @@ class VacanteController {
         }
         return null;
     }
+    /**
+     * Editar una vacante existente
+     */
+    public function editarVacante($id, $data) {
+        $vacante = new Vacante();
+        return $vacante->editarVacante($id, $data);
+    }
+
+    /**
+     * Eliminar una vacante por su ID
+     */
+    public function eliminarVacante($id) {
+        $vacante = new Vacante();
+        return $vacante->eliminarVacante($id);
+    }
 }
