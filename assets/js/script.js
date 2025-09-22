@@ -191,6 +191,12 @@ new Chart(document.getElementById("graficoServiciosOfertados"), {
           start: '2025-08-03',
           description: 'Pa que aprendas',
           url: '#'
+        },
+        {
+          title: 'Dia de entregar el proyecto',
+          start: '2025-10-06',
+          descripcion: 'Pa entregarla',
+          url: '#',
         }
       ],
       eventClick: function (info) {

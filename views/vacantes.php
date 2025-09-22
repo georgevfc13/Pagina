@@ -2,11 +2,24 @@
 require_once '../controller/VacanteController.php';
 $mensaje = null;
 $controller = new VacanteController();
-$resultado = $controller->registrarVacante();
-if ($resultado === true) {
-    $mensaje = "Vacante publicada con éxito.";
-} elseif (is_string($resultado)) {
-    $mensaje = $resultado;
+
+// Procesar aplicación a vacante
+if (isset($_POST['aplicar_vacante_id'])) {
+    $vacanteId = (int)$_POST['aplicar_vacante_id'];
+    // Si tienes login, puedes pasar el id del usuario, aquí se deja null
+    $aplicacion = $controller->aplicarVacante($vacanteId, null);
+    if ($aplicacion === true) {
+        $mensaje = "¡Has aplicado exitosamente a la vacante!";
+    } else {
+        $mensaje = "Error al aplicar: $aplicacion";
+    }
+} else {
+    $resultado = $controller->registrarVacante();
+    if ($resultado === true) {
+        $mensaje = "Vacante publicada con éxito.";
+    } elseif (is_string($resultado)) {
+        $mensaje = $resultado;
+    }
 }
 ?>
 
@@ -76,6 +89,10 @@ if ($resultado === true) {
                         <label for="salario" class="form-label">Salario (opcional)</label>
                         <input type="text" class="form-control" id="salario" name="salario" placeholder="Ejemplo: $2.000.000 - $3.000.000" />
                     </div>
+                    <div class="col-md-6">
+                        <label for="vacantes_disponibles" class="form-label">Número de vacantes disponibles</label>
+                        <input type="number" class="form-control" id="vacantes_disponibles" name="vacantes_disponibles" min="1" value="1" required />
+                    </div>
                     <div class="col-12">
                         <button class="btn btn-info" type="submit">Publicar vacante</button>
                     </div>
@@ -107,11 +124,20 @@ if ($resultado === true) {
                             if (!empty($row['salario'])) {
                                 echo "<p class='card-text mb-3'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</p>";
                             }
-                            echo    "<button class='btn btn-info mt-auto' onclick=\"openModal('$modalId')\">Aplicar</button>
-                                        </div>
-                                    </div>
-                                    <!-- Modal personalizado -->
-                                    <div id='$modalId' class='custom-modal'>
+                            // Mostrar vacantes disponibles y número de aplicaciones
+                            $vacantesDisponibles = isset($row['vacantes_disponibles']) ? (int)$row['vacantes_disponibles'] : 0;
+                            // Contar aplicaciones
+                            $aplicaciones = 0;
+                            $sqlApp = $conn->prepare("SELECT COUNT(*) FROM aplicaciones WHERE vacante_id = ?");
+                            $sqlApp->execute([$row['id']]);
+                            $aplicaciones = $sqlApp->fetchColumn();
+
+                            echo    "<p class='card-text mb-1'><strong>Vacantes disponibles:</strong> $vacantesDisponibles</p>";
+                            echo    "<p class='card-text mb-3'><strong>Aplicaciones recibidas:</strong> $aplicaciones</p>";
+                            echo    '<button class="btn btn-info mt-auto" onclick="openModal(\'' . $modalId . '\')">Aplicar</button>';
+                            echo    "</div></div>";
+                            // Modal personalizado con formulario para aplicar
+                            echo    "<div id='$modalId' class='custom-modal'>
                                         <div class='custom-modal-content'>
                                             <span class='custom-close' onclick=\"closeModal('$modalId')\">&times;</span>
                                             <h4 class='mb-3 text-primary'>¿Deseas aplicar a esta vacante?</h4>
@@ -125,11 +151,14 @@ if ($resultado === true) {
                             if (!empty($row['salario'])) {
                                 echo "<div class='mb-2'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</div>";
                             }
-                            echo    "<div class='d-flex justify-content-center gap-3 mt-4'>
-                                                <button class='btn btn-success' onclick=\"confirmarAplicacion('$modalId')\">Sí, aplicar</button>
-                                                <button class='btn btn-outline-secondary' onclick=\"closeModal('$modalId')\">Cancelar</button>
-                                            </div>
-                                            <div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has aplicado exitosamente!</div>
+                            echo    '<form method="POST" class="d-inline">
+                                        <input type="hidden" name="aplicar_vacante_id" value="' . $row['id'] . '">
+                                        <div class="d-flex justify-content-center gap-3 mt-4">
+                                            <button type="submit" class="btn btn-success">Sí, aplicar</button>
+                                            <button type="button" class="btn btn-outline-secondary" onclick="closeModal(\'' . $modalId . '\')">Cancelar</button>
+                                        </div>
+                                    </form>';
+                            echo    "<div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has aplicado exitosamente!</div>
                                         </div>
                                     </div>
                                 </div>";

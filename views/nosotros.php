@@ -11,7 +11,7 @@
     <body>
         <?php $activePage = 'nosotros'; include 'partials/navbar.php'; ?>
         <!-- seccion hero -->
-        <section class="bg-primary text-white text-center py-5">
+        <section class="text-black text-center py-5">
                 <div>
                         <h2 class="display-5 fw-bold">Nosotros</h2>
                         <p class="lead">¿Quiénes somos?</p>

@@ -518,7 +518,7 @@ if (isset($_SESSION['id'])) {
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-outline-info">Ver mas noticias</button>
+                        <button class="btn btn-outline-primary">Ver mas noticias</button>
                     </div>
                 </div>
             </section>
