@@ -5,10 +5,12 @@ session_start();
 if (isset($_SESSION['id'])) {
     $nombre = $_SESSION['nombre'] ?? 'Usuario';
     $tipo   = $_SESSION['tipo'] ?? '';
+    $foto = $_SESSION['foto_perfil'] ?? 'assets/img/default-avatar.png'; // Ruta por defecto si no hay foto de perfil
 } else {
     // Si no hay sesión, es invitado
     $nombre = 'Invitado';
     $tipo   = 'invitado';
+    $foto = 'assets/img/default-avatar.png'; // Ruta por defecto para invitados
 }
 
 
@@ -38,7 +40,7 @@ if (isset($_SESSION['id'])) {
     <!-- zona hero -->
     <section class="hero d-flex align-items-center justify-content-center text-center">
         <div class="hero-content text-white">
-            <h1 class="fw-bold">Bienvenido, <?php echo htmlspecialchars($nombre); ?> </h1>
+            <h1 class="fw-bold">Hola, <?php echo htmlspecialchars($nombre); ?>👋 </h1>
             <p class="lead">Bienvenido a GDA, tu puente entre oportunidades laborales y talento profesional</p>
 
 

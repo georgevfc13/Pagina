@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['id'] = $resultado['usuario']['id'];
         $_SESSION['nombre'] = $resultado['usuario']['razon_social'];
         $_SESSION['tipo'] = "juridico";
+        $_SESSION['foto_perfil'] = $resultado['foto_perfil'] ?? 'assets/img/default-avatar.png'; // Guardar el ID del usuario jurídico
+        
         header("Location: home.php");
         exit();
     } else {

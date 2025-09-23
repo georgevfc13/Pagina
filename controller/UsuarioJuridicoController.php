@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . "/../config/dataBase.php";
 require_once __DIR__ . "/../models/UsuarioJuridico.php";
+// dentro de controller/PerfilJuridicoController.php
+
+
 
 class UsuarioJuridicoController {
 public function login($data) {

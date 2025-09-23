@@ -3,5 +3,8 @@
 header('Location: views/home.php');
 
 // index.php o layout principal
-$router->get('/perfil-juridico', 'PerfilJuridicoController@perfil');
+
+// luego incluye el navbar
+require 'views/partials/navbar.php';
+
 exit();

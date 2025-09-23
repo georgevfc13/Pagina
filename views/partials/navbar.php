@@ -2,7 +2,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+
 ?>
+
+
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
@@ -38,29 +42,34 @@ if (session_status() === PHP_SESSION_NONE) {
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'noticias') echo 'active'; ?>" href="noticias.php">Noticias</a>
         </li>
 
-         <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'Iniciar Sesion') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
+         <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
         </li>
-           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'cerrarSesion') echo 'active'; ?>" href="logout.php">Cerrar Sesión</a>a></li>
+         <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'Iniciar Sesion') echo 'active'; ?>" href="login.php">Cerrar Sesión</a>
+   
 
 
-         <!-- Perfil -->
-<?php if (isset($_SESSION['usuario_juridico_id'])): ?>
+
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <img src="<?= htmlspecialchars($datosUsuarioJuridico['foto_perfil'] ?? '/img/default-user.png'); ?>"
-         alt="Perfil"
+  <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+     id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="<?php echo htmlspecialchars($foto); ?>"
+         alt="Usuario"
          class="rounded-circle"
-         style="width:40px;height:40px;object-fit:cover;">
+         width="40" height="40">
   </a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
-    <li><a class="dropdown-item" href="/perfil-juridico">Mi perfil</a></li>
-    <li><a class="dropdown-item" href="/vacantes/mis-vacantes">Mis vacantes</a></li>
-    <li><a class="dropdown-item" href="/servicios/mis-servicios">Mis servicios</a></li>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+    <li class="dropdown-item-text fw-bold"><?php echo htmlspecialchars($nombre); ?></li>
+    <li class="dropdown-item-text text-muted"><?php echo htmlspecialchars($tipo); ?></li>
     <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+    <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
+    <li><a class="dropdown-item" href="servicios_subidos.php">Servicios Subidos</a></li>
+    <li><a class="dropdown-item" href="vacantes_aplicadas.php">Vacantes Aplicadas</a></li>
+    <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>
   </ul>
 </li>
-<?php endif; ?>
+
+
+
 
 
       </ul>
@@ -69,4 +78,6 @@ if (session_status() === PHP_SESSION_NONE) {
 </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </nav>
