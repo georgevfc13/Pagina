@@ -2,18 +2,39 @@
 require_once '../controller/VacanteController.php';
 $mensaje = null;
 $controller = new VacanteController();
-
-// Procesar aplicación a vacante
-if (isset($_POST['aplicar_vacante_id'])) {
-    $vacanteId = (int)$_POST['aplicar_vacante_id'];
-    // Si tienes login, puedes pasar el id del usuario, aquí se deja null
-    $aplicacion = $controller->aplicarVacante($vacanteId, null);
-    if ($aplicacion === true) {
-        $mensaje = "¡Has aplicado exitosamente a la vacante!";
+// Procesar edición
+if (isset($_POST['editar_vacante'])) {
+    $id = $_POST['edit_id'];
+    $data = [
+        'titulo' => $_POST['edit_titulo'],
+        'descripcion' => $_POST['edit_descripcion'],
+        'ubicacion' => $_POST['edit_ubicacion'],
+        'tipo' => $_POST['edit_tipo'],
+        'empresa' => $_POST['edit_empresa'],
+        'salario' => $_POST['edit_salario']
+    ];
+    $res = $controller->editarVacante($id, $data);
+    if ($res === true) {
+        $mensaje = "Vacante actualizada correctamente.";
     } else {
-        $mensaje = "Error al aplicar: $aplicacion";
+        $mensaje = "Error al actualizar: " . htmlspecialchars($res);
     }
-} else {
+}
+// Procesar eliminación
+if (isset($_POST['eliminar_vacante'])) {
+    $id = isset($_POST['delete_id']) ? $_POST['delete_id'] : '';
+    if (empty($id)) {
+        $mensaje = "Error: ID de vacante no recibido.";
+    } else {
+        $res = $controller->eliminarVacante($id);
+        if ($res === true) {
+            $mensaje = "Vacante eliminada correctamente.";
+        } else {
+            $mensaje = "Error al eliminar vacante (ID: ".$id."): " . htmlspecialchars($res);
+        }
+    }
+}
+if (isset($_POST['titulo'])) {
     $resultado = $controller->registrarVacante();
     if ($resultado === true) {
         $mensaje = "Vacante publicada con éxito.";
@@ -33,6 +54,7 @@ if (isset($_POST['aplicar_vacante_id'])) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
         <link rel="stylesheet" href="../assets/styles/vacantes.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
     </head>
     <body>
         <?php $activePage = 'vacantes'; include 'partials/navbar.php'; ?>
@@ -111,6 +133,9 @@ if (isset($_POST['aplicar_vacante_id'])) {
                         $modalIndex = 0;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $modalId = 'modalVacante' . $modalIndex;
+                            $aplicados = isset($row['aplicados']) ? (int)$row['aplicados'] : 0;
+                            $requeridos = isset($row['vacantes_disponibles']) ? (int)$row['vacantes_disponibles'] : 0;
+                            $vacanteId = (int)$row['id'];
                             echo "<div class='col'>
                                     <div class='card h-100 shadow-sm border-0 rounded-4' style='background:rgba(255,255,255,0.95);'>
                                         <div class='card-body d-flex flex-column'>
@@ -122,47 +147,88 @@ if (isset($_POST['aplicar_vacante_id'])) {
                                 echo "<p class='card-text mb-1'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</p>";
                             }
                             if (!empty($row['salario'])) {
-                                echo "<p class='card-text mb-3'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</p>";
+                                echo "<p class='card-text mb-1'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</p>";
                             }
-                            // Mostrar vacantes disponibles y número de aplicaciones
-                            $vacantesDisponibles = isset($row['vacantes_disponibles']) ? (int)$row['vacantes_disponibles'] : 0;
-                            // Contar aplicaciones
-                            $aplicaciones = 0;
-                            $sqlApp = $conn->prepare("SELECT COUNT(*) FROM aplicaciones WHERE vacante_id = ?");
-                            $sqlApp->execute([$row['id']]);
-                            $aplicaciones = $sqlApp->fetchColumn();
-
-                            echo    "<p class='card-text mb-1'><strong>Vacantes disponibles:</strong> $vacantesDisponibles</p>";
-                            echo    "<p class='card-text mb-3'><strong>Aplicaciones recibidas:</strong> $aplicaciones</p>";
-                            echo    '<button class="btn btn-info mt-auto" onclick="openModal(\'' . $modalId . '\')">Aplicar</button>';
-                            echo    "</div></div>";
-                            // Modal personalizado con formulario para aplicar
-                            echo    "<div id='$modalId' class='custom-modal'>
-                                        <div class='custom-modal-content'>
-                                            <span class='custom-close' onclick=\"closeModal('$modalId')\">&times;</span>
-                                            <h4 class='mb-3 text-primary'>¿Deseas aplicar a esta vacante?</h4>
-                                            <div class='mb-2'><strong>Puesto:</strong> " . htmlspecialchars($row['titulo']) . "</div>
-                                            <div class='mb-2'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</div>
-                                            <div class='mb-2'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</div>
-                                            <div class='mb-2'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
+                            echo "<div class='row mb-3'>
+                                    <div class='col'><strong>Requeridas:</strong> <span id='requeridos-$vacanteId'>$requeridos</span></div>
+                                    <div class='col'><strong>Aplicadas:</strong> <span id='aplicados-$vacanteId'>$aplicados</span></div>
+                                </div>";
+                            echo    "<div class='d-flex flex-wrap gap-2 mt-auto'>
+                                <button class='btn btn-info' onclick=\"openModal('$modalId')\">Aplicar</button>
+                                <button class='btn btn-warning' onclick=\"openEditModal('edit$modalId')\">Editar</button>
+                                <button class='btn btn-danger' onclick=\"showDeleteConfirm('$modalId')\">Eliminar</button>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- Modal aplicar -->
+                        <div id='$modalId' class='custom-modal'>
+                            <div class='custom-modal-content'>
+                                <span class='custom-close' onclick=\"closeModal('$modalId')\">&times;</span>
+                                <h4 class='mb-3 text-primary'>¿Deseas aplicar a esta vacante?</h4>
+                                <div class='mb-2'><strong>Puesto:</strong> " . htmlspecialchars($row['titulo']) . "</div>
+                                <div class='mb-2'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</div>
+                                <div class='mb-2'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</div>
+                                <div class='mb-2'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
                             if (!empty($row['empresa'])) {
                                 echo "<div class='mb-2'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</div>";
                             }
                             if (!empty($row['salario'])) {
                                 echo "<div class='mb-2'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</div>";
                             }
-                            echo    '<form method="POST" class="d-inline">
-                                        <input type="hidden" name="aplicar_vacante_id" value="' . $row['id'] . '">
-                                        <div class="d-flex justify-content-center gap-3 mt-4">
-                                            <button type="submit" class="btn btn-success">Sí, aplicar</button>
-                                            <button type="button" class="btn btn-outline-secondary" onclick="closeModal(\'' . $modalId . '\')">Cancelar</button>
-                                        </div>
-                                    </form>';
-                            echo    "<div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has aplicado exitosamente!</div>
-                                        </div>
+                            echo    "<div class='row mb-3'>
+                                        <div class='col'><strong>Requeridas:</strong> <span id='modal-requeridos-$vacanteId'>$requeridos</span></div>
+                                        <div class='col'><strong>Aplicadas:</strong> <span id='modal-aplicados-$vacanteId'>$aplicados</span></div>
+                                    </div>";
+                            echo    "<div class='d-flex justify-content-center gap-3 mt-4'>
+                                    <button class='btn btn-success' onclick=\"aplicarVacante($vacanteId, '$modalId')\">Sí, aplicar</button>
+                                    <button class='btn btn-outline-secondary' onclick=\"closeModal('$modalId')\">Cancelar</button>
+                                </div>
+                                <div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has aplicado exitosamente!</div>
+                            </div>
+                        </div>
+                        <!-- Modal editar -->
+                        <div id='edit$modalId' class='custom-modal'>
+                            <div class='custom-modal-content'>
+                                <span class='custom-close' onclick=\"closeModal('edit$modalId')\">&times;</span>
+                                <h4 class='mb-3 text-warning'>Editar vacante</h4>
+                                <form method='POST' class='edit-form' action='' autocomplete='off'>
+                                    <input type='hidden' name='edit_id' value='" . $row['id'] . "'>
+                                    <div class='mb-2'><label class='form-label'>Título</label><input type='text' class='form-control' name='edit_titulo' value='" . htmlspecialchars($row['titulo']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Descripción</label><input type='text' class='form-control' name='edit_descripcion' value='" . htmlspecialchars($row['descripcion']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Ubicación</label><input type='text' class='form-control' name='edit_ubicacion' value='" . htmlspecialchars($row['ubicacion']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Tipo</label><input type='text' class='form-control' name='edit_tipo' value='" . htmlspecialchars($row['tipo']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Empresa</label><input type='text' class='form-control' name='edit_empresa' value='" . htmlspecialchars($row['empresa']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Salario</label><input type='text' class='form-control' name='edit_salario' value='" . htmlspecialchars($row['salario']) . "'></div>
+                                    <div class='d-flex justify-content-center gap-3 mt-3'>
+                                        <button type='submit' name='editar_vacante' class='btn btn-warning'>Guardar</button>
+                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('edit$modalId')\">Cancelar</button>
                                     </div>
-                                </div>";
-                            $modalIndex++;
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Modal eliminar -->
+                        <div id='delete$modalId' class='custom-modal'>
+                            <div class='custom-modal-content'>
+                                <span class='custom-close' onclick=\"closeModal('delete$modalId')\">&times;</span>
+                                <h4 class='mb-3 text-danger'>¿Eliminar vacante?</h4>
+                                <p>Esta acción no se puede deshacer.<br>¿Estás seguro de que deseas eliminar esta vacante?</p>
+                                <div id='delete-confirm-$modalId'>
+                                    <div class='d-flex justify-content-center gap-3 mt-3'>
+                                        <button type='button' class='btn btn-danger' onclick=\"showDeleteForm('$modalId')\">Sí, eliminar</button>
+                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('delete$modalId')\">Cancelar</button>
+                                    </div>
+                                </div>
+                                <form id='delete-form-$modalId' method='POST' action='' style='display:none;'>
+                                    <input type='hidden' name='delete_id' value='" . $row['id'] . "'>
+                                    <div class='d-flex justify-content-center gap-3 mt-3'>
+                                        <button type='submit' name='eliminar_vacante' class='btn btn-danger'>Confirmar eliminación</button>
+                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('delete$modalId')\">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>";
+                    $modalIndex++;
                         }
                     } else {
                         echo "<p class='text-center'>No hay vacantes disponibles en este momento. ¡Vuelve pronto!</p>";
@@ -194,7 +260,95 @@ if (isset($_POST['aplicar_vacante_id'])) {
 
         <?php include 'partials/footer.php'; ?>
         
+        <style>
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 123, 255, 0.15);
+            justify-content: center;
+            align-items: center;
+        }
+        .custom-modal-content {
+            background: #fff;
+            border-radius: 18px;
+            padding: 2.5rem 2rem 2rem 2rem;
+            box-shadow: 0 8px 32px rgba(0,123,255,0.18);
+            max-width: 420px;
+            width: 95vw;
+            position: relative;
+            text-align: left;
+        }
+        .custom-close {
+            position: absolute;
+            top: 18px; right: 22px;
+            font-size: 2rem;
+            color: #0d6efd;
+            cursor: pointer;
+        }
+        .custom-modal-content h4 {
+            font-weight: 700;
+        }
+        .custom-modal-content button {
+            min-width: 120px;
+        }
+        .d-none { display: none !important; }
+        </style>
+        <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function openEditModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function openDeleteModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function showDeleteConfirm(modalId) {
+            document.getElementById('delete'+modalId).style.display = 'flex';
+            document.getElementById('delete-confirm-'+modalId).style.display = 'block';
+            document.getElementById('delete-form-'+modalId).style.display = 'none';
+        }
+        function showDeleteForm(modalId) {
+            document.getElementById('delete-confirm-'+modalId).style.display = 'none';
+            document.getElementById('delete-form-'+modalId).style.display = 'block';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            var conf = document.getElementById('confirmacion-' + id);
+            if(conf) conf.classList.add('d-none');
+        }
+
+        // Nueva función para aplicar a vacante vía AJAX
+        function aplicarVacante(vacanteId, modalId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../controller/aplicar_vacante.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    try {
+                        var res = JSON.parse(xhr.responseText);
+                        if (res.success) {
+                            // Actualizar número de aplicados en la tarjeta y modal
+                            document.getElementById('aplicados-' + vacanteId).textContent = res.aplicados;
+                            var modalAplicados = document.getElementById('modal-aplicados-' + vacanteId);
+                            if (modalAplicados) modalAplicados.textContent = res.aplicados;
+                            // Mostrar confirmación
+                            var conf = document.getElementById('confirmacion-' + modalId);
+                            if(conf) conf.classList.remove('d-none');
+                            setTimeout(function(){ closeModal(modalId); }, 1500);
+                        } else {
+                            alert('Error al aplicar: ' + (res.error || 'Error desconocido.'));
+                        }
+                    } catch(e) {
+                        alert('Error inesperado.');
+                    }
+                }
+            };
+            xhr.send('vacante_id=' + encodeURIComponent(vacanteId));
+        }
+        </script>
         <script src="scroll.js"></script>
-        <script src="../assets/js/vacantes.js"></script>
     </body>
 </html>

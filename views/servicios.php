@@ -3,14 +3,40 @@
 require_once '../controller/ServicioController.php';
 $mensaje = null;
 $controller = new ServicioController();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Procesar edición
+if (isset($_POST['editar_servicio'])) {
+    $id = $_POST['edit_id'];
+    $data = [
+        'titulo' => $_POST['edit_titulo'],
+        'descripcion' => $_POST['edit_descripcion'],
+        'ubicacion' => $_POST['edit_ubicacion'],
+        'tipo' => $_POST['edit_tipo'],
+        'empresa' => $_POST['edit_empresa'],
+        'precio' => $_POST['edit_precio']
+    ];
+    $res = $controller->editarServicio($id, $data);
+    if ($res === true) {
+        $mensaje = "Servicio actualizado correctamente.";
+    } else {
+        $mensaje = "Error al actualizar: " . htmlspecialchars($res);
+    }
+}
+// Procesar eliminación
+if (isset($_POST['eliminar_servicio'])) {
+    $id = $_POST['delete_id'];
+    $res = $controller->eliminarServicio($id);
+    if ($res === true) {
+        $mensaje = "Servicio eliminado correctamente.";
+    } else {
+        $mensaje = "Error al eliminar: " . htmlspecialchars($res);
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['editar_servicio']) && !isset($_POST['eliminar_servicio'])) {
     $resultado = $controller->registrarServicio();
     if ($resultado === true) {
-        // Redirigir con mensaje para evitar reenvío del formulario
         header('Location: servicios.php?exito=1');
         exit();
     } elseif (is_string($resultado)) {
-        // Redirigir con mensaje de error
         header('Location: servicios.php?error=' . urlencode($resultado));
         exit();
     }
@@ -135,18 +161,22 @@ if (isset($_GET['exito'])) {
                         if (!empty($row['precio'])) {
                             echo "<p class='card-text mb-3'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</p>";
                         }
-                        echo    "<button class='btn btn-info mt-auto' onclick=\"openModal('$modalId')\">Contratar</button>
-                                    </div>
-                                </div>
-                                <!-- Modal personalizado -->
-                                <div id='$modalId' class='custom-modal'>
-                                    <div class='custom-modal-content'>
-                                        <span class='custom-close' onclick=\"closeModal('$modalId')\">&times;</span>
-                                        <h4 class='mb-3 text-primary'>¿Deseas contratar este servicio?</h4>
-                                        <div class='mb-2'><strong>Servicio:</strong> " . htmlspecialchars($row['titulo']) . "</div>
-                                        <div class='mb-2'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</div>
-                                        <div class='mb-2'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</div>
-                                        <div class='mb-2'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
+                        echo    "<div class='d-flex flex-wrap gap-2 mt-auto'>
+                                <button class='btn btn-info' onclick=\"openModal('$modalId')\">Contratar</button>
+                                <button class='btn btn-warning' onclick=\"openEditModal('edit$modalId')\">Editar</button>
+                                <button class='btn btn-danger' onclick=\"openDeleteModal('delete$modalId')\">Eliminar</button>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- Modal contratar -->
+                        <div id='$modalId' class='custom-modal'>
+                            <div class='custom-modal-content'>
+                                <span class='custom-close' onclick=\"closeModal('$modalId')\">&times;</span>
+                                <h4 class='mb-3 text-primary'>¿Deseas contratar este servicio?</h4>
+                                <div class='mb-2'><strong>Servicio:</strong> " . htmlspecialchars($row['titulo']) . "</div>
+                                <div class='mb-2'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</div>
+                                <div class='mb-2'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</div>
+                                <div class='mb-2'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
                         if (!empty($row['empresa'])) {
                             echo "<div class='mb-2'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</div>";
                         }
@@ -154,14 +184,49 @@ if (isset($_GET['exito'])) {
                             echo "<div class='mb-2'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</div>";
                         }
                         echo    "<div class='d-flex justify-content-center gap-3 mt-4'>
-                                            <button class='btn btn-success' onclick=\"confirmarAplicacion('$modalId')\">Sí, contratar</button>
-                                            <button class='btn btn-outline-secondary' onclick=\"closeModal('$modalId')\">Cancelar</button>
-                                        </div>
-                                        <div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has contratado este servicio!</div>
-                                    </div>
+                                    <button class='btn btn-success' onclick=\"confirmarAplicacion('$modalId')\">Sí, contratar</button>
+                                    <button class='btn btn-outline-secondary' onclick=\"closeModal('$modalId')\">Cancelar</button>
                                 </div>
-                            </div>";
-                        $modalIndex++;
+                                <div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has contratado este servicio!</div>
+                            </div>
+                        </div>
+                        <!-- Modal editar -->
+                        <div id='edit$modalId' class='custom-modal'>
+                            <div class='custom-modal-content'>
+                                <span class='custom-close' onclick=\"closeModal('edit$modalId')\">&times;</span>
+                                <h4 class='mb-3 text-warning'>Editar servicio</h4>
+                                <form method='POST' class='edit-form' action='' autocomplete='off'>
+                                    <input type='hidden' name='edit_id' value='" . $row['id'] . "'>
+                                    <div class='mb-2'><label class='form-label'>Título</label><input type='text' class='form-control' name='edit_titulo' value='" . htmlspecialchars($row['titulo']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Descripción</label><input type='text' class='form-control' name='edit_descripcion' value='" . htmlspecialchars($row['descripcion']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Ubicación</label><input type='text' class='form-control' name='edit_ubicacion' value='" . htmlspecialchars($row['ubicacion']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Tipo</label><input type='text' class='form-control' name='edit_tipo' value='" . htmlspecialchars($row['tipo']) . "' required></div>
+                                    <div class='mb-2'><label class='form-label'>Empresa</label><input type='text' class='form-control' name='edit_empresa' value='" . htmlspecialchars($row['empresa']) . "'></div>
+                                    <div class='mb-2'><label class='form-label'>Precio</label><input type='text' class='form-control' name='edit_precio' value='" . htmlspecialchars($row['precio']) . "'></div>
+                                    <div class='d-flex justify-content-center gap-3 mt-3'>
+                                        <button type='submit' name='editar_servicio' class='btn btn-warning'>Guardar</button>
+                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('edit$modalId')\">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Modal eliminar -->
+                        <div id='delete$modalId' class='custom-modal'>
+                            <div class='custom-modal-content'>
+                                <span class='custom-close' onclick=\"closeModal('delete$modalId')\">&times;</span>
+                                <h4 class='mb-3 text-danger'>¿Eliminar servicio?</h4>
+                                <p>Esta acción no se puede deshacer.</p>
+                                <form method='POST' action=''>
+                                    <input type='hidden' name='delete_id' value='" . $row['id'] . "'>
+                                    <div class='d-flex justify-content-center gap-3 mt-3'>
+                                        <button type='submit' name='eliminar_servicio' class='btn btn-danger'>Eliminar</button>
+                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('delete$modalId')\">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>";
+                    $modalIndex++;
                     }
                 } else {
                     echo "<p class='text-center'>No hay servicios disponibles en este momento. ¡Sé el primero en publicar uno!</p>";
@@ -217,9 +282,14 @@ if (isset($_GET['exito'])) {
     function openModal(id) {
         document.getElementById(id).style.display = 'flex';
     }
+    function openEditModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
+    function openDeleteModal(id) {
+        document.getElementById(id).style.display = 'flex';
+    }
     function closeModal(id) {
         document.getElementById(id).style.display = 'none';
-        // Oculta mensaje de confirmación si se reabre
         var conf = document.getElementById('confirmacion-' + id);
         if(conf) conf.classList.add('d-none');
     }
