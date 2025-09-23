@@ -1,46 +1,24 @@
 <?php
 session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gda";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-  die("Conexión fallida: " . $conn->connect_error);
-}
+require_once __DIR__ . "/../controller/UsuarioNaturalController.php";
 
 $mensaje = "";
-
+$tipo_mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $contacto = $_POST['contacto'] ?? '';
-  $password = $_POST['password'] ?? '';
-
-  $sql = "SELECT * FROM usuarios_naturales WHERE contacto = ?";
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("s", $contacto);
-  $stmt->execute();
-  $result = $stmt->get_result();
-
-  if ($result && $row = $result->fetch_assoc()) {
-    // Aquí ya tenemos el usuario
-    if (password_verify($password, $row['password'])) {
-      $_SESSION['id'] = $row['id'];
-      $_SESSION['nombre'] = $row['nombre'];
-      $_SESSION['tipo'] = "natural";
-      header("Location: home.php");
-      exit();
+    $controller = new UsuarioNaturalController();
+    $resultado = $controller->login($_POST);
+    if ($resultado['success']) {
+        $_SESSION['id'] = $resultado['usuario']['id'];
+        $_SESSION['nombre'] = $resultado['usuario']['nombre'];
+        $_SESSION['tipo'] = "natural";
+        header("Location: home.php");
+        exit();
     } else {
-      $mensaje = "❌ Contraseña incorrecta";
+        $mensaje = $resultado['mensaje'];
+        $tipo_mensaje = "danger";
     }
-  } else {
-    $mensaje = "❌ Usuario no encontrado";
-  }
-
-  $stmt->close();
 }
-$conn->close();
+
 ?>
 
 

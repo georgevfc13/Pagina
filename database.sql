@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS usuarios_juridicos (
 --   fecha_publicacion: Fecha en que se publica la vacante
 --   empresa: Nombre de la empresa que publica
 --   salario: Rango o valor de salario (opcional)
+
 CREATE TABLE IF NOT EXISTS vacantes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -67,5 +68,16 @@ CREATE TABLE IF NOT EXISTS vacantes (
     tipo VARCHAR(50) NOT NULL,
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     empresa VARCHAR(100) NOT NULL,
-    salario VARCHAR(50)
+    salario VARCHAR(50),
+    vacantes_disponibles INT NOT NULL DEFAULT 1
+);
+
+-- Tabla para registrar aplicaciones de usuarios a vacantes
+CREATE TABLE IF NOT EXISTS aplicaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vacante_id INT NOT NULL,
+    usuario_id INT,
+    fecha_aplicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (vacante_id) REFERENCES vacantes(id)
+    -- usuario_id puede ser NULL si no hay login, o referenciar usuarios_naturales
 );

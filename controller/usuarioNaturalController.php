@@ -3,6 +3,27 @@ require_once __DIR__ . "/../config/dataBase.php";
 require_once __DIR__ . "/../models/usuarioNatural.php";
 
 class UsuarioNaturalController {
+ public function login($data) {
+        $contacto = $data['contacto'] ?? '';
+        $password = $data['password'] ?? '';
+        $resultado = $this->usuario->login($contacto, $password);
+        if (is_array($resultado)) {
+            // Login exitoso
+            return [
+                'success' => true,
+                'usuario' => $resultado,
+                'mensaje' => '✅ Bienvenido, ' . $resultado['nombre'],
+            ];
+        } else {
+            // Error de login
+            return [
+                'success' => false,
+                'mensaje' => $resultado,
+            ];
+        }
+    }
+
+
     private $db;
     private $usuario;
 

@@ -105,6 +105,10 @@ if ($resultado === true) {
                         <label for="salario" class="form-label">Salario (opcional)</label>
                         <input type="text" class="form-control" id="salario" name="salario" placeholder="Ejemplo: $2.000.000 - $3.000.000" />
                     </div>
+                    <div class="col-md-6">
+                        <label for="vacantes_disponibles" class="form-label">Número de vacantes disponibles</label>
+                        <input type="number" class="form-control" id="vacantes_disponibles" name="vacantes_disponibles" min="1" value="1" required />
+                    </div>
                     <div class="col-12">
                         <button class="btn btn-info" type="submit">Publicar vacante</button>
                     </div>
