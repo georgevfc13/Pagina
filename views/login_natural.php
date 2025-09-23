@@ -35,8 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-  <?php $activePage = 'login';
-  include 'partials/navbar.php'; ?>
+ 
 
   <main class="container py-5">
 
@@ -69,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
   </main>
 
-  <?php include 'partials/footer.php'; ?>
   <script src="../assets/js/login.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>

@@ -26,39 +26,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Login Persona Jurídica</title>
+   <meta charset="UTF-8">
+  <title>Login Persona Natural</title>
   <link rel="stylesheet" href="../assets/styles/login.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-  <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #f5f5f5; /* Fondo opcional */
-        }
-
-        .form-container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-            width: 400px;
-            text-align: center;
-        }
-
-        .form-container h2 {
-            margin-bottom: 20px;
-        }
-
-        </style>
+  
 </head>
 <body>
 
+ <?php $activePage = 'login';
+  include 'partials/navbar.php'; ?>
+
+    <main >
   <form method="POST" action="">
       <h2>Iniciar sesión - Persona Jurídica</h2>
     <label>Correo:</label>
@@ -69,7 +51,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <button type="submit">Ingresar</button>
 
-     <p>¿No tienes una cuenta? <a href="regis_juridica.php">Regístrate aquí</a></p>
+  
+<!-- // ...existing code... -->
+ 
+
+    <?php if (!isset($_SESSION['id'])): ?>
+      <p>¿No tienes una cuenta? <a href="regis_juridica.php">Regístrate aquí</a></p>
+    <?php endif; ?>
+<!-- // ...existing code... -->
   </form>
+        </main>
+  
+  <?php include 'partials/footer.php'; ?>
 </body>
 </html>
