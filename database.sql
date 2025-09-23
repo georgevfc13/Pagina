@@ -69,7 +69,8 @@ CREATE TABLE IF NOT EXISTS vacantes (
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     empresa VARCHAR(100) NOT NULL,
     salario VARCHAR(50),
-    vacantes_disponibles INT NOT NULL DEFAULT 1
+    vacantes_disponibles INT NOT NULL DEFAULT 1,
+    aplicados INT NOT NULL DEFAULT 0
 );
 
 -- Tabla para registrar aplicaciones de usuarios a vacantes

@@ -22,19 +22,25 @@ if (isset($_POST['editar_vacante'])) {
 }
 // Procesar eliminación
 if (isset($_POST['eliminar_vacante'])) {
-    $id = $_POST['delete_id'];
-    $res = $controller->eliminarVacante($id);
-    if ($res === true) {
-        $mensaje = "Vacante eliminada correctamente.";
+    $id = isset($_POST['delete_id']) ? $_POST['delete_id'] : '';
+    if (empty($id)) {
+        $mensaje = "Error: ID de vacante no recibido.";
     } else {
-        $mensaje = "Error al eliminar: " . htmlspecialchars($res);
+        $res = $controller->eliminarVacante($id);
+        if ($res === true) {
+            $mensaje = "Vacante eliminada correctamente.";
+        } else {
+            $mensaje = "Error al eliminar vacante (ID: ".$id."): " . htmlspecialchars($res);
+        }
     }
 }
-$resultado = $controller->registrarVacante();
-if ($resultado === true) {
-    $mensaje = "Vacante publicada con éxito.";
-} elseif (is_string($resultado)) {
-    $mensaje = $resultado;
+if (isset($_POST['titulo'])) {
+    $resultado = $controller->registrarVacante();
+    if ($resultado === true) {
+        $mensaje = "Vacante publicada con éxito.";
+    } elseif (is_string($resultado)) {
+        $mensaje = $resultado;
+    }
 }
 ?>
 
@@ -127,6 +133,9 @@ if ($resultado === true) {
                         $modalIndex = 0;
                         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $modalId = 'modalVacante' . $modalIndex;
+                            $aplicados = isset($row['aplicados']) ? (int)$row['aplicados'] : 0;
+                            $requeridos = isset($row['vacantes_disponibles']) ? (int)$row['vacantes_disponibles'] : 0;
+                            $vacanteId = (int)$row['id'];
                             echo "<div class='col'>
                                     <div class='card h-100 shadow-sm border-0 rounded-4' style='background:rgba(255,255,255,0.95);'>
                                         <div class='card-body d-flex flex-column'>
@@ -138,12 +147,16 @@ if ($resultado === true) {
                                 echo "<p class='card-text mb-1'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</p>";
                             }
                             if (!empty($row['salario'])) {
-                                echo "<p class='card-text mb-3'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</p>";
+                                echo "<p class='card-text mb-1'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</p>";
                             }
+                            echo "<div class='row mb-3'>
+                                    <div class='col'><strong>Requeridas:</strong> <span id='requeridos-$vacanteId'>$requeridos</span></div>
+                                    <div class='col'><strong>Aplicadas:</strong> <span id='aplicados-$vacanteId'>$aplicados</span></div>
+                                </div>";
                             echo    "<div class='d-flex flex-wrap gap-2 mt-auto'>
                                 <button class='btn btn-info' onclick=\"openModal('$modalId')\">Aplicar</button>
                                 <button class='btn btn-warning' onclick=\"openEditModal('edit$modalId')\">Editar</button>
-                                <button class='btn btn-danger' onclick=\"openDeleteModal('delete$modalId')\">Eliminar</button>
+                                <button class='btn btn-danger' onclick=\"showDeleteConfirm('$modalId')\">Eliminar</button>
                             </div>
                             </div>
                         </div>
@@ -162,8 +175,12 @@ if ($resultado === true) {
                             if (!empty($row['salario'])) {
                                 echo "<div class='mb-2'><strong>Salario:</strong> " . htmlspecialchars($row['salario']) . "</div>";
                             }
+                            echo    "<div class='row mb-3'>
+                                        <div class='col'><strong>Requeridas:</strong> <span id='modal-requeridos-$vacanteId'>$requeridos</span></div>
+                                        <div class='col'><strong>Aplicadas:</strong> <span id='modal-aplicados-$vacanteId'>$aplicados</span></div>
+                                    </div>";
                             echo    "<div class='d-flex justify-content-center gap-3 mt-4'>
-                                    <button class='btn btn-success' onclick=\"confirmarAplicacion('$modalId')\">Sí, aplicar</button>
+                                    <button class='btn btn-success' onclick=\"aplicarVacante($vacanteId, '$modalId')\">Sí, aplicar</button>
                                     <button class='btn btn-outline-secondary' onclick=\"closeModal('$modalId')\">Cancelar</button>
                                 </div>
                                 <div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has aplicado exitosamente!</div>
@@ -194,11 +211,17 @@ if ($resultado === true) {
                             <div class='custom-modal-content'>
                                 <span class='custom-close' onclick=\"closeModal('delete$modalId')\">&times;</span>
                                 <h4 class='mb-3 text-danger'>¿Eliminar vacante?</h4>
-                                <p>Esta acción no se puede deshacer.</p>
-                                <form method='POST' action=''>
+                                <p>Esta acción no se puede deshacer.<br>¿Estás seguro de que deseas eliminar esta vacante?</p>
+                                <div id='delete-confirm-$modalId'>
+                                    <div class='d-flex justify-content-center gap-3 mt-3'>
+                                        <button type='button' class='btn btn-danger' onclick=\"showDeleteForm('$modalId')\">Sí, eliminar</button>
+                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('delete$modalId')\">Cancelar</button>
+                                    </div>
+                                </div>
+                                <form id='delete-form-$modalId' method='POST' action='' style='display:none;'>
                                     <input type='hidden' name='delete_id' value='" . $row['id'] . "'>
                                     <div class='d-flex justify-content-center gap-3 mt-3'>
-                                        <button type='submit' name='eliminar_vacante' class='btn btn-danger'>Eliminar</button>
+                                        <button type='submit' name='eliminar_vacante' class='btn btn-danger'>Confirmar eliminación</button>
                                         <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('delete$modalId')\">Cancelar</button>
                                     </div>
                                 </form>
@@ -282,15 +305,48 @@ if ($resultado === true) {
         function openDeleteModal(id) {
             document.getElementById(id).style.display = 'flex';
         }
+        function showDeleteConfirm(modalId) {
+            document.getElementById('delete'+modalId).style.display = 'flex';
+            document.getElementById('delete-confirm-'+modalId).style.display = 'block';
+            document.getElementById('delete-form-'+modalId).style.display = 'none';
+        }
+        function showDeleteForm(modalId) {
+            document.getElementById('delete-confirm-'+modalId).style.display = 'none';
+            document.getElementById('delete-form-'+modalId).style.display = 'block';
+        }
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
             var conf = document.getElementById('confirmacion-' + id);
             if(conf) conf.classList.add('d-none');
         }
-        function confirmarAplicacion(id) {
-            var conf = document.getElementById('confirmacion-' + id);
-            if(conf) conf.classList.remove('d-none');
-            setTimeout(function(){ closeModal(id); }, 1500);
+
+        // Nueva función para aplicar a vacante vía AJAX
+        function aplicarVacante(vacanteId, modalId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '../controller/aplicar_vacante.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    try {
+                        var res = JSON.parse(xhr.responseText);
+                        if (res.success) {
+                            // Actualizar número de aplicados en la tarjeta y modal
+                            document.getElementById('aplicados-' + vacanteId).textContent = res.aplicados;
+                            var modalAplicados = document.getElementById('modal-aplicados-' + vacanteId);
+                            if (modalAplicados) modalAplicados.textContent = res.aplicados;
+                            // Mostrar confirmación
+                            var conf = document.getElementById('confirmacion-' + modalId);
+                            if(conf) conf.classList.remove('d-none');
+                            setTimeout(function(){ closeModal(modalId); }, 1500);
+                        } else {
+                            alert('Error al aplicar: ' + (res.error || 'Error desconocido.'));
+                        }
+                    } catch(e) {
+                        alert('Error inesperado.');
+                    }
+                }
+            };
+            xhr.send('vacante_id=' + encodeURIComponent(vacanteId));
         }
         </script>
         <script src="scroll.js"></script>

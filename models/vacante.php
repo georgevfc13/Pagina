@@ -39,6 +39,13 @@ class Vacante {
      */
     public function eliminarVacante($id) {
         try {
+            // Eliminar primero las aplicaciones asociadas a la vacante
+            $sqlAplicaciones = "DELETE FROM aplicaciones WHERE vacante_id = :id";
+            $stmtAplicaciones = $this->conn->prepare($sqlAplicaciones);
+            $stmtAplicaciones->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtAplicaciones->execute();
+
+            // Ahora eliminar la vacante
             $sql = "DELETE FROM vacantes WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -84,7 +91,11 @@ class Vacante {
             $stmt->bindParam(':vacante_id', $vacante_id);
             $stmt->bindParam(':usuario_id', $usuario_id);
             $stmt->execute();
-            // NO modificar vacantes_disponibles
+            // Incrementar el contador de aplicados
+            $sql2 = "UPDATE vacantes SET aplicados = aplicados + 1 WHERE id = :id";
+            $stmt2 = $this->conn->prepare($sql2);
+            $stmt2->bindParam(':id', $vacante_id);
+            $stmt2->execute();
             return true;
         } catch (PDOException $e) {
             return $e->getMessage();
