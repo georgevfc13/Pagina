@@ -42,11 +42,20 @@ if (session_status() === PHP_SESSION_NONE) {
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'noticias') echo 'active'; ?>" href="noticias.php">Noticias</a>
         </li>
 
-         <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
-        </li>
-         <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'Iniciar Sesion') echo 'active'; ?>" href="login.php">Cerrar Sesión</a>
-   
-
+        <li class="nav-item">
+            <?php if (!isset($_SESSION['id'])): ?>
+              <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Registro / Inicio de sesión</a>
+            <?php endif; ?>
+          </li>
+          <li class="nav-item">
+            <?php if (isset($_SESSION['id'])): ?>
+              <a class="nav-link nav-hover" href="logout.php">Cerrar Sesión</a>
+            <?php endif; ?>
+          </li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 <li class="nav-item dropdown">
