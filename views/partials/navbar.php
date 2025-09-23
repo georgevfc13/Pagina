@@ -37,23 +37,36 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="nav-item">
           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'noticias') echo 'active'; ?>" href="noticias.php">Noticias</a>
         </li>
-        <?php if (isset($_SESSION['id'])): ?>
-          <!-- Usuario logueado -->
-          <li class="nav-item">
-            <span class="navbar-text text-white ms-3">
-              👋 Hola, <?php echo htmlspecialchars($_SESSION['nombre']); ?>
-            </span>
-          </li>
-          <li class="nav-item">
-            <a href="logout.php" class="btn btn-outline-light ms-3">Cerrar sesión</a>
-          </li>
-        <?php else: ?>
-          <!-- Invitado -->
-          <li class="nav-item">
-            <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'login') echo 'active'; ?>" href="login.php">Iniciar Sesión/Registrarse</a>
-          </li>
-        <?php endif; ?>
+
+         <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'Iniciar Sesion') echo 'active'; ?>" href="login.php">Iniciar Sesión</a>
+        </li>
+           <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage == 'cerrarSesion') echo 'active'; ?>" href="logout.php">Cerrar Sesión</a>a></li>
+
+
+         <!-- Perfil -->
+<?php if (isset($_SESSION['usuario_juridico_id'])): ?>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="<?= htmlspecialchars($datosUsuarioJuridico['foto_perfil'] ?? '/img/default-user.png'); ?>"
+         alt="Perfil"
+         class="rounded-circle"
+         style="width:40px;height:40px;object-fit:cover;">
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
+    <li><a class="dropdown-item" href="/perfil-juridico">Mi perfil</a></li>
+    <li><a class="dropdown-item" href="/vacantes/mis-vacantes">Mis vacantes</a></li>
+    <li><a class="dropdown-item" href="/servicios/mis-servicios">Mis servicios</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+  </ul>
+</li>
+<?php endif; ?>
+
+
       </ul>
+
+  </div>
+</div>
     </div>
   </div>
 </nav>

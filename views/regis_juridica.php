@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php $activePage = 'login';
   include 'partials/navbar.php'; ?>
  
-
+<main>
 
   <form method="POST" action="">
       <h2>Registro Persona Jurídica</h2>
@@ -44,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php endif; ?>
       
 
+
+
       <label>Razón Social:</label>
       <input type="text" name="razon_social" required><br><br>
 
@@ -53,6 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <label>Contraseña:</label>
       <input type="password" name="password" required><br><br>
 
+     
+    <label action="/perfil-juridico/subir-foto" method="post" enctype="multipart/form-data"> Foto de perfil:</label><br>
+    <input type="file" name="foto" accept="image/*" required>
+    <button type="submit">Subir</button>
+
+
       <label>
         <input type="checkbox" name="terminos" required> Acepto los términos y condiciones
       </label><br><br>
@@ -60,6 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <button type="submit">Registrarse</button>
       <p>¿Ya tienes una cuenta? <a href="login_juridica.php">Iniciar Sesión</a></p>
   </form>
+
+     </main>
     <?php include 'partials/footer.php'; ?>
+
+ 
 </body>
 </html>

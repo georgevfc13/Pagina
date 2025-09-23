@@ -71,5 +71,36 @@ class UsuarioJuridico {
             return false;
             }
     }
+
+
+    // Obtener datos del usuario por ID
+    public function getById($id) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Obtener vacantes publicadas por el usuario
+    public function getVacantes($id) {
+        $sql = "SELECT * FROM vacantes WHERE usuario_id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Obtener servicios publicados por el usuario
+    public function getServicios($id) {
+        $sql = "SELECT * FROM servicios WHERE usuario_id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+// ...existing code...
 }
+
 ?>
