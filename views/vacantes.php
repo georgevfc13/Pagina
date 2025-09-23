@@ -12,7 +12,7 @@ if (isset($_POST['editar_vacante'])) {
         'tipo' => $_POST['edit_tipo'],
         'empresa' => $_POST['edit_empresa'],
         'salario' => $_POST['edit_salario']
-    ];
+    ];  
     $res = $controller->editarVacante($id, $data);
     if ($res === true) {
         $mensaje = "Vacante actualizada correctamente.";
