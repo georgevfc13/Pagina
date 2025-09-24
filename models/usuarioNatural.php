@@ -1,4 +1,6 @@
 <?php
+
+// login
 class UsuarioNatural {
     public function login($contacto, $password) {
         $sql = "SELECT * FROM " . $this->table . " WHERE contacto = :contacto LIMIT 1";
@@ -45,7 +47,7 @@ class UsuarioNatural {
 
     public function registrar() {
     if ($this->existeIdentificacion($this->identificacion)) {
-        return "⚠️ El ususario ya está registrado";
+        return "⚠️ El usuario ya está registrado";
     }
         $sql = "INSERT INTO " . $this->table . " 
             (nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, password, terminos) 

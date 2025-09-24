@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST">
       <h2>Registro Persona Natural</h2>
  <?php if (!empty($mensaje)): ?>
-    <div style="padding:10px; margin:10px 0; border-radius:5px; color:red;">
+    <div style="padding:10px; margin:10px 0; border-radius:5px; color:green;">
         <?php echo $mensaje; ?>
     </div>
 <?php endif; ?>
