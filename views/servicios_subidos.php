@@ -14,7 +14,8 @@ $servicios = isset($servicios) ? $servicios : [];
     <meta charset="utf-8">
     <title>Servicios Subidos</title>
     <link rel="stylesheet" href="../assets/styles/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
 <body>
     <?php $activePage = 'servicios_subidos'; include 'partials/navbar.php'; ?>
