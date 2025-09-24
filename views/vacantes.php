@@ -49,7 +49,7 @@ if (isset($_POST['titulo'])) {
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Servicios</title>
+        <title>Vacantes</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
         <link rel="stylesheet" href="../assets/styles/vacantes.css" />
@@ -128,8 +128,8 @@ if (isset($_POST['titulo'])) {
                 <?php endif; ?>
             </div>
 
-            <div class="container py-5">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 d-flex align-items-stretch">
+                <div class="container py-5">
+                    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center" style="max-width: 1200px; margin: 0 auto;">
                     <?php
                     require_once __DIR__ . '/../config/dataBase.php';
                     $database = new Database();

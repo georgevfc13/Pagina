@@ -55,11 +55,12 @@ if (isset($_GET['exito'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nuestros Servicios Profesionales - Tu Empresa</title>
+    <title>Servicios</title>
 
     <!-- Bootstrap y otros estilos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../assets/styles/servicios.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
@@ -143,61 +144,41 @@ if (isset($_GET['exito'])) {
                 <p class="text-muted">Descubre a los profesionales que pueden ayudarte a llevar tu empresa al siguiente nivel.</p>
             </div>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 d-flex align-items-stretch" style="margin-top: 0;">
-                <?php
-                require_once __DIR__ . '/../config/dataBase.php';
-                $database = new Database();
-                $conn = $database->getConnection();
+<div class="contenedor-tarjetas">
+    <?php
+    require_once __DIR__ . '/../config/dataBase.php';
+    $database = new Database();
+    $conn = $database->getConnection();
 
-                $sql = "SELECT * FROM servicios ORDER BY id DESC";
-                $stmt = $conn->query($sql);
-                if ($stmt && $stmt->rowCount() > 0) {
-                    $modalIndex = 0;
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $modalId = 'modalServicio' . $modalIndex;
-                        // Verificar si el usuario es jurídico
-                        $isEmpresa = false;
-                        $empresaNombre = '';
-                        $usuarioId = $row['usuario_id'];
-                        $queryEmpresa = $conn->prepare("SELECT razon_social FROM usuarios_juridicos WHERE id = ?");
-                        $queryEmpresa->execute([$usuarioId]);
-                        if ($empresa = $queryEmpresa->fetch(PDO::FETCH_ASSOC)) {
-                            $isEmpresa = true;
-                            $empresaNombre = $empresa['razon_social'];
-                        }
-            echo "<div class='col-md-4 d-flex'>
-                <div class='card flex-fill shadow-sm border-0 rounded-4'>
-                                    <div class='card-body d-flex flex-column'>
-                                        <h5 class='card-title fw-bold mb-2 text-primary'>" . htmlspecialchars($row['titulo']);
-                        if ($isEmpresa) {
-                            echo " <span class='badge bg-success ms-2'>Empresa</span>";
-                        }
-                        echo "</h5>
-                                        <p class='card-text mb-1'>" . htmlspecialchars($row['descripcion']) . "</p>
-                                        <p class='card-text mb-1'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</p>
-                                        <p class='card-text mb-1'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</p>";
-                        if ($isEmpresa) {
-                            echo "<p class='card-text mb-1'><strong>Publicado por empresa:</strong> " . htmlspecialchars($empresaNombre) . "</p>";
-                        } elseif (!empty($row['empresa'])) {
-                            echo "<p class='card-text mb-1'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</p>";
-                        }
-                        if (!empty($row['precio'])) {
-                            echo "<p class='card-text mb-3'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</p>";
-                        }
-                        echo    "<div class='d-flex flex-wrap gap-2 mt-auto'>
-                                <button class='btn btn-info' onclick=\"openModal('$modalId')\">Contratar</button>
-                                <button class='btn btn-warning' onclick=\"openEditModal('edit$modalId')\">Editar</button>
-                                <button class='btn btn-danger' onclick=\"openDeleteModal('delete$modalId')\">Eliminar</button>
-                            </div>
-                            </div>
-                        </div>";
-                        $modalIndex++;
-                    }
-                } else {
-                    echo "<p class='text-center'>No hay servicios disponibles en este momento. ¡Sé el primero en publicar uno!</p>";
-                }
-                // Cerramos el bloque PHP antes de los modales
-                ?>
+    $sql = "SELECT * FROM servicios ORDER BY id DESC";
+    $stmt = $conn->query($sql);
+    if ($stmt && $stmt->rowCount() > 0) {
+        $modalIndex = 0;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $modalId = 'modalServicio' . $modalIndex;
+
+            echo "<div class='card shadow-sm border-0 rounded-4 tarjeta'>
+                    <div class='card-body d-flex flex-column'>
+                        <h5 class='card-title fw-bold mb-2 text-primary'>" . htmlspecialchars($row['titulo']) . "</h5>
+                        <p class='card-text mb-1'>" . htmlspecialchars($row['descripcion']) . "</p>
+                        <p class='card-text mb-1'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</p>
+                        <p class='card-text mb-1'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</p>
+                        <p class='card-text mb-3'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</p>
+                        <div class='d-flex flex-wrap gap-2 mt-auto'>
+                            <button class='btn btn-info'>Contratar</button>
+                            <button class='btn btn-warning'>Editar</button>
+                            <button class='btn btn-danger'>Eliminar</button>
+                        </div>
+                    </div>
+                  </div>";
+            $modalIndex++;
+        }
+    } else {
+        echo "<p class='text-center'>No hay servicios disponibles en este momento.</p>";
+    }
+    ?>
+</div>
+
             </div>
         </section>
     </main>
