@@ -87,4 +87,4 @@ CREATE TABLE IF NOT EXISTS aplicaciones (
     -- usuario_id puede ser NULL si no hay login, o referenciar usuarios_naturales
 );
 
---
+--de carne
