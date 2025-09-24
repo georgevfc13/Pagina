@@ -30,13 +30,15 @@ USE gda;
 CREATE TABLE IF NOT EXISTS usuarios_naturales (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    cedula VARCHAR(20) NOT NULL UNIQUE,
+    identificacion VARCHAR(20) NOT NULL UNIQUE,
     fecha_nacimiento DATE NOT NULL,
     genero VARCHAR(20),
     contacto VARCHAR(100) NOT NULL,
     tipo_contacto ENUM('correo','telefono') NOT NULL,
-    terminos BOOLEAN NOT NULL DEFAULT 0,
-    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    password VARCHAR(255) NOT NULL,
+    terminos TINYINT(1) NOT NULL DEFAULT 0,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    foto_perfil VARCHAR(255) DEFAULT NULL
 );
 
 -- Tabla para personas jurídicas
@@ -45,8 +47,9 @@ CREATE TABLE IF NOT EXISTS usuarios_juridicos (
     razon_social VARCHAR(100) NOT NULL,
     correo VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    terminos BOOLEAN NOT NULL DEFAULT 0,
-    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    terminos TINYINT(1) NOT NULL DEFAULT 0,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    foto_perfil VARCHAR(255) DEFAULT NULL
 );
 
 
