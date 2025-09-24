@@ -87,6 +87,12 @@ if (isset($_GET['exito'])) {
         <main>
             <div class="container text-center">
                 <h3>Publica tu servicio aquí</h3>
+                <?php if (!isset($_SESSION['id'])): ?>
+                    <div class="alert alert-warning mt-3">
+                        Para publicar un servicio debes iniciar sesión.<br>
+                        <a href="login.php" class="btn btn-primary mt-2">Ir a iniciar sesión</a>
+                    </div>
+                <?php else: ?>
                 <form method="POST" class="row g-3 justify-content-center my-4">
                     <?php if (isset($mensaje)) : ?>
                         <div class="alert alert-info text-center"> <?php echo $mensaje; ?> </div>
@@ -127,16 +133,17 @@ if (isset($_GET['exito'])) {
                         <button class="btn btn-info" type="submit">Publicar servicio</button>
                     </div>
                 </form>
+                <?php endif; ?>
             </div>
         </main>
 
-        <section class="container py-5">
+    <section class="container-fluid py-5">
             <div class="text-center mb-5">
                 <h2 class="fw-bold">Explora los Servicios Disponibles</h2>
                 <p class="text-muted">Descubre a los profesionales que pueden ayudarte a llevar tu empresa al siguiente nivel.</p>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 d-flex align-items-stretch" style="margin-top: 0;">
                 <?php
                 require_once __DIR__ . '/../config/dataBase.php';
                 $database = new Database();
@@ -148,14 +155,30 @@ if (isset($_GET['exito'])) {
                     $modalIndex = 0;
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $modalId = 'modalServicio' . $modalIndex;
-                        echo "<div class='col'>
-                                <div class='card h-100 shadow-sm border-0 rounded-4' style='background:rgba(255,255,255,0.95);'>
+                        // Verificar si el usuario es jurídico
+                        $isEmpresa = false;
+                        $empresaNombre = '';
+                        $usuarioId = $row['usuario_id'];
+                        $queryEmpresa = $conn->prepare("SELECT razon_social FROM usuarios_juridicos WHERE id = ?");
+                        $queryEmpresa->execute([$usuarioId]);
+                        if ($empresa = $queryEmpresa->fetch(PDO::FETCH_ASSOC)) {
+                            $isEmpresa = true;
+                            $empresaNombre = $empresa['razon_social'];
+                        }
+            echo "<div class='col-md-4 d-flex'>
+                <div class='card flex-fill shadow-sm border-0 rounded-4'>
                                     <div class='card-body d-flex flex-column'>
-                                        <h5 class='card-title fw-bold mb-2 text-primary'>" . htmlspecialchars($row['titulo']) . "</h5>
+                                        <h5 class='card-title fw-bold mb-2 text-primary'>" . htmlspecialchars($row['titulo']);
+                        if ($isEmpresa) {
+                            echo " <span class='badge bg-success ms-2'>Empresa</span>";
+                        }
+                        echo "</h5>
                                         <p class='card-text mb-1'>" . htmlspecialchars($row['descripcion']) . "</p>
                                         <p class='card-text mb-1'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</p>
                                         <p class='card-text mb-1'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</p>";
-                        if (!empty($row['empresa'])) {
+                        if ($isEmpresa) {
+                            echo "<p class='card-text mb-1'><strong>Publicado por empresa:</strong> " . htmlspecialchars($empresaNombre) . "</p>";
+                        } elseif (!empty($row['empresa'])) {
                             echo "<p class='card-text mb-1'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</p>";
                         }
                         if (!empty($row['precio'])) {
@@ -167,70 +190,13 @@ if (isset($_GET['exito'])) {
                                 <button class='btn btn-danger' onclick=\"openDeleteModal('delete$modalId')\">Eliminar</button>
                             </div>
                             </div>
-                        </div>
-                        <!-- Modal contratar -->
-                        <div id='$modalId' class='custom-modal'>
-                            <div class='custom-modal-content'>
-                                <span class='custom-close' onclick=\"closeModal('$modalId')\">&times;</span>
-                                <h4 class='mb-3 text-primary'>¿Deseas contratar este servicio?</h4>
-                                <div class='mb-2'><strong>Servicio:</strong> " . htmlspecialchars($row['titulo']) . "</div>
-                                <div class='mb-2'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</div>
-                                <div class='mb-2'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</div>
-                                <div class='mb-2'><strong>Descripción:</strong> " . htmlspecialchars($row['descripcion']) . "</div>";
-                        if (!empty($row['empresa'])) {
-                            echo "<div class='mb-2'><strong>Empresa:</strong> " . htmlspecialchars($row['empresa']) . "</div>";
-                        }
-                        if (!empty($row['precio'])) {
-                            echo "<div class='mb-2'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</div>";
-                        }
-                        echo    "<div class='d-flex justify-content-center gap-3 mt-4'>
-                                    <button class='btn btn-success' onclick=\"confirmarAplicacion('$modalId')\">Sí, contratar</button>
-                                    <button class='btn btn-outline-secondary' onclick=\"closeModal('$modalId')\">Cancelar</button>
-                                </div>
-                                <div id='confirmacion-$modalId' class='alert alert-success mt-3 d-none'>¡Has contratado este servicio!</div>
-                            </div>
-                        </div>
-                        <!-- Modal editar -->
-                        <div id='edit$modalId' class='custom-modal'>
-                            <div class='custom-modal-content'>
-                                <span class='custom-close' onclick=\"closeModal('edit$modalId')\">&times;</span>
-                                <h4 class='mb-3 text-warning'>Editar servicio</h4>
-                                <form method='POST' class='edit-form' action='' autocomplete='off'>
-                                    <input type='hidden' name='edit_id' value='" . $row['id'] . "'>
-                                    <div class='mb-2'><label class='form-label'>Título</label><input type='text' class='form-control' name='edit_titulo' value='" . htmlspecialchars($row['titulo']) . "' required></div>
-                                    <div class='mb-2'><label class='form-label'>Descripción</label><input type='text' class='form-control' name='edit_descripcion' value='" . htmlspecialchars($row['descripcion']) . "' required></div>
-                                    <div class='mb-2'><label class='form-label'>Ubicación</label><input type='text' class='form-control' name='edit_ubicacion' value='" . htmlspecialchars($row['ubicacion']) . "' required></div>
-                                    <div class='mb-2'><label class='form-label'>Tipo</label><input type='text' class='form-control' name='edit_tipo' value='" . htmlspecialchars($row['tipo']) . "' required></div>
-                                    <div class='mb-2'><label class='form-label'>Empresa</label><input type='text' class='form-control' name='edit_empresa' value='" . htmlspecialchars($row['empresa']) . "'></div>
-                                    <div class='mb-2'><label class='form-label'>Precio</label><input type='text' class='form-control' name='edit_precio' value='" . htmlspecialchars($row['precio']) . "'></div>
-                                    <div class='d-flex justify-content-center gap-3 mt-3'>
-                                        <button type='submit' name='editar_servicio' class='btn btn-warning'>Guardar</button>
-                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('edit$modalId')\">Cancelar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Modal eliminar -->
-                        <div id='delete$modalId' class='custom-modal'>
-                            <div class='custom-modal-content'>
-                                <span class='custom-close' onclick=\"closeModal('delete$modalId')\">&times;</span>
-                                <h4 class='mb-3 text-danger'>¿Eliminar servicio?</h4>
-                                <p>Esta acción no se puede deshacer.</p>
-                                <form method='POST' action=''>
-                                    <input type='hidden' name='delete_id' value='" . $row['id'] . "'>
-                                    <div class='d-flex justify-content-center gap-3 mt-3'>
-                                        <button type='submit' name='eliminar_servicio' class='btn btn-danger'>Eliminar</button>
-                                        <button type='button' class='btn btn-outline-secondary' onclick=\"closeModal('delete$modalId')\">Cancelar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>";
-                    $modalIndex++;
+                        </div>";
+                        $modalIndex++;
                     }
                 } else {
                     echo "<p class='text-center'>No hay servicios disponibles en este momento. ¡Sé el primero en publicar uno!</p>";
                 }
+                // Cerramos el bloque PHP antes de los modales
                 ?>
             </div>
         </section>

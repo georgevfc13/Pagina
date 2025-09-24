@@ -9,12 +9,40 @@ class Vacante {
         $this->conn = $database->getConnection();
     }
 
-    /**
-     * Actualiza una vacante existente
-     * @param int $id
-     * @param array $data
-     * @return bool|string
-     */
+    public function getVacantesByUsuario($usuarioId) {
+        $sql = "SELECT * FROM vacantes WHERE usuario_id = :usuario_id ORDER BY id DESC";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function eliminarVacantePropia($id, $usuarioId) {
+        $sqlAplicaciones = "DELETE FROM aplicaciones WHERE vacante_id = :id";
+        $stmtAplicaciones = $this->conn->prepare($sqlAplicaciones);
+        $stmtAplicaciones->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmtAplicaciones->execute();
+        $sql = "DELETE FROM vacantes WHERE id = :id AND usuario_id = :usuario_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
+    public function editarVacantePropia($id, $data, $usuarioId) {
+        $sql = "UPDATE vacantes SET titulo = :titulo, descripcion = :descripcion, ubicacion = :ubicacion, tipo = :tipo, empresa = :empresa, salario = :salario WHERE id = :id AND usuario_id = :usuario_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':titulo', $data['titulo']);
+        $stmt->bindParam(':descripcion', $data['descripcion']);
+        $stmt->bindParam(':ubicacion', $data['ubicacion']);
+        $stmt->bindParam(':tipo', $data['tipo']);
+        $stmt->bindParam(':empresa', $data['empresa']);
+        $stmt->bindParam(':salario', $data['salario']);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':usuario_id', $usuarioId, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
     public function editarVacante($id, $data) {
         try {
             $sql = "UPDATE vacantes SET titulo = :titulo, descripcion = :descripcion, ubicacion = :ubicacion, tipo = :tipo, empresa = :empresa, salario = :salario WHERE id = :id";
@@ -32,20 +60,12 @@ class Vacante {
         }
     }
 
-    /**
-     * Elimina una vacante por su ID
-     * @param int $id
-     * @return bool|string
-     */
     public function eliminarVacante($id) {
         try {
-            // Eliminar primero las aplicaciones asociadas a la vacante
             $sqlAplicaciones = "DELETE FROM aplicaciones WHERE vacante_id = :id";
             $stmtAplicaciones = $this->conn->prepare($sqlAplicaciones);
             $stmtAplicaciones->bindParam(':id', $id, PDO::PARAM_INT);
             $stmtAplicaciones->execute();
-
-            // Ahora eliminar la vacante
             $sql = "DELETE FROM vacantes WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -55,14 +75,9 @@ class Vacante {
         }
     }
 
-    /**
-     * Inserta una nueva vacante en la base de datos
-     * @param array $data Datos de la vacante
-     * @return bool|string true si se inserta, mensaje de error si falla
-     */
     public function registrar($data) {
         try {
-            $sql = "INSERT INTO vacantes (titulo, descripcion, ubicacion, tipo, empresa, salario, vacantes_disponibles) VALUES (:titulo, :descripcion, :ubicacion, :tipo, :empresa, :salario, :vacantes_disponibles)";
+            $sql = "INSERT INTO vacantes (titulo, descripcion, ubicacion, tipo, empresa, salario, vacantes_disponibles, usuario_id) VALUES (:titulo, :descripcion, :ubicacion, :tipo, :empresa, :salario, :vacantes_disponibles, :usuario_id)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':titulo', $data['titulo']);
             $stmt->bindParam(':descripcion', $data['descripcion']);
@@ -71,6 +86,7 @@ class Vacante {
             $stmt->bindParam(':empresa', $data['empresa']);
             $stmt->bindParam(':salario', $data['salario']);
             $stmt->bindParam(':vacantes_disponibles', $data['vacantes_disponibles']);
+            $stmt->bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_INT);
             return $stmt->execute();
         } catch (PDOException $e) {
             return $e->getMessage();

@@ -17,6 +17,11 @@ class VacanteController {
             if (empty($data['titulo']) || empty($data['descripcion']) || empty($data['ubicacion']) || empty($data['tipo']) || empty($data['empresa']) || empty($data['vacantes_disponibles'])) {
                 return 'Todos los campos obligatorios deben ser completados.';
             }
+            if (!isset($_SESSION)) session_start();
+            if (!isset($_SESSION['id'])) {
+                return 'Debes iniciar sesión para publicar una vacante.';
+            }
+            $data['usuario_id'] = $_SESSION['id'];
             $vacante = new Vacante();
             $resultado = $vacante->registrar($data);
             if ($resultado === true) {

@@ -17,7 +17,9 @@ CREATE TABLE IF NOT EXISTS servicios (
     tipo VARCHAR(50) NOT NULL,
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     empresa VARCHAR(100) NOT NULL,
-    precio VARCHAR(50)
+    precio VARCHAR(50),
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios_naturales(id)
 );
 -- Script para crear la base de datos y tablas del sistema de login y registro GDA
 
@@ -70,7 +72,9 @@ CREATE TABLE IF NOT EXISTS vacantes (
     empresa VARCHAR(100) NOT NULL,
     salario VARCHAR(50),
     vacantes_disponibles INT NOT NULL DEFAULT 1,
-    aplicados INT NOT NULL DEFAULT 0
+    aplicados INT NOT NULL DEFAULT 0,
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios_naturales(id)
 );
 
 -- Tabla para registrar aplicaciones de usuarios a vacantes

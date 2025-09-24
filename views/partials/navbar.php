@@ -59,16 +59,16 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
-     id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <img src="<?php echo htmlspecialchars($foto); ?>"
+  <a class="nav-link dropdown-toggle d-flex align-items-center" href="perfil.php"
+     id="userDropdown" role="button">
+    <img src="<?php echo isset($foto) ? htmlspecialchars($foto) : '../assets/img/logo.jpg'; ?>"
          alt="Usuario"
          class="rounded-circle"
          width="40" height="40">
   </a>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-    <li class="dropdown-item-text fw-bold"><?php echo htmlspecialchars($nombre); ?></li>
-    <li class="dropdown-item-text text-muted"><?php echo htmlspecialchars($tipo); ?></li>
+    <li class="dropdown-item-text fw-bold"><?php echo isset($nombre) ? htmlspecialchars($nombre) : 'Usuario'; ?></li>
+    <li class="dropdown-item-text text-muted"><?php echo isset($tipo) ? htmlspecialchars($tipo) : ''; ?></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
     <li><a class="dropdown-item" href="servicios_subidos.php">Servicios Subidos</a></li>

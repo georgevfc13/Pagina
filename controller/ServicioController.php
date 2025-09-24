@@ -16,6 +16,11 @@ class ServicioController {
             if (empty($data['titulo']) || empty($data['descripcion']) || empty($data['ubicacion']) || empty($data['tipo'])) {
                 return 'Todos los campos obligatorios deben ser completados.';
             }
+            if (!isset($_SESSION)) session_start();
+            if (!isset($_SESSION['id'])) {
+                return 'Debes iniciar sesión para publicar un servicio.';
+            }
+            $data['usuario_id'] = $_SESSION['id'];
             $servicio = new Servicio();
             $resultado = $servicio->registrar($data);
             if ($resultado === true) {
