@@ -86,3 +86,5 @@ CREATE TABLE IF NOT EXISTS aplicaciones (
     FOREIGN KEY (vacante_id) REFERENCES vacantes(id)
     -- usuario_id puede ser NULL si no hay login, o referenciar usuarios_naturales
 );
+
+--
