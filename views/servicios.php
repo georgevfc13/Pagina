@@ -1,5 +1,24 @@
-
+    <!-- Modal de confirmación de eliminación de servicio -->
+    <div id="modal-eliminar-servicio" class="custom-modal">
+        <div class="custom-modal-content" style="max-width: 400px;">
+            <div class="modal-header-servicio" style="background:#ff6f6f; color:#fff;">
+                Confirmar Eliminación
+                <span class="custom-close dark-close" onclick="cerrarModalEliminarServicio()">&times;</span>
+            </div>
+            <div class="modal-body-servicio text-center">
+                <div id="modal-eliminar-servicio-body" class="mb-3">¿Estás seguro de que deseas eliminar este servicio?</div>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <button class="btn btn-danger fw-bold" id="btn-confirmar-eliminar" onclick="confirmarEliminacionServicio()">Eliminar</button>
+                    <button class="btn btn-secondary" onclick="cerrarModalEliminarServicio()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php
+// Asegurar que la sesión y los headers se gestionen antes de cualquier salida HTML
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once '../controller/ServicioController.php';
 $mensaje = null;
 $controller = new ServicioController();
@@ -52,6 +71,46 @@ if (isset($_GET['exito'])) {
 
 <!DOCTYPE html>
 <html lang="es">
+    <!-- Modal de edición de servicio -->
+    <div id="modal-editar-servicio" class="custom-modal">
+        <div class="custom-modal-content" style="max-width: 500px;">
+            <div class="modal-header-servicio">
+                Editar Servicio
+                <span class="custom-close dark-close" onclick="cerrarModalEditarServicio()">&times;</span>
+            </div>
+            <form id="form-editar-servicio" class="modal-body-servicio">
+                <input type="hidden" id="edit-servicio-id" name="id" />
+                <div class="mb-2">
+                    <label class="form-label">Título</label>
+                    <input type="text" class="form-control" id="edit-servicio-titulo" name="titulo" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="edit-servicio-descripcion" name="descripcion" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Ubicación</label>
+                    <input type="text" class="form-control" id="edit-servicio-ubicacion" name="ubicacion" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Tipo</label>
+                    <input type="text" class="form-control" id="edit-servicio-tipo" name="tipo" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Empresa</label>
+                    <input type="text" class="form-control" id="edit-servicio-empresa" name="empresa" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Precio</label>
+                    <input type="text" class="form-control" id="edit-servicio-precio" name="precio" />
+                </div>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <button type="submit" class="btn btn-primary fw-bold">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModalEditarServicio()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -155,22 +214,30 @@ if (isset($_GET['exito'])) {
     if ($stmt && $stmt->rowCount() > 0) {
         $modalIndex = 0;
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $modalId = 'modalServicio' . $modalIndex;
-
-            echo "<div class='card shadow-sm border-0 rounded-4 tarjeta'>
-                    <div class='card-body d-flex flex-column'>
-                        <h5 class='card-title fw-bold mb-2 text-primary'>" . htmlspecialchars($row['titulo']) . "</h5>
-                        <p class='card-text mb-1'>" . htmlspecialchars($row['descripcion']) . "</p>
-                        <p class='card-text mb-1'><strong>Ubicación:</strong> " . htmlspecialchars($row['ubicacion']) . "</p>
-                        <p class='card-text mb-1'><strong>Tipo:</strong> " . htmlspecialchars($row['tipo']) . "</p>
-                        <p class='card-text mb-3'><strong>Precio:</strong> " . htmlspecialchars($row['precio']) . "</p>
-                        <div class='d-flex flex-wrap gap-2 mt-auto'>
-                            <button class='btn btn-info'>Contratar</button>
-                            <button class='btn btn-warning'>Editar</button>
-                            <button class='btn btn-danger'>Eliminar</button>
-                        </div>
+            $servicioId = (int)$row['id'];
+            $titulo = htmlspecialchars($row['titulo']);
+            $descripcion = htmlspecialchars($row['descripcion']);
+            $ubicacion = htmlspecialchars($row['ubicacion']);
+            $tipo = htmlspecialchars($row['tipo']);
+            $empresa = htmlspecialchars($row['empresa']);
+            $precio = htmlspecialchars($row['precio']);
+            ?>
+            <div class='card shadow-sm border-0 rounded-4 tarjeta' id='servicio-card-<?= $servicioId ?>'>
+                <div class='card-body d-flex flex-column'>
+                    <h5 class='card-title fw-bold mb-2 text-primary'><?= $titulo ?></h5>
+                    <p class='card-text mb-1'><?= $descripcion ?></p>
+                    <p class='card-text mb-1'><strong>Ubicación:</strong> <?= $ubicacion ?></p>
+                    <p class='card-text mb-1'><strong>Tipo:</strong> <?= $tipo ?></p>
+                    <p class='card-text mb-3'><strong>Precio:</strong> <?= $precio ?></p>
+                    <div class='d-flex flex-wrap gap-2 mt-auto'>
+                        <button class='btn btn-info' onclick='contratarServicio(<?= $servicioId ?>)'>Contratar</button>
+                        <button class='btn btn-warning' onclick='mostrarEditarServicio(<?= $servicioId ?>)'>Editar</button>
+                        <button class='btn btn-danger' onclick='eliminarServicio(<?= $servicioId ?>)'>Eliminar</button>
                     </div>
-                  </div>";
+
+                </div>
+            </div>
+            <?php
             $modalIndex++;
         }
     } else {
@@ -190,63 +257,22 @@ if (isset($_GET['exito'])) {
 
     <!-- Pie de página -->
     <?php include 'partials/footer.php'; ?>
-    <style>
-    .custom-modal {
-        display: none;
-        position: fixed;
-        z-index: 2000;
-        left: 0; top: 0; width: 100vw; height: 100vh;
-        background: rgba(0, 123, 255, 0.15);
-        justify-content: center;
-        align-items: center;
-    }
-    .custom-modal-content {
-        background: #fff;
-        border-radius: 18px;
-        padding: 2.5rem 2rem 2rem 2rem;
-        box-shadow: 0 8px 32px rgba(0,123,255,0.18);
-        max-width: 420px;
-        width: 95vw;
-        position: relative;
-        text-align: left;
-    }
-    .custom-close {
-        position: absolute;
-        top: 18px; right: 22px;
-        font-size: 2rem;
-        color: #0d6efd;
-        cursor: pointer;
-    }
-    .custom-modal-content h4 {
-        font-weight: 700;
-    }
-    .custom-modal-content button {
-        min-width: 120px;
-    }
-    .d-none { display: none !important; }
-    </style>
-    <script>
-    function openModal(id) {
-        document.getElementById(id).style.display = 'flex';
-    }
-    function openEditModal(id) {
-        document.getElementById(id).style.display = 'flex';
-    }
-    function openDeleteModal(id) {
-        document.getElementById(id).style.display = 'flex';
-    }
-    function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-        var conf = document.getElementById('confirmacion-' + id);
-        if(conf) conf.classList.add('d-none');
-    }
-    function confirmarAplicacion(id) {
-        var conf = document.getElementById('confirmacion-' + id);
-        if(conf) conf.classList.remove('d-none');
-        setTimeout(function(){ closeModal(id); }, 1500);
-    }
-    </script>
+    <!-- Modal de detalle y confirmación de contratación -->
+    <div id="modal-contratar" class="custom-modal">
+        <div class="custom-modal-content" style="max-width: 500px;">
+            <div class="modal-header-servicio">
+                Detalle del servicio
+                <span class="custom-close dark-close" onclick="cerrarModalContratar()">&times;</span>
+            </div>
+            <div id="modal-contratar-body" class="modal-body-servicio"></div>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <button class="btn btn-primary" id="btn-confirmar-contratar" onclick="confirmarContratacionServicio()">Contratar</button>
+                <button class="btn btn-secondary" onclick="cerrarModalContratar()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/servicios.js"></script>
+    <script src="../assets/js/servicios_debug.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="scroll.js"></script>
 </body>
 </html>

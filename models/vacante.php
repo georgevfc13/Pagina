@@ -75,9 +75,10 @@ class Vacante {
         }
     }
 
+    // Registra una vacante incluyendo el tipo de usuario que la publica
     public function registrar($data) {
         try {
-            $sql = "INSERT INTO vacantes (titulo, descripcion, ubicacion, tipo, empresa, salario, vacantes_disponibles, usuario_id) VALUES (:titulo, :descripcion, :ubicacion, :tipo, :empresa, :salario, :vacantes_disponibles, :usuario_id)";
+            $sql = "INSERT INTO vacantes (titulo, descripcion, ubicacion, tipo, empresa, salario, vacantes_disponibles, usuario_id, usuario_tipo) VALUES (:titulo, :descripcion, :ubicacion, :tipo, :empresa, :salario, :vacantes_disponibles, :usuario_id, :usuario_tipo)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':titulo', $data['titulo']);
             $stmt->bindParam(':descripcion', $data['descripcion']);
@@ -87,6 +88,7 @@ class Vacante {
             $stmt->bindParam(':salario', $data['salario']);
             $stmt->bindParam(':vacantes_disponibles', $data['vacantes_disponibles']);
             $stmt->bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_INT);
+            $stmt->bindParam(':usuario_tipo', $data['usuario_tipo']);
             return $stmt->execute();
         } catch (PDOException $e) {
             return $e->getMessage();

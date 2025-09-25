@@ -2,9 +2,10 @@
 require_once __DIR__ . '/VacanteController.php';
 header('Content-Type: application/json');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vacante_id'])) {
-    $vacante_id = intval($_POST['vacante_id']);
-    $usuario_id = isset($_POST['usuario_id']) ? intval($_POST['usuario_id']) : null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+    $vacante_id = intval($_POST['id']);
+    session_start();
+    $usuario_id = isset($_SESSION['id']) ? intval($_SESSION['id']) : null;
     $controller = new VacanteController();
     $resultado = $controller->aplicarVacante($vacante_id, $usuario_id);
     if ($resultado === true) {
@@ -17,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['vacante_id'])) {
         $aplicados = ($row = $stmt->fetch(PDO::FETCH_ASSOC)) ? (int)$row['aplicados'] : 0;
         echo json_encode(['success' => true, 'aplicados' => $aplicados]);
     } else {
-        echo json_encode(['success' => false, 'error' => $resultado]);
+        echo json_encode(['success' => false, 'message' => $resultado]);
     }
     exit;
 }
-echo json_encode(['success' => false, 'error' => 'Solicitud inválida']);
+echo json_encode(['success' => false, 'message' => 'Solicitud inválida']);

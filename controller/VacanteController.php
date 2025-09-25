@@ -18,10 +18,12 @@ class VacanteController {
                 return 'Todos los campos obligatorios deben ser completados.';
             }
             if (!isset($_SESSION)) session_start();
-            if (!isset($_SESSION['id'])) {
+            if (!isset($_SESSION['id']) || !isset($_SESSION['tipo_usuario'])) {
                 return 'Debes iniciar sesión para publicar una vacante.';
             }
             $data['usuario_id'] = $_SESSION['id'];
+            // Guardar el tipo de usuario que publica la vacante
+            $data['usuario_tipo'] = $_SESSION['tipo_usuario']; // 'natural' o 'juridico'
             $vacante = new Vacante();
             $resultado = $vacante->registrar($data);
             if ($resultado === true) {

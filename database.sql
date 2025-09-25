@@ -65,6 +65,11 @@ CREATE TABLE IF NOT EXISTS usuarios_juridicos (
 --   empresa: Nombre de la empresa que publica
 --   salario: Rango o valor de salario (opcional)
 
+
+-- Tabla para vacantes
+-- Esta tabla almacena las vacantes publicadas por personas naturales o jurídicas.
+-- usuario_id: ID del usuario que publica la vacante (puede ser natural o jurídico)
+-- usuario_tipo: 'natural' si es persona natural, 'juridico' si es empresa
 CREATE TABLE IF NOT EXISTS vacantes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -77,7 +82,8 @@ CREATE TABLE IF NOT EXISTS vacantes (
     vacantes_disponibles INT NOT NULL DEFAULT 1,
     aplicados INT NOT NULL DEFAULT 0,
     usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios_naturales(id)
+    usuario_tipo ENUM('natural', 'juridico') NOT NULL
+    -- No se define una foreign key directa, ya que puede ser de dos tablas distintas
 );
 
 -- Tabla para registrar aplicaciones de usuarios a vacantes

@@ -1,3 +1,67 @@
+/* MODAL DE CONTRATAR SERVICIO */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 123, 255, 0.15);
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+.custom-modal-content {
+    background: #fff;
+    border-radius: 18px;
+    padding: 2.5rem 2rem 2rem 2rem;
+    box-shadow: 0 8px 32px rgba(0,123,255,0.18);
+    max-width: 420px;
+    width: 95vw;
+    position: relative;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 0.35s, transform 0.35s;
+}
+.custom-modal.show .custom-modal-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.modal-header-servicio {
+    background: #0d6efd;
+    color: #fff;
+    padding: 12px 0;
+    border-radius: 16px 16px 0 0;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+}
+.custom-close {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+}
+.dark-close {
+    color: #222 !important;
+}
+.custom-close:hover {
+    color: #0d6efd !important;
+}
+.modal-body-servicio {
+    padding: 1.5rem 1rem 1rem 1rem;
+}
+.fade-modal {
+    animation: fadeInModal 0.35s;
+}
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.d-none { display: none !important; }
 body{
     background-image: url("../img/fondo.jpeg");
     background-size: cover;
@@ -76,10 +140,6 @@ body{
 }
 
 
-/* ========================================================== */
-/* =========== Sección de formulario para servicios ========= */
-/* ========================================================== */
-
 .form-section {
     background-color: #ffffff;
     border-radius: 1rem;
@@ -102,11 +162,6 @@ body{
     margin-bottom: 2rem;
 }
 
-
-/* ========================================================== */
-/* =========== Sección de listado de servicios ============= */
-/* ========================================================== */
-
 .services-list-section {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -122,9 +177,6 @@ body{
     color: #7f8c8d;
     margin-bottom: 3rem;
 }
-
-
-/* =========== Estilos para las tarjetas de servicios =========== */
 
 .service-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -173,11 +225,6 @@ body{
     color: #fff;
 }
 
-
-/* ========================================================== */
-/* ================ Estilos del pie de página ================ */
-/* ========================================================== */
-
 .pie_pagina {
     background-color: #343a40;
     color: #adb5bd;
@@ -209,11 +256,6 @@ body{
     transform: scale(1.1);
 }
 
-
-/* ========================================================== */
-/* ============ Botón de "Volver arriba" =================== */
-/* ========================================================== */
-
 #scrollToTopBtn {
     background-color: #007bff;
     color: #fff;
@@ -231,11 +273,6 @@ body{
     transform: translateY(-3px);
     background-color: #0056b3;
 }
-
-
-/* ========================================================== */
-/* =================== Animaciones ========================== */
-/* ========================================================== */
 
 @keyframes fadeInDown {
     from {
@@ -263,9 +300,7 @@ body{
 
 {
     .card {
-  background-color: rgba(255, 255, 255, 0); /* Totalmente transparente */
-  /* O usa un valor como 0.7 para semi-transparente */
-  /* background-color: rgba(255, 255, 255, 0.7); */
+  background-color: rgba(255, 255, 255, 0); 
 
   border-radius: 10px;
   padding: 20px;
