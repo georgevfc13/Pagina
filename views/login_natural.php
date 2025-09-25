@@ -8,9 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new UsuarioNaturalController();
     $resultado = $controller->login($_POST);
     if ($resultado['success']) {
-        $_SESSION['id'] = $resultado['usuario']['id'];
-        $_SESSION['nombre'] = $resultado['usuario']['nombre'];
-        $_SESSION['tipo'] = "natural";
+        
         header("Location: home.php");
         exit();
     } else {

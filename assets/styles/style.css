@@ -11,6 +11,14 @@ body{
     overflow-x: hidden;
 }
 
+
+.titulo{
+    color: #333;
+    text-align: center;
+    margin-top: 20rem;
+    font-family: 'Arial', sans-serif;
+}
+
 main{
     flex: 1 0 auto;
 }

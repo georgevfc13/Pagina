@@ -4,15 +4,28 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
-<div class="container-fluid d-flex justify-content-between align-items-center">
+<style>
+  /* afecta a cualquier dropdown dentro de un navbar */
+  .navbar .dropdown-menu {
+    position: absolute !important;
+    margin-top: 10px; /* opcional */
+  }
+</style>
+
+
+
+<nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark shadow">
+<div class="container-fluid">
 
 
     <!-- Logo -->
-    <img src="../assets/img/logo.jpg" alt="Logo"
-         class="logo me-2 rounded"
-         onerror="this.onerror=null;this.src='assets/img/logo.jpg';" />
-    <a class="navbar-brand" href="#">GDA</a>
+    <a class="navbar-brand d-flex align-items-center" href="#">
+  <img src="../assets/img/logo.jpg" alt="Logo"
+       class="logo me-2 rounded"
+       onerror="this.onerror=null;this.src='assets/img/logo.jpg';" />
+  GDA
+</a>
+
 
     <!-- Botón hamburguesa -->
     <button class="navbar-toggler" type="button"

@@ -2,20 +2,25 @@
 
 // login
 class UsuarioNatural {
-    public function login($contacto, $password) {
-        $sql = "SELECT * FROM " . $this->table . " WHERE contacto = :contacto LIMIT 1";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":contacto", $contacto);
-        $stmt->execute();
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($usuario && password_verify($password, $usuario['password'])) {
-            return $usuario;
-        } else if ($usuario) {
-            return "❌ Contraseña incorrecta";
-        } else {
-            return "❌ Usuario no encontrado";
-        }
+   public function login($contacto, $password) {
+    $sql = "SELECT id, nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, foto_perfil, password 
+            FROM " . $this->table . " 
+            WHERE contacto = :contacto LIMIT 1";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bindParam(":contacto", $contacto);
+    $stmt->execute();
+
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($usuario && password_verify($password, $usuario['password'])) {
+        unset($usuario['password']); // 🚫 no devolver la contraseña
+        return $usuario;
+    } else if ($usuario) {
+        return "❌ Contraseña incorrecta";
+    } else {
+        return "❌ Usuario no encontrado";
     }
+}
 
 
     private $conn;
@@ -83,6 +88,35 @@ class UsuarioNatural {
             }
 
 
+    }
+
+
+    // Método para actualizar datos
+
+    public function actualizar($id, $datos) {
+        $sql = "UPDATE {$this->table}
+                   SET nombre = :nombre,
+                       contacto = :contacto,
+                       genero = :genero,
+                       tipo_contacto = :tipo_contacto,
+                       fecha_nacimiento = :fecha_nacimiento
+                 WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([
+            'nombre'           => $datos['nombre'],
+            'contacto'         => $datos['contacto'],
+            'genero'           => $datos['genero'],
+            'tipo_contacto'    => $datos['tipo_contacto'],
+            'fecha_nacimiento' => $datos['fecha_nacimiento'],
+            'id'               => $id
+        ]);
+    }
+
+    // --- Método para actualizar solo la foto ---
+    public function actualizarFoto($id, $rutaFoto) {
+        $sql = "UPDATE {$this->table} SET foto_perfil = :foto WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute(['foto' => $rutaFoto, 'id' => $id]);
     }
 }
 ?>
