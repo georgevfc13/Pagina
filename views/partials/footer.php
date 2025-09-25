@@ -15,8 +15,8 @@
                 <ul class="list-unstyled">
                     <li><a href="home.php" class="links_footer">Inicio</a></li>
                     <li><a href="servicios.php" class="links_footer">Servicios</a></li>
-                    <li><a href="#" class="links_footer">Proyectos</a></li>
-                    <li><a href="#" class="links_footer">Contacto</a></li>
+                    <li><a href="vacantes.php" class="links_footer">Vacantes</a></li>
+                    <li><a href="nosotros.php" class="links_footer">Nosotros</a></li>
                 </ul>
             </div>
             <!-- Recursos -->

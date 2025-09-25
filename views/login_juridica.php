@@ -48,8 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <label>Correo:</label>
     <input type="email" name="correo" required><br><br>
 
-    <label>Contraseña:</label>
-    <input type="password" name="password" required><br><br>
+       <label>Contraseña:</label>
+      <div class="input-group">
+        <input type="password" id="password" name="password" class="form-control" required>
+        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+          <i class="bi bi-eye"></i>
 
     <button type="submit">Ingresar</button>
 
@@ -65,5 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </main>
   
   <?php include 'partials/footer.php'; ?>
+
+
+    <script src="../assets/js/login.js"></script>
 </body>
+
+
 </html>

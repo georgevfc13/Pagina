@@ -61,9 +61,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <a class="nav-link nav-hover <?php if(isset($activePage) && $activePage=='login') echo 'active'; ?>" href="login.php">Registro / Inicio de sesión</a>
           </li>
         <?php else: ?>
-          <li class="nav-item">
-            <a class="nav-link nav-hover" href="logout.php">Cerrar Sesión</a>
-          </li>
+          
         <?php endif; ?>
       </ul>
     </div>
