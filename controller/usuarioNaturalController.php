@@ -80,7 +80,7 @@ class UsuarioNaturalController {
             $_SESSION['contacto'] = $usuario['contacto'] ?? '';
             $_SESSION['tipo_contacto'] = $usuario['tipo_contacto'] ?? '';
             $_SESSION['tipo'] = 'natural';
-            $_SESSION['foto'] = $usuario['foto'] ?? null; // 🔹 añadir esto
+            $_SESSION['foto_perfil'] = $usuario['foto_perfil'] ?? null; // 🔹 añadir esto
         }
 
         return "✅ Registro exitoso";
@@ -90,6 +90,9 @@ class UsuarioNaturalController {
         return $resultado;
     }
 }
+
+
+
 
   public function actualizarPerfil($id, $data, $file) {
         // 1. Actualizar datos de texto
@@ -105,7 +108,7 @@ class UsuarioNaturalController {
             $info = getimagesize($file['tmp_name']);
             if ($info && move_uploaded_file($file['tmp_name'], $rutaServidor)) {
                 $rutaBD = "uploads/fotos/" . $nombreArchivo;
-                $this->usuario->actualizarFoto($id, $rutaBD);
+                $this->usuario->actualizar($id, $rutaBD);
                 $_SESSION['foto'] = $rutaBD;
             }
         }
@@ -116,5 +119,7 @@ class UsuarioNaturalController {
         $_SESSION['tipo_contacto']    = $data['tipo_contacto'];
         $_SESSION['fecha_nacimiento'] = $data['fecha_nacimiento'];
     }
+
+
 }
 
