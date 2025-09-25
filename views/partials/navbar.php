@@ -77,10 +77,10 @@ if (session_status() === PHP_SESSION_NONE) {
              role="button"
              data-bs-toggle="dropdown"
              aria-expanded="false">
-            <img src="<?php echo isset($foto) ? htmlspecialchars($foto) : '../assets/img/logo.jpg'; ?>"
-                 alt="Usuario"
-                 class="rounded-circle"
-                 width="40" height="40">
+      <img src="<?php echo (isset($foto) && file_exists(str_replace('..','.', $foto))) ? htmlspecialchars($foto) : '../assets/img/logo.jpg'; ?>"
+        alt="Usuario"
+        class="rounded-circle"
+        width="40" height="40">
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <li class="dropdown-item-text fw-bold">

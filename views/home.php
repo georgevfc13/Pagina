@@ -42,12 +42,14 @@ if (isset($_SESSION['id'])) {
         <div class="hero-content text-white">
             <h1 class="fw-bold">Hola, <?php echo htmlspecialchars($nombre); ?>👋 </h1>
             <p class="lead">Bienvenido a GDA, tu puente entre oportunidades laborales y talento profesional</p>
-
-
-         
-<?php if (!isset($_SESSION['id'])): ?>
-          <a href="registro.php" class="btn btn-light mt-3">Regístrate aquí</a>
-<?php endif; ?>
+            <?php if (isset($_SESSION['id'])): ?>
+                <img src="<?php echo htmlspecialchars($foto && file_exists(str_replace('..','.', $foto)) ? $foto : '../assets/img/logo.jpg'); ?>"
+                     alt="Foto de perfil"
+                     style="width:90px;height:90px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 0 8px #0002;">
+            <?php endif; ?>
+            <?php if (!isset($_SESSION['id'])): ?>
+                <a href="registro.php" class="btn btn-light mt-3">Regístrate aquí</a>
+            <?php endif; ?>
         </div>
     </section>
 
