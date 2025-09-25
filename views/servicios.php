@@ -221,20 +221,53 @@ if (isset($_GET['exito'])) {
             $tipo = htmlspecialchars($row['tipo']);
             $empresa = htmlspecialchars($row['empresa']);
             $precio = htmlspecialchars($row['precio']);
+            // Usar el campo usuario_tipo para distinguir el tipo de usuario que publicó el servicio
+            $usuarioId = $row['usuario_id'];
+            // Compatibilidad: si no existe usuario_tipo (servicios antiguos), asumir 'natural'
+            $usuarioTipo = isset($row['usuario_tipo']) ? $row['usuario_tipo'] : 'natural';
+            $badge = '';
+            $publicadoPor = '';
+            if ($usuarioTipo === 'juridico') {
+                // Buscar nombre de la empresa
+                $queryEmpresa = $conn->prepare("SELECT razon_social FROM usuarios_juridicos WHERE id = ?");
+                $queryEmpresa->execute([$usuarioId]);
+                if ($empresaRow = $queryEmpresa->fetch(PDO::FETCH_ASSOC)) {
+                    $badge = "<span class='badge bg-success ms-2'>Empresa</span>";
+                    $publicadoPor = "<p class='card-text mb-1'><strong>Publicado por empresa:</strong> " . htmlspecialchars($empresaRow['razon_social']) . "</p>";
+                } else {
+                    $badge = "<span class='badge bg-secondary ms-2'>Empresa desconocida</span>";
+                    $publicadoPor = "<p class='card-text mb-1'><strong>Publicado por empresa:</strong> Desconocida</p>";
+                }
+            } elseif ($usuarioTipo === 'natural') {
+                // Buscar nombre de la persona natural
+                $queryNatural = $conn->prepare("SELECT nombre FROM usuarios_naturales WHERE id = ?");
+                $queryNatural->execute([$usuarioId]);
+                if ($natural = $queryNatural->fetch(PDO::FETCH_ASSOC)) {
+                    $badge = "<span class='badge bg-info ms-2'>Persona natural</span>";
+                    $publicadoPor = "<p class='card-text mb-1'><strong>Publicado por persona natural:</strong> " . htmlspecialchars($natural['nombre']) . "</p>";
+                } else {
+                    $badge = "<span class='badge bg-secondary ms-2'>Persona natural</span>";
+                    $publicadoPor = "<p class='card-text mb-1'><strong>Publicado por persona natural:</strong> Desconocido</p>";
+                }
+            } else {
+                // Fallback para datos corruptos, vacíos o futuros tipos
+                $badge = "<span class='badge bg-secondary ms-2'>Tipo desconocido</span>";
+                $publicadoPor = "<p class='card-text mb-1'><strong>Publicado por:</strong> Desconocido</p>";
+            }
             ?>
             <div class='card shadow-sm border-0 rounded-4 tarjeta' id='servicio-card-<?= $servicioId ?>'>
                 <div class='card-body d-flex flex-column'>
-                    <h5 class='card-title fw-bold mb-2 text-primary'><?= $titulo ?></h5>
+                    <h5 class='card-title fw-bold mb-2 text-primary'><?= $titulo . $badge ?></h5>
                     <p class='card-text mb-1'><?= $descripcion ?></p>
                     <p class='card-text mb-1'><strong>Ubicación:</strong> <?= $ubicacion ?></p>
                     <p class='card-text mb-1'><strong>Tipo:</strong> <?= $tipo ?></p>
+                    <?= $publicadoPor ?>
                     <p class='card-text mb-3'><strong>Precio:</strong> <?= $precio ?></p>
                     <div class='d-flex flex-wrap gap-2 mt-auto'>
                         <button class='btn btn-info' onclick='contratarServicio(<?= $servicioId ?>)'>Contratar</button>
                         <button class='btn btn-warning' onclick='mostrarEditarServicio(<?= $servicioId ?>)'>Editar</button>
                         <button class='btn btn-danger' onclick='eliminarServicio(<?= $servicioId ?>)'>Eliminar</button>
                     </div>
-
                 </div>
             </div>
             <?php

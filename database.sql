@@ -1,3 +1,6 @@
+-- Si tienes servicios antiguos publicados por empresas y el campo usuario_tipo está vacío o incorrecto,
+-- ejecuta este UPDATE para corregirlos:
+-- UPDATE servicios SET usuario_tipo = 'juridico' WHERE usuario_id IN (SELECT id FROM usuarios_juridicos);
 -- Tabla para servicios
 -- Esta tabla almacena los servicios ofrecidos por empresas o administradores.
 -- Campos:
@@ -9,6 +12,9 @@
 --   fecha_publicacion: Fecha en que se publica el servicio
 --   empresa: Nombre de la empresa que ofrece el servicio
 --   precio: Rango o valor del servicio (opcional)
+-- Tabla para servicios
+-- usuario_id: ID del usuario que publica el servicio (puede ser natural o jurídico)
+-- usuario_tipo: 'natural' si es persona natural, 'juridico' si es empresa
 CREATE TABLE IF NOT EXISTS servicios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -19,7 +25,10 @@ CREATE TABLE IF NOT EXISTS servicios (
     empresa VARCHAR(100) NOT NULL,
     precio VARCHAR(50),
     usuario_id INT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios_naturales(id)
+    usuario_tipo ENUM('natural', 'juridico') NOT NULL
+    -- No se define una foreign key directa, ya que puede ser de dos tablas distintas
+    -- Si migras desde una versión anterior, elimina la foreign key con:
+    -- ALTER TABLE servicios DROP FOREIGN KEY servicios_ibfk_1;
 );
 -- Script para crear la base de datos y tablas del sistema de login y registro GDA
 
@@ -95,5 +104,3 @@ CREATE TABLE IF NOT EXISTS aplicaciones (
     FOREIGN KEY (vacante_id) REFERENCES vacantes(id)
     -- usuario_id puede ser NULL si no hay login, o referenciar usuarios_naturales
 );
-
---de carne

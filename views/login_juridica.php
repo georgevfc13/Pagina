@@ -9,13 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new UsuarioJuridicoController();
     $resultado = $controller->login($_POST);
     if ($resultado['success']) {
-        $_SESSION['id'] = $resultado['usuario']['id'];
-        $_SESSION['nombre'] = $resultado['usuario']['razon_social'];
-        $_SESSION['tipo'] = "juridico";
-        $_SESSION['foto_perfil'] = $resultado['foto_perfil'] ?? 'assets/img/default-avatar.png'; // Guardar el ID del usuario jurídico
-        
-        header("Location: home.php");
-        exit();
+  $_SESSION['id'] = $resultado['usuario']['id'];
+  $_SESSION['nombre'] = $resultado['usuario']['razon_social'];
+  $_SESSION['tipo'] = "juridico";
+  $_SESSION['tipo_usuario'] = "juridico"; // Necesario para publicar vacantes y servicios
+  $_SESSION['foto_perfil'] = $resultado['foto_perfil'] ?? 'assets/img/default-avatar.png';
+  header("Location: home.php");
+  exit();
     } else {
         $mensaje = $resultado['mensaje'];
         $tipo_mensaje = "danger";

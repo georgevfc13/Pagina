@@ -18,12 +18,18 @@ class VacanteController {
                 return 'Todos los campos obligatorios deben ser completados.';
             }
             if (!isset($_SESSION)) session_start();
-            if (!isset($_SESSION['id']) || !isset($_SESSION['tipo_usuario'])) {
+            // Permitir tanto naturales como jurídicas
+            $tipoUsuario = null;
+            if (isset($_SESSION['tipo_usuario'])) {
+                $tipoUsuario = $_SESSION['tipo_usuario'];
+            } elseif (isset($_SESSION['tipo'])) {
+                $tipoUsuario = $_SESSION['tipo'];
+            }
+            if (!isset($_SESSION['id']) || !$tipoUsuario) {
                 return 'Debes iniciar sesión para publicar una vacante.';
             }
             $data['usuario_id'] = $_SESSION['id'];
-            // Guardar el tipo de usuario que publica la vacante
-            $data['usuario_tipo'] = $_SESSION['tipo_usuario']; // 'natural' o 'juridico'
+            $data['usuario_tipo'] = $tipoUsuario; // 'natural' o 'juridico'
             $vacante = new Vacante();
             $resultado = $vacante->registrar($data);
             if ($resultado === true) {

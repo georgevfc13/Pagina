@@ -21,6 +21,10 @@ class ServicioController {
                 return 'Debes iniciar sesión para publicar un servicio.';
             }
             $data['usuario_id'] = $_SESSION['id'];
+            // Guardar el tipo de usuario que publica el servicio, por defecto 'natural' si no está definido
+            $data['usuario_tipo'] = isset($_SESSION['tipo_usuario']) && in_array($_SESSION['tipo_usuario'], ['natural','juridico'])
+                ? $_SESSION['tipo_usuario']
+                : 'natural';
             $servicio = new Servicio();
             $resultado = $servicio->registrar($data);
             if ($resultado === true) {

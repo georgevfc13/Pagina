@@ -38,9 +38,10 @@ class Servicio {
         }
     }
 
+    // Registra un servicio incluyendo el tipo de usuario que lo publica
     public function registrar($data) {
         try {
-            $sql = "INSERT INTO servicios (titulo, descripcion, ubicacion, tipo, empresa, precio, usuario_id) VALUES (:titulo, :descripcion, :ubicacion, :tipo, :empresa, :precio, :usuario_id)";
+            $sql = "INSERT INTO servicios (titulo, descripcion, ubicacion, tipo, empresa, precio, usuario_id, usuario_tipo) VALUES (:titulo, :descripcion, :ubicacion, :tipo, :empresa, :precio, :usuario_id, :usuario_tipo)";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':titulo', $data['titulo']);
             $stmt->bindParam(':descripcion', $data['descripcion']);
@@ -49,6 +50,7 @@ class Servicio {
             $stmt->bindParam(':empresa', $data['empresa']);
             $stmt->bindParam(':precio', $data['precio']);
             $stmt->bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_INT);
+            $stmt->bindParam(':usuario_tipo', $data['usuario_tipo']);
             return $stmt->execute();
         } catch (PDOException $e) {
             return $e->getMessage();
