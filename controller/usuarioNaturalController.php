@@ -8,6 +8,20 @@ class UsuarioNaturalController {
         $password = $data['password'] ?? '';
         $resultado = $this->usuario->login($contacto, $password);
         if (is_array($resultado)) {
+
+            if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION['id'] = $resultado['id'];
+        $_SESSION['nombre'] = $resultado['nombre'];
+        $_SESSION['identificacion'] = $resultado['identificacion'] ?? '';
+        $_SESSION['fecha_nacimiento'] = $resultado['fecha_nacimiento'] ?? '';
+        $_SESSION['genero'] = $resultado['genero'] ?? '';
+        $_SESSION['contacto'] = $resultado['contacto'] ?? '';
+        $_SESSION['tipo_contacto'] = $resultado['tipo_contacto'] ?? '';
+        $_SESSION['tipo'] = 'natural'; // si tienes tipo definido
+        $_SESSION['foto'] = $resultado['foto'] ?? null;
             // Login exitoso
             return [
                 'success' => true,
@@ -45,14 +59,62 @@ class UsuarioNaturalController {
 
         $resultado = $this->usuario->registrar();
         
-            if ($resultado === true) {
+             if ($resultado === true) {
+        // 🔹 Traer el usuario recién creado
+        $sql = "SELECT id, nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, foto 
+                FROM usuarios_naturales WHERE contacto = :contacto LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(":contacto", $this->usuario->contacto);
+        $stmt->execute();
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nombre'] = $usuario['nombre'];
+            $_SESSION['identificacion'] = $usuario['identificacion'] ?? '';
+            $_SESSION['fecha_nacimiento'] = $usuario['fecha_nacimiento'] ?? '';
+            $_SESSION['genero'] = $usuario['genero'] ?? '';
+            $_SESSION['contacto'] = $usuario['contacto'] ?? '';
+            $_SESSION['tipo_contacto'] = $usuario['tipo_contacto'] ?? '';
+            $_SESSION['tipo'] = 'natural';
+            $_SESSION['foto'] = $usuario['foto'] ?? null; // 🔹 añadir esto
+        }
+
         return "✅ Registro exitoso";
     } elseif ($resultado === false) {
         return "❌ Error al registrar";
     } else {
-        // Si devuelve string (ejemplo: "⚠️ La cédula ya está registrada")
         return $resultado;
     }
-            
+}
+
+  public function actualizarPerfil($id, $data, $file) {
+        // 1. Actualizar datos de texto
+        $this->usuario->actualizar($id, $data);
+
+        // 2. Si viene archivo, procesarlo
+        if (!empty($file['tmp_name'])) {
+            $carpeta = __DIR__ . "/../uploads/fotos/";
+            if (!is_dir($carpeta)) mkdir($carpeta, 0755, true);
+
+            $nombreArchivo = uniqid('foto_') . "_" . basename($file['name']);
+            $rutaServidor  = $carpeta . $nombreArchivo;
+            $info = getimagesize($file['tmp_name']);
+            if ($info && move_uploaded_file($file['tmp_name'], $rutaServidor)) {
+                $rutaBD = "uploads/fotos/" . $nombreArchivo;
+                $this->usuario->actualizarFoto($id, $rutaBD);
+                $_SESSION['foto'] = $rutaBD;
+            }
+        }
+        // Refrescar variables de sesión básicas
+        $_SESSION['nombre']           = $data['nombre'];
+        $_SESSION['contacto']         = $data['contacto'];
+        $_SESSION['genero']           = $data['genero'];
+        $_SESSION['tipo_contacto']    = $data['tipo_contacto'];
+        $_SESSION['fecha_nacimiento'] = $data['fecha_nacimiento'];
     }
 }
+

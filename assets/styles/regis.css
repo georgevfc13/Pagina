@@ -9,6 +9,13 @@ body {
   flex-direction: column;
 }
 
+.titulo{
+  color: #333;
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'Arial', sans-serif;
+}
+
 .logo {
   border-radius: 50%;
   width: 50px;
