@@ -93,30 +93,44 @@ class UsuarioNatural {
 
     // Método para actualizar datos
 
-    public function actualizar($id, $datos) {
-        $sql = "UPDATE {$this->table}
-                   SET nombre = :nombre,
-                       contacto = :contacto,
-                       genero = :genero,
-                       tipo_contacto = :tipo_contacto,
-                       fecha_nacimiento = :fecha_nacimiento
-                 WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([
-            'nombre'           => $datos['nombre'],
-            'contacto'         => $datos['contacto'],
-            'genero'           => $datos['genero'],
-            'tipo_contacto'    => $datos['tipo_contacto'],
-            'fecha_nacimiento' => $datos['fecha_nacimiento'],
-            'id'               => $id
-        ]);
+  public function actualizar($id, $datos) {
+    $campos = [];
+    $params = [':id' => $id];
+
+    if (!empty($datos['nombre'])) {
+        $campos[] = "nombre = :nombre";
+        $params[':nombre'] = $datos['nombre'];
+    }
+    if (!empty($datos['contacto'])) {
+        $campos[] = "contacto = :contacto";
+        $params[':contacto'] = $datos['contacto'];
+    }
+    if (!empty($datos['genero'])) {
+        $campos[] = "genero = :genero";
+        $params[':genero'] = $datos['genero'];
+    }
+    if (!empty($datos['tipo_contacto'])) {
+        $campos[] = "tipo_contacto = :tipo_contacto";
+        $params[':tipo_contacto'] = $datos['tipo_contacto'];
+    }
+    if (!empty($datos['fecha_nacimiento'])) {
+        $campos[] = "fecha_nacimiento = :fecha_nacimiento";
+        $params[':fecha_nacimiento'] = $datos['fecha_nacimiento'];
+    }
+    if (!empty($datos['foto_perfil'])) {
+        $campos[] = "foto_perfil = :foto_perfil";
+        $params[':foto_perfil'] = $datos['foto_perfil'];
     }
 
-    // --- Método para actualizar solo la foto ---
-    public function actualizarFoto($id, $rutaFoto) {
-        $sql = "UPDATE {$this->table} SET foto_perfil = :foto WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute(['foto' => $rutaFoto, 'id' => $id]);
+    if (empty($campos)) {
+        return false; // nada que actualizar
     }
+
+    $sql = "UPDATE {$this->table} SET " . implode(', ', $campos) . " WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+    return $stmt->execute($params);
+}
+
+
 }
 ?>
