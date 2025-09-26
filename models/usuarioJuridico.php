@@ -24,6 +24,7 @@ class UsuarioJuridico {
     public $correo;
     public $password;
     public $terminos;
+    public $foto_perfil;
     
 
     public function __construct($db) {
@@ -42,34 +43,33 @@ class UsuarioJuridico {
 
     
     public function registrar() {
-         if ($this->existeIdentificacion($this->correo)) {
-        return "⚠️ El usuario ya está registrado";
-    }
+        if ($this->existeIdentificacion($this->correo)) {
+            return "⚠️ El usuario ya está registrado";
+        }
         $sql = "INSERT INTO " . $this->table . " 
-            (razon_social, correo, password, terminos) 
-            VALUES (:razon_social, :correo, :password, :terminos)";
+            (razon_social, correo, password, terminos, foto_perfil) 
+            VALUES (:razon_social, :correo, :password, :terminos, :foto_perfil)";
 
         $stmt = $this->conn->prepare($sql);
 
-          // Sanitizar
+        // Sanitizar
         $this->razon_social = htmlspecialchars(strip_tags($this->razon_social));
         $this->correo = htmlspecialchars(strip_tags($this->correo));
         $this->password = htmlspecialchars(strip_tags($this->password));
         $this->terminos = intval($this->terminos);
+        $this->foto_perfil = htmlspecialchars(strip_tags($this->foto_perfil));
         // Bind con PDO
         $stmt->bindParam(":razon_social", $this->razon_social);
         $stmt->bindParam(":correo", $this->correo);
         $stmt->bindParam(":password", $this->password);
         $stmt->bindParam(":terminos", $this->terminos);
-        
+        $stmt->bindParam(":foto_perfil", $this->foto_perfil);
 
-       if  ($stmt->execute()){
+        if  ($stmt->execute()){
             return true;
-            }
-
-            else {
+        } else {
             return false;
-            }
+        }
     }
 
 

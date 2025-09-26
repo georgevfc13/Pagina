@@ -38,20 +38,29 @@ public function login($data) {
     public function registrar($data) {
         $this->usuario->razon_social = $data['razon_social'];
         $this->usuario->correo = $data['correo'];
-
-        
         $this->usuario->password = password_hash($data['password'], PASSWORD_DEFAULT);
         $this->usuario->terminos = isset($data['terminos']) ? 1 : 0;
 
+        // Manejo de foto de perfil
+        $rutaPredeterminada = '../assets/img/mancitoSinfoto.png';
+        $fotoFinal = $rutaPredeterminada;
+        if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+            $tmpName = $_FILES['foto_perfil']['tmp_name'];
+            $nombreArchivo = uniqid('foto_') . '_' . basename($_FILES['foto_perfil']['name']);
+            $destino = '../assets/img/' . $nombreArchivo;
+            if (move_uploaded_file($tmpName, $destino)) {
+                $fotoFinal = $destino;
+            }
+        }
+        $this->usuario->foto_perfil = $fotoFinal;
+
         $resultado = $this->usuario->registrar();
-           
         if ($resultado === true) {
-        return "✅ Registro exitoso";
-    } elseif ($resultado === false) {
-        return "❌ Error al registrar";
-    } else {
-        // Si devuelve string (ejemplo: "⚠️ La cédula ya está registrada")
-        return $resultado;
-    }
+            return "✅ Registro exitoso";
+        } elseif ($resultado === false) {
+            return "❌ Error al registrar";
+        } else {
+            return $resultado;
+        }
     }
 }

@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
 <main>
 
-  <form method="POST" action="">
+  <form method="POST" action="" enctype="multipart/form-data">
       <h2>Registro Persona Jurídica</h2>
  <?php if (!empty($mensaje)): ?>
     <div class="alert alert-<?php echo $tipo_mensaje; ?>">
@@ -59,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <i class="bi bi-eye"></i></div>
 
      
-    <label action="/perfil-juridico/subir-foto" method="post" enctype="multipart/form-data"> Foto de perfil:</label><br>
-    <input type="file" name="foto" accept="image/*" required>
+  <label>Foto de perfil (opcional):</label><br>
+  <input type="file" name="foto_perfil" accept="image/*">
     <button type="submit">Subir</button>
 
 

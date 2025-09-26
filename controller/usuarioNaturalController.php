@@ -19,9 +19,9 @@ class UsuarioNaturalController {
         $_SESSION['fecha_nacimiento'] = $resultado['fecha_nacimiento'] ?? '';
         $_SESSION['genero'] = $resultado['genero'] ?? '';
         $_SESSION['contacto'] = $resultado['contacto'] ?? '';
-        $_SESSION['tipo_contacto'] = $resultado['tipo_contacto'] ?? '';
-        $_SESSION['tipo'] = 'natural'; // si tienes tipo definido
-        $_SESSION['foto'] = $resultado['foto'] ?? null;
+    $_SESSION['tipo_contacto'] = $resultado['tipo_contacto'] ?? '';
+    $_SESSION['tipo'] = 'natural'; // si tienes tipo definido
+    $_SESSION['foto_perfil'] = $resultado['foto_perfil'] ?? null;
             // Login exitoso
             return [
                 'success' => true,
@@ -61,8 +61,8 @@ class UsuarioNaturalController {
         
              if ($resultado === true) {
         // 🔹 Traer el usuario recién creado
-        $sql = "SELECT id, nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, foto 
-                FROM usuarios_naturales WHERE contacto = :contacto LIMIT 1";
+    $sql = "SELECT id, nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, foto_perfil 
+        FROM usuarios_naturales WHERE contacto = :contacto LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(":contacto", $this->usuario->contacto);
         $stmt->execute();
@@ -78,6 +78,7 @@ class UsuarioNaturalController {
             $_SESSION['fecha_nacimiento'] = $usuario['fecha_nacimiento'] ?? '';
             $_SESSION['genero'] = $usuario['genero'] ?? '';
             $_SESSION['contacto'] = $usuario['contacto'] ?? '';
+            $_SESSION['foto_perfil'] = $usuario['foto_perfil'] ?? '';
             $_SESSION['tipo_contacto'] = $usuario['tipo_contacto'] ?? '';
             $_SESSION['tipo'] = 'natural';
             $_SESSION['foto_perfil'] = $usuario['foto_perfil'] ?? null; // 🔹 añadir esto
@@ -107,9 +108,9 @@ class UsuarioNaturalController {
             $rutaServidor  = $carpeta . $nombreArchivo;
             $info = getimagesize($file['tmp_name']);
             if ($info && move_uploaded_file($file['tmp_name'], $rutaServidor)) {
-                $rutaBD = "uploads/fotos/" . $nombreArchivo;
-                $this->usuario->actualizar($id, $rutaBD);
-                $_SESSION['foto'] = $rutaBD;
+                $rutaBD = "../uploads/fotos/" . $nombreArchivo;
+                $this->usuario->actualizar($id, ['foto_perfil' => $rutaBD]);
+                $_SESSION['foto_perfil'] = $rutaBD;
             }
         }
         // Refrescar variables de sesión básicas
@@ -118,6 +119,10 @@ class UsuarioNaturalController {
         $_SESSION['genero']           = $data['genero'];
         $_SESSION['tipo_contacto']    = $data['tipo_contacto'];
         $_SESSION['fecha_nacimiento'] = $data['fecha_nacimiento'];
+        // Si no hay foto cargada y no existe en sesión, poner default
+        if (empty($_SESSION['foto_perfil'])) {
+            $_SESSION['foto_perfil'] = '../assets/img/logo.jpg';
+        }
     }
 
 

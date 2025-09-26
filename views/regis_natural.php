@@ -25,7 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <main>
 
-    <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
+  <label>Fotografía (opcional):</label>
+  <input type="file" name="foto_perfil" accept="image/*"><br><br>
       <h2>Registro Persona Natural</h2>
  <?php if (!empty($mensaje)): ?>
     <div style="padding:10px; margin:10px 0; border-radius:5px; color:green;">
