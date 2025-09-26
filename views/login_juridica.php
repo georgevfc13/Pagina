@@ -48,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main >
   <form method="POST" action="">
       <h2>Iniciar sesión - Persona Jurídica</h2>
-    <label>Contacto:</label>
-    <input type="email" name="contacto" required><br><br>
+    <label>NIT:</label>
+    <input type="text" name="nit" required><br><br>
 
        <label>Contraseña:</label>
       <div class="input-group">

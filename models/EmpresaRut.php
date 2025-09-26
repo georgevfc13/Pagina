@@ -22,11 +22,11 @@ class EmpresaRut
     /**
      * Iniciar sesión: busca por contacto (correo) y verifica contraseña
      */
-    public function login($contacto, $password)
+    public function login($nit, $password)
     {
-        $sql = "SELECT * FROM {$this->table} WHERE contacto = :contacto LIMIT 1";
+        $sql = "SELECT * FROM {$this->table} WHERE nit = :nit LIMIT 1";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(":contacto", $contacto);
+        $stmt->bindParam(":nit", $nit);
         $stmt->execute();
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 

@@ -7,6 +7,10 @@ if (!isset($_SESSION['id'])) {
 }
 require_once '../controller/ServiciosSubidosController.php';
 $servicios = isset($servicios) ? $servicios : [];
+// lineas añadidas
+$nombre = $_SESSION['nombre'] ?? 'Usuario';
+$tipo   = $_SESSION['tipo'] ?? '';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -57,5 +61,6 @@ $servicios = isset($servicios) ? $servicios : [];
         <?php endif; ?>
     </div>
     <?php include 'partials/footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -19,10 +19,10 @@ class EmpresaRutController {
      * Login por contacto (correo o celular) y contraseña
      */
     public function login($data) {
-        $contacto = $data['contacto'] ?? '';
+        $nit = $data['nit'] ?? '';
         $password = $data['password'] ?? '';
 
-        $resultado = $this->empresa->login($contacto, $password);
+        $resultado = $this->empresa->login($nit, $password);
 
         if (is_array($resultado)) {
             return [
