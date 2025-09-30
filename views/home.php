@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+
+require_once __DIR__ . '/../controller/ServicioController.php';
+$controller = new ServicioController();
+$servicios = $controller->obtenerServicios(6); // mostrar solo 3 servicios
+
+
 // Si hay sesión activa
 if (isset($_SESSION['id'])) {
     $nombre = $_SESSION['nombre'] ?? 'Usuario';
@@ -96,166 +102,56 @@ if (isset($_SESSION['id'])) {
         <!-- fin del filtro y búsqueda -->
 
         <!-- servicios -->
+<section class="container my-5">
+    <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
+    <p class="lead text-secondary mx-auto " style="max-width: 600px;">
+        Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y tener éxito en el mercado actual.
+    </p>
 
-        <section class="text-center mb-5">
-            <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
-            <p class="lead text-secondary mx-auto" style="max-width: 600px">
-                Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y
-                tener éxito en el mercado actual.
-            </p>
-        </section>
-        <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <!-- Servicio 1 -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <?php foreach ($servicios as $servicio): ?>
             <div class="col">
                 <div class="card h-100 shadow rounded-4">
                     <div class="card-body text-center">
-                        <div
-                            class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                            style="width: 64px; height: 64px">
-                       <i class="fa-solid fa-user-doctor fa-xl" style="color: #f02d2d;"></i>
+
+                        <!-- Contenedor redondo del ícono -->
+                        <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                             style="width: 64px; height: 64px;">
+                            <i class="<?= htmlspecialchars($servicio['icono'] ?? 'fa-solid fa-briefcase'); ?> fa-xl"
+                               style="color: #0676cb;"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Doctor</h5>
-                        <p class="card-text">
-                            Atención de calidad a pacientes.
-                        </p>
-                        <a href="#" class="btn btn-outline-danger btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
+
+                        <!-- Título -->
+                        <h5 class="card-title fw-bold"><?= htmlspecialchars($servicio['titulo']); ?></h5>
+
+                        <!-- Descripción -->
+                        <p class="card-text"><?= htmlspecialchars($servicio['descripcion']); ?></p>
+
+                        <!-- Botón -->
+                        <a href="#" class="btn btn-outline-primary btn-sm toggle-info">
+                            Ver más <i class="fas fa-arrow-right ms-1"></i>
+                        </a>
+
+                        <!-- Información extra -->
                         <div class="info-extra collapse mt-3">
                             <div class="card card-body">
                                 <h6 class="fw-bold">Información del servicio</h6>
-                                <p>
-                                    Ofrezco consultas médicas generales y de seguimiento, orientación en prevención de enfermedades y chequeos personalizados. Agenda tu cita para recibir un servicio profesional y cercano.
-                                </p>
+                                <p><?= htmlspecialchars($servicio['detalles'] ?? 'Próximamente más información'); ?></p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-            <!-- Servicio 2 -->
-            <div class="col">
-                <div class="card h-100 shadow rounded-4">
-                    <div class="card-body text-center">
-                        <div
-                            class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                            style="width: 64px; height: 64px">
-                          <i class="fa-solid fa-wrench fa-xl" style="color: #316308;"></i>
-                        </div>
-                        <h5 class="card-title fw-bold">Mecánico</h5>
-                        <p class="card-text">
-                            Servicio confiable para el mantenimiento y reparación de tu vehículo.
-                        </p>
-                        <a href="#" class="btn btn-outline-success btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                        <div class="info-extra collapse mt-3">
-                            <div class="card card-body">
-                                <h6 class="fw-bold">Información del servicio</h6>
-                                <p>
-                                   Realizo diagnóstico, reparación de motor, sistema eléctrico, frenos y mantenimiento preventivo para autos y motos. Atención profesional y garantía en cada trabajo. ¡Agenda tu cita y mantén tu vehículo en perfecto estado!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Servicio 3 -->
-            <div class="col">
-                <div class="card h-100 shadow rounded-4">
-                    <div class="card-body text-center">
-                        <div
-                            class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                            style="width: 64px; height: 64px">
-                           <i class="fa-solid fa-plug fa-xl" style="color: #FFD43B;"></i>
-                        </div>
-                        <h5 class="card-title fw-bold">Electricista</h5>
-                        <p class="card-text">
-                          Instalaciones y reparaciones eléctricas seguras.
-                        </p>
-                        <a href="#" class="btn btn-outline-warning btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                        <div class="info-extra collapse mt-3">
-                            <div class="card card-body">
-                                <h6 class="fw-bold">Información del servicio</h6>
-                                <p>
-                                   Realizo instalación de redes eléctricas residenciales y comerciales, reparación de cortocircuitos, cambio de tomas y luminarias, y mantenimiento preventivo. Trabajo garantizado y cumplimiento de normas de seguridad.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Servicio 4 -->
-            <div class="col">
-                <div class="card h-100 shadow rounded-4">
-                    <div class="card-body text-center">
-                        <div
-                            class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                            style="width: 64px; height: 64px">
-                            <i class="fas fa-paint-brush text-info fs-3"></i>
-                        </div>
-                        <h5 class="card-title fw-bold">Diseñador Gráfico</h5>
-                        <p class="card-text">
-                       Creatividad visual para tu marca.
-                        </p>
-                        <a href="#" class="btn btn-outline-info btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                        <div class="info-extra collapse mt-3">
-                            <div class="card card-body">
-                                <h6 class="fw-bold">Información del servicio</h6>
-                                <p>
-                                   Creo logotipos, piezas publicitarias, banners para redes sociales y material impreso. Diseños profesionales que reflejan la identidad de tu negocio y atraen a tus clientes.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Servicio 5 -->
-            <div class="col">
-                <div class="card h-100 shadow rounded-4">
-                    <div class="card-body text-center">
-                        <div
-                            class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                            style="width: 64px; height: 64px">
-                        <i class="fa-solid fa-user-tie fa-xl"></i>
-                        </div>
-                        <h5 class="card-title fw-bold">Profesor </h5>
-                        <p class="card-text">
-                          Aprende y mejora tus habilidades numéricas..
-                        </p>
-                        <a href="#" class="btn btn-outline-dark btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                        <div class="info-extra collapse mt-3">
-                            <div class="card card-body">
-                                <h6 class="fw-bold">Información del servicio</h6>
-                                <p>
-                                    Clases personalizadas para primaria y bachillerato. Refuerzo en álgebra, cálculo, geometría y preparación para exámenes. Metodología práctica y explicaciones claras para poder transmitir cada tema.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Servicio 6 -->
-            <div class="col">
-                <div class="card h-100 shadow rounded-4">
-                    <div class="card-body text-center">
-                        <div
-                            class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                            style="width: 64px; height: 64px">
-                          <i class="fa-solid fa-laptop fa-lg" style="color: #0676cb;"></i>
-                        </div>
-                        <h5 class="card-title fw-bold">Desarrollador</h5>
-                        <p class="card-text">
-                            Soluciones digitales a la medida de tu proyecto.
-                        </p>
-                        <a href="#" class="btn btn-outline-primary btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                        <div class="info-extra collapse mt-3">
-                            <div class="card card-body">
-                                <h6 class="fw-bold">Información del servicio</h6>
-                                <p>
-                                   Diseño y desarrollo de sitios web, aplicaciones y sistemas personalizados. Uso de tecnologías modernas para crear plataformas rápidas, seguras y escalables. Incluye mantenimiento, optimización y asesoría para tu negocio.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+
+
+
+
+
 
         <!-- vacantes -->
         <main class="container py-5">
