@@ -28,8 +28,7 @@ CREATE TABLE IF NOT EXISTS servicios (
     empresa VARCHAR(100) NOT NULL,
     precio VARCHAR(50),
     usuario_id INT NOT NULL,
-    icono VARCHAR(100) NULL;
-
+    icono VARCHAR(100) NULL,
     usuario_tipo ENUM('natural', 'juridico') NOT NULL
     -- No se define una foreign key directa, ya que puede ser de dos tablas distintas
     -- Si migras desde una versión anterior, elimina la foreign key con:
@@ -62,11 +61,11 @@ CREATE TABLE empresa_rut (
     razon_social VARCHAR(150) NOT NULL,      -- Nombre de la empresa
     direccion VARCHAR(200) NOT NULL,         -- Dirección principal
     contacto VARCHAR(100) NOT NULL,          -- Correo electrónico o número de celular
-    tipo_contacto ENUM('correo','celular') NOT NULL  -- Indica qué tipo de dato es
+    tipo_contacto ENUM('correo','celular') NOT NULL,  -- Indica qué tipo de dato es
     password VARCHAR(255) NOT NULL,
     terminos TINYINT(1) NOT NULL DEFAULT 0,
-      foto_perfil VARCHAR(255) DEFAULT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    foto_perfil VARCHAR(255) DEFAULT NULL
+); ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 
