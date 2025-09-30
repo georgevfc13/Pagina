@@ -194,7 +194,7 @@ new Chart(document.getElementById("graficoServiciosOfertados"), {
         },
         {
           title: 'Dia de entregar el proyecto',
-          start: '2025-10-06',
+          start: '2025-10-09',
           descripcion: 'Pa entregarla',
           url: '#',
         }
