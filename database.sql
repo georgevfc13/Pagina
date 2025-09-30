@@ -54,15 +54,18 @@ CREATE TABLE IF NOT EXISTS usuarios_naturales (
 );
 
 -- Tabla para personas jurídicas
-CREATE TABLE IF NOT EXISTS usuarios_juridicos (
+CREATE TABLE empresa_rut (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    razon_social VARCHAR(100) NOT NULL,
-    correo VARCHAR(100) NOT NULL UNIQUE,
+    nit VARCHAR(15) NOT NULL UNIQUE,         -- Ej: 900123456-7
+    razon_social VARCHAR(150) NOT NULL,      -- Nombre de la empresa
+    direccion VARCHAR(200) NOT NULL,         -- Dirección principal
+    contacto VARCHAR(100) NOT NULL,          -- Correo electrónico o número de celular
+    tipo_contacto ENUM('correo','celular') NOT NULL  -- Indica qué tipo de dato es
     password VARCHAR(255) NOT NULL,
     terminos TINYINT(1) NOT NULL DEFAULT 0,
-    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    foto_perfil VARCHAR(255) DEFAULT NULL
-);
+      foto_perfil VARCHAR(255) DEFAULT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 
 -- Tabla para vacantes

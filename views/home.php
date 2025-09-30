@@ -29,9 +29,10 @@ if (isset($_SESSION['id'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -111,19 +112,18 @@ if (isset($_SESSION['id'])) {
                         <div
                             class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 64px; height: 64px">
-                            <i class="fas fa-laptop-code text-danger fs-3"></i>
+                       <i class="fa-solid fa-user-doctor fa-xl" style="color: #f02d2d;"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Desarrollo Web</h5>
+                        <h5 class="card-title fw-bold">Doctor</h5>
                         <p class="card-text">
-                            Desarrollo de sitios web a medida con tecnologías modernas.
+                            Atención de calidad a pacientes.
                         </p>
                         <a href="#" class="btn btn-outline-danger btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                         <div class="info-extra collapse mt-3">
                             <div class="card card-body">
                                 <h6 class="fw-bold">Información del servicio</h6>
                                 <p>
-                                    Hago desarrollo de sitios web modernos, responsivos y
-                                    optimizados para tu negocio. ¡Contáctame para más detalles!
+                                    Ofrezco consultas médicas generales y de seguimiento, orientación en prevención de enfermedades y chequeos personalizados. Agenda tu cita para recibir un servicio profesional y cercano.
                                 </p>
                             </div>
                         </div>
@@ -137,19 +137,18 @@ if (isset($_SESSION['id'])) {
                         <div
                             class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 64px; height: 64px">
-                            <i class="fas fa-mobile-alt text-success fs-3"></i>
+                          <i class="fa-solid fa-wrench fa-xl" style="color: #316308;"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Aplicaciones Móviles</h5>
+                        <h5 class="card-title fw-bold">Mecánico</h5>
                         <p class="card-text">
-                            Apps móviles multiplataforma para iOS y Android.
+                            Servicio confiable para el mantenimiento y reparación de tu vehículo.
                         </p>
                         <a href="#" class="btn btn-outline-success btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                         <div class="info-extra collapse mt-3">
                             <div class="card card-body">
                                 <h6 class="fw-bold">Información del servicio</h6>
                                 <p>
-                                    Soy desarrollador de apps móviles personalizadas para tu
-                                    empresa, compatibles con iOS y Android.
+                                   Realizo diagnóstico, reparación de motor, sistema eléctrico, frenos y mantenimiento preventivo para autos y motos. Atención profesional y garantía en cada trabajo. ¡Agenda tu cita y mantén tu vehículo en perfecto estado!
                                 </p>
                             </div>
                         </div>
@@ -163,19 +162,18 @@ if (isset($_SESSION['id'])) {
                         <div
                             class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 64px; height: 64px">
-                            <i class="fas fa-chart-line text-warning fs-3"></i>
+                           <i class="fa-solid fa-plug fa-xl" style="color: #FFD43B;"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Marketing Digital</h5>
+                        <h5 class="card-title fw-bold">Electricista</h5>
                         <p class="card-text">
-                            Estrategias digitales para aumentar tu presencia y ventas.
+                          Instalaciones y reparaciones eléctricas seguras.
                         </p>
                         <a href="#" class="btn btn-outline-warning btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                         <div class="info-extra collapse mt-3">
                             <div class="card card-body">
                                 <h6 class="fw-bold">Información del servicio</h6>
                                 <p>
-                                    Puedo impulsar tu marca con campañas de marketing digital
-                                    efectivas y personalizadas.
+                                   Realizo instalación de redes eléctricas residenciales y comerciales, reparación de cortocircuitos, cambio de tomas y luminarias, y mantenimiento preventivo. Trabajo garantizado y cumplimiento de normas de seguridad.
                                 </p>
                             </div>
                         </div>
@@ -191,17 +189,16 @@ if (isset($_SESSION['id'])) {
                             style="width: 64px; height: 64px">
                             <i class="fas fa-paint-brush text-info fs-3"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Diseño UI/UX</h5>
+                        <h5 class="card-title fw-bold">Diseñador Gráfico</h5>
                         <p class="card-text">
-                            Interfaces atractivas y funcionales para tus usuarios.
+                       Creatividad visual para tu marca.
                         </p>
                         <a href="#" class="btn btn-outline-info btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                         <div class="info-extra collapse mt-3">
                             <div class="card card-body">
                                 <h6 class="fw-bold">Información del servicio</h6>
                                 <p>
-                                    Soy diseñador de experiencias de usuario intuitivas y
-                                    visualmente atractivas para tus proyectos.
+                                   Creo logotipos, piezas publicitarias, banners para redes sociales y material impreso. Diseños profesionales que reflejan la identidad de tu negocio y atraen a tus clientes.
                                 </p>
                             </div>
                         </div>
@@ -215,19 +212,18 @@ if (isset($_SESSION['id'])) {
                         <div
                             class="bg-dark bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 64px; height: 64px">
-                            <i class="fas fa-cloud text-dark fs-3"></i>
+                        <i class="fa-solid fa-user-tie fa-xl"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Soluciones en la Nube</h5>
+                        <h5 class="card-title fw-bold">Profesor </h5>
                         <p class="card-text">
-                            Infraestructura escalable y servicios cloud para tu negocio.
+                          Aprende y mejora tus habilidades numéricas..
                         </p>
                         <a href="#" class="btn btn-outline-dark btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                         <div class="info-extra collapse mt-3">
                             <div class="card card-body">
                                 <h6 class="fw-bold">Información del servicio</h6>
                                 <p>
-                                    Implemento soluciones en la nube seguras y escalables para
-                                    tu empresa.
+                                    Clases personalizadas para primaria y bachillerato. Refuerzo en álgebra, cálculo, geometría y preparación para exámenes. Metodología práctica y explicaciones claras para poder transmitir cada tema.
                                 </p>
                             </div>
                         </div>
@@ -241,19 +237,18 @@ if (isset($_SESSION['id'])) {
                         <div
                             class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                             style="width: 64px; height: 64px">
-                            <i class="fas fa-headset text-primary fs-3"></i>
+                          <i class="fa-solid fa-laptop fa-lg" style="color: #0676cb;"></i>
                         </div>
-                        <h5 class="card-title fw-bold">Soporte 24/7</h5>
+                        <h5 class="card-title fw-bold">Desarrollador</h5>
                         <p class="card-text">
-                            Soporte técnico permanente para que tu sistema nunca se detenga.
+                            Soluciones digitales a la medida de tu proyecto.
                         </p>
                         <a href="#" class="btn btn-outline-primary btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
                         <div class="info-extra collapse mt-3">
                             <div class="card card-body">
                                 <h6 class="fw-bold">Información del servicio</h6>
                                 <p>
-                                    Ofrezco soporte técnico profesional las 24 horas, todos los
-                                    días.
+                                   Diseño y desarrollo de sitios web, aplicaciones y sistemas personalizados. Uso de tecnologías modernas para crear plataformas rápidas, seguras y escalables. Incluye mantenimiento, optimización y asesoría para tu negocio.
                                 </p>
                             </div>
                         </div>

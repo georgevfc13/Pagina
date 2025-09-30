@@ -1,29 +1,32 @@
 <?php
-
 session_start();
-require_once __DIR__ . "/../controller/UsuarioJuridicoController.php";
+require_once __DIR__ . "/../controller/EmpresaRutController.php";
 
 $mensaje = "";
 $tipo_mensaje = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $controller = new UsuarioJuridicoController();
+    $controller = new EmpresaRutController();
     $resultado = $controller->login($_POST);
+
     if ($resultado['success']) {
-  $_SESSION['id'] = $resultado['usuario']['id'];
-  $_SESSION['nombre'] = $resultado['usuario']['razon_social'];
-  $_SESSION['tipo'] = "juridico";
-  $_SESSION['tipo_usuario'] = "juridico"; // Necesario para publicar vacantes y servicios
-  $_SESSION['foto_perfil'] = $resultado['foto_perfil'] ?? 'assets/img/default-avatar.png';
-  header("Location: home.php");
-  exit();
+        // OJO: en el controlador la clave es 'empresa'
+        $_SESSION['id']           = $resultado['empresa']['id'];
+        $_SESSION['nombre']       = $resultado['empresa']['razon_social'];
+        $_SESSION['tipo']         = "Juridico";
+        $_SESSION['tipo_usuario'] = "Juridico";
+        $_SESSION['foto_perfil']  = $resultado['empresa']['foto_perfil'] ?? 'assets/img/default-avatar.png';
+
+        // Redirige al home
+        header("Location: home.php");
+        exit();
     } else {
         $mensaje = $resultado['mensaje'];
         $tipo_mensaje = "danger";
     }
 }
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -45,11 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main >
   <form method="POST" action="">
       <h2>Iniciar sesión - Persona Jurídica</h2>
-    <label>Correo:</label>
-    <input type="email" name="correo" required><br><br>
+    <label>NIT:</label>
+    <input type="text" name="nit" required><br><br>
 
-    <label>Contraseña:</label>
-    <input type="password" name="password" required><br><br>
+       <label>Contraseña:</label>
+      <div class="input-group">
+        <input type="password" id="password" name="password" class="form-control" required>
+        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+          <i class="bi bi-eye"></i>
 
     <button type="submit">Ingresar</button>
 
@@ -65,5 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </main>
   
   <?php include 'partials/footer.php'; ?>
+
+
+    <script src="../assets/js/login.js"></script>
 </body>
+
+
 </html>

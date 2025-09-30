@@ -7,6 +7,10 @@ if (!isset($_SESSION['id'])) {
 }
 require_once '../controller/VacantesPublicadasController.php';
 $vacantes = isset($vacantes) ? $vacantes : [];
+
+// lineas añadidas
+$nombre = $_SESSION['nombre'] ?? 'Usuario';
+$tipo   = $_SESSION['tipo'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,6 +21,8 @@ $vacantes = isset($vacantes) ? $vacantes : [];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 </head>
 <body>
+  
+
     <?php $activePage = 'vacantes_aplicadas'; include 'partials/navbar.php'; ?>
     <div class="container py-5">
         <h2 class="mb-4">Tus vacantes publicadas</h2>
@@ -56,5 +62,6 @@ $vacantes = isset($vacantes) ? $vacantes : [];
         <?php endif; ?>
     </div>
     <?php include 'partials/footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
