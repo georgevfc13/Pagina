@@ -11,6 +11,9 @@
 --   tipo: Tipo de servicio (por ejemplo, consultoría, capacitación, etc.)
 --   fecha_publicacion: Fecha en que se publica el servicio
 --   empresa: Nombre de la empresa que ofrece el servicio
+
+
+
 --   precio: Rango o valor del servicio (opcional)
 -- Tabla para servicios
 -- usuario_id: ID del usuario que publica el servicio (puede ser natural o jurídico)
