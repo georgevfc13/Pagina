@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS servicios (
     empresa VARCHAR(100) NOT NULL,
     precio VARCHAR(50),
     usuario_id INT NOT NULL,
+    icono VARCHAR(100) NULL;
+
     usuario_tipo ENUM('natural', 'juridico') NOT NULL
     -- No se define una foreign key directa, ya que puede ser de dos tablas distintas
     -- Si migras desde una versión anterior, elimina la foreign key con:
