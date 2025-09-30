@@ -23,6 +23,14 @@ main{
     flex: 1 0 auto;
 }
 
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
 .logo{
     border-radius: 50%;
     width: 50px;

@@ -3,8 +3,13 @@ session_start();
 
 
 require_once __DIR__ . '/../controller/ServicioController.php';
+require_once __DIR__ . '/../controller/VacanteController.php';
 $controller = new ServicioController();
 $servicios = $controller->obtenerServicios(6); // mostrar solo 3 servicios
+$controller = new VacanteController();
+// 🔹 Traer 6 vacantes para mostrar en el home
+$vacantes = $controller->obtenerVacantes(6) ?? [];
+
 
 
 // Si hay sesión activa
@@ -103,7 +108,7 @@ if (isset($_SESSION['id'])) {
 
         <!-- servicios -->
 <section class="container my-5">
-    <h1 class="fw-bold text-primary mb-3">Nuestros Servicios</h1>
+    <h1 class="fw-bold text-primary mb-3 h1">Nuestros Servicios</h1>
     <p class="lead text-secondary mx-auto " style="max-width: 600px;">
         Ofrecemos servicios profesionales para ayudar a tu empresa a crecer y tener éxito en el mercado actual.
     </p>
@@ -154,182 +159,34 @@ if (isset($_SESSION['id'])) {
 
 
         <!-- vacantes -->
-        <main class="container py-5">
-            <section class="text-center mb-5">
-                <h1 class="fw-bold text-primary mb-3">Nuestras Vacantes</h1>
-                <p class="lead text-secondary mx-auto" style="max-width: 600px">
-                    En GDA conectamos tu talento con empresas líderes para impulsar tu crecimiento y éxito profesional.
-                </p>
-            </section>
-            <section class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <!-- Vacante 1. -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px">
-                                <i class="fas fa-user-tie text-success fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Analista de Datos</h5>
-                            <p class="card-text">
-                                Únete a nuestro equipo para analizar y transformar datos en
-                                soluciones estratégicas.
-                            </p>
-                            <a href="#" class="btn btn-outline-success btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Detalles de la vacante</h6>
-                                    <p>
-                                        Requisitos: Experiencia en análisis de datos, manejo de SQL
-                                        y Python. Ofrecemos salario competitivo, crecimiento
-                                        profesional y ambiente colaborativo.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+
+        <section class="container my-5">
+    <h1 class="fw-bold text-primary mb-3">Nuestras Vacantes</h1>
+    <p class="lead text-secondary mx-auto " style="max-width: 600px;">
+        En GDA conectamos tu talento tu talento con empresas lideres para impulsar tu crecimiento y éxito profesional.
+    </p>
+       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <?php foreach ($vacantes as $vacante): ?>
+        <div class="col">
+            <div class="card h-100 shadow rounded-4">
+                <div class="card-body text-center">
+                    <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                         style="width: 64px; height: 64px">
+                        <i class="<?= htmlspecialchars($vacante['icono'] ?? 'fa-solid fa-briefcase'); ?> fa-xl"
+                           style="color: #0676cb;"></i>
                     </div>
+                    <h5 class="card-title fw-bold"><?= htmlspecialchars($vacante['titulo']); ?></h5>
+                    <p class="card-text"><?= htmlspecialchars($vacante['descripcion']); ?></p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        Ver más <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
                 </div>
-                <!-- Vacante 2 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px">
-                                <i class="fas fa-code text-warning fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Desarrollador Frontend</h5>
-                            <p class="card-text">
-                                Buscamos talento creativo para crear interfaces web modernas y
-                                funcionales.
-                            </p>
-                            <a href="#" class="btn btn-outline-warning btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Detalles de la vacante</h6>
-                                    <p>
-                                        Requisitos: Conocimientos en HTML, CSS, JavaScript y
-                                        frameworks como React. Beneficios: Flexibilidad laboral,
-                                        capacitaciones y proyectos innovadores.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vacante 3 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px">
-                                <i class="fas fa-network-wired text-info fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Especialista en Redes</h5>
-                            <p class="card-text">
-                                Sé parte de nuestro equipo gestionando y optimizando
-                                infraestructuras de red.
-                            </p>
-                            <a href="#" class="btn btn-outline-info btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Detalles de la vacante</h6>
-                                    <p>
-                                        Requisitos: Certificaciones en redes, experiencia en
-                                        administración de servidores. Ofrecemos estabilidad,
-                                        formación continua y excelente clima laboral.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vacante 4 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px">
-                                <i class="fas fa-shield-alt text-danger fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Especialista en Ciberseguridad</h5>
-                            <p class="card-text">
-                                Protege sistemas y datos críticos en proyectos de alto impacto.
-                            </p>
-                            <a href="#" class="btn btn-outline-danger btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Detalles de la vacante</h6>
-                                    <p>
-                                        Requisitos: Experiencia en seguridad informática, manejo de
-                                        herramientas de protección y auditoría. Beneficios: Bonos,
-                                        capacitaciones y retos constantes.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vacante 5 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px">
-                                <i class="fas fa-users text-primary fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Gestor de Talento Humano</h5>
-                            <p class="card-text">
-                                Ayuda a potenciar equipos y liderar procesos de selección y
-                                capacitación.
-                            </p>
-                            <a href="#" class="btn btn-outline-primary btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Detalles de la vacante</h6>
-                                    <p>
-                                        Requisitos: Experiencia en RRHH, habilidades de liderazgo y
-                                        comunicación. Ofrecemos desarrollo profesional y ambiente
-                                        inclusivo.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Vacante 6 -->
-                <div class="col">
-                    <div class="card h-100 shadow rounded-4">
-                        <div class="card-body text-center">
-                            <div
-                                class="bg-secondary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                                style="width: 64px; height: 64px">
-                                <i class="fas fa-briefcase text-secondary fs-3"></i>
-                            </div>
-                            <h5 class="card-title fw-bold">Consultor Empresarial</h5>
-                            <p class="card-text">
-                                Brinda asesoría estratégica para el crecimiento y transformación
-                                de empresas.
-                            </p>
-                            <a href="#" class="btn btn-outline-secondary btn-sm toggle-info">Ver más <i class="fas fa-arrow-right ms-1"></i></a>
-                            <div class="info-extra collapse mt-3">
-                                <div class="card card-body">
-                                    <h6 class="fw-bold">Detalles de la vacante</h6>
-                                    <p>
-                                        Requisitos: Experiencia en consultoría, visión estratégica y
-                                        capacidad analítica. Beneficios: Proyectos desafiantes y
-                                        reconocimiento profesional.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+</section>
+
             <!-- fin de vacantes -->
 
             <!-- inicio del mapa de vacantes -->

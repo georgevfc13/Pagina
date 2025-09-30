@@ -1,7 +1,8 @@
 <?php
-require_once __DIR__ . '/../models/vacante.php';
+require_once __DIR__ . '/../models/Vacante.php';
 
 class VacanteController {
+    // Registrar vacante
     public function registrarVacante() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
@@ -11,55 +12,74 @@ class VacanteController {
                 'tipo' => $_POST['tipo'] ?? '',
                 'empresa' => $_POST['empresa'] ?? '',
                 'salario' => $_POST['salario'] ?? '',
-                'vacantes_disponibles' => $_POST['vacantes_disponibles'] ?? 1
             ];
-            // Validación básica
-            if (empty($data['titulo']) || empty($data['descripcion']) || empty($data['ubicacion']) || empty($data['tipo']) || empty($data['empresa']) || empty($data['vacantes_disponibles'])) {
-                return 'Todos los campos obligatorios deben ser completados.';
-            }
+
             if (!isset($_SESSION)) session_start();
-            // Permitir tanto naturales como jurídicas
-            $tipoUsuario = null;
-            if (isset($_SESSION['tipo_usuario'])) {
-                $tipoUsuario = $_SESSION['tipo_usuario'];
-            } elseif (isset($_SESSION['tipo'])) {
-                $tipoUsuario = $_SESSION['tipo'];
-            }
-            if (!isset($_SESSION['id']) || !$tipoUsuario) {
+            if (!isset($_SESSION['id'])) {
                 return 'Debes iniciar sesión para publicar una vacante.';
             }
+
             $data['usuario_id'] = $_SESSION['id'];
-            $data['usuario_tipo'] = $tipoUsuario; // 'natural' o 'juridico'
+            $data['usuario_tipo'] = $_SESSION['tipo_usuario'] ?? 'natural';
+
+            // 🔹 Iconos según tipo
+            switch ($data['tipo']) {
+                case 'Tecnología': $data['icono'] = 'fa-solid fa-laptop-code'; break;
+                case 'Construcción': $data['icono'] = 'fa-solid fa-helmet-safety'; break;
+                case 'Educación': $data['icono'] = 'fa-solid fa-chalkboard-teacher'; break;
+                case 'Salud': $data['icono'] = 'fa-solid fa-user-nurse'; break;
+                case 'Transporte': $data['icono'] = 'fa-solid fa-truck'; break;
+                case 'Administración': $data['icono'] = 'fa-solid fa-briefcase'; break;
+                default: $data['icono'] = 'fa-solid fa-briefcase';
+            }
+
             $vacante = new Vacante();
             $resultado = $vacante->registrar($data);
-            if ($resultado === true) {
-                return true;
-            } else {
-                return 'Error al registrar la vacante: ' . $resultado;
-            }
+
+            return $resultado === true ? true : 'Error al registrar la vacante: ' . $resultado;
         }
         return null;
     }
 
-        public function aplicarVacante($vacante_id, $usuario_id = null) {
+    // Obtener vacantes
+    public function obtenerVacantes($limit = null) {
         $vacante = new Vacante();
-        return $vacante->aplicar($vacante_id, $usuario_id);
-    }
-    /**
-     * Editar una vacante existente
-     */
-
-    
-    public function editarVacante($id, $data) {
-        $vacante = new Vacante();
-        return $vacante->editarVacante($id, $data);
+        return $vacante->getVacantes($limit);
     }
 
-    /**
-     * Eliminar una vacante por su ID
-     */
+    // Eliminar vacante propia
     public function eliminarVacante($id) {
+        if (!isset($_SESSION)) session_start();
+        if (!isset($_SESSION['id'])) {
+            return "Debes iniciar sesión para eliminar una vacante.";
+        }
+
         $vacante = new Vacante();
-        return $vacante->eliminarVacante($id);
+        return $vacante->eliminarVacantePropia($id, $_SESSION['id']);
+    }
+}
+
+// 👇 Bloque de acciones (igual que en servicios)
+if (isset($_GET['action'])) {
+    $controller = new VacanteController();
+
+    if ($_GET['action'] === 'registrar') {
+        $resultado = $controller->registrarVacante();
+        if ($resultado === true) {
+            header('Location: ../views/vacantes.php?success=1');
+        } else {
+            header('Location: ../views/vacantes.php?error=' . urlencode($resultado));
+        }
+        exit();
+    }
+
+    if ($_GET['action'] === 'eliminar' && isset($_GET['id'])) {
+        $resultado = $controller->eliminarVacante($_GET['id']);
+        if ($resultado === true) {
+            header('Location: ../views/vacantes.php?deleted=1');
+        } else {
+            header('Location: ../views/vacantes.php?error=' . urlencode($resultado));
+        }
+        exit();
     }
 }

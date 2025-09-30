@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS vacantes (
     vacantes_disponibles INT NOT NULL DEFAULT 1,
     aplicados INT NOT NULL DEFAULT 0,
     usuario_id INT NOT NULL,
+      icono VARCHAR(100) NULL,
     usuario_tipo ENUM('natural', 'juridico') NOT NULL
     -- No se define una foreign key directa, ya que puede ser de dos tablas distintas
 );
