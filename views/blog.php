@@ -10,8 +10,9 @@
 <body>
     <?php $activePage = 'blog'; include 'partials/navbar.php'; ?>
     <main class="container py-5">
-        <h1 class="mb-4">Blog</h1>
-        <p>Próximamente artículos y novedades.</p>
+       
+
+
     </main>
     <?php include 'partials/footer.php'; ?>
 </body>

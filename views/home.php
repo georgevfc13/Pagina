@@ -234,7 +234,7 @@ if (isset($_SESSION['id'])) {
                                 <a
                                     href="https://www.rcnradio.com/tecnologia/la-ia-va-cambiar-la-forma-de-conseguir-empleo-en-colombia-asi-le-va-tocar-a-los-que-ya-estan-buscando-trabajo"
                                     target="_blank"
-                                    class="btn btn-outline-primary mt-auto">Ver mas</a>
+                                    class="btn btn-outline-primary mt-auto" >Ver mas</a>
                             </div>
                         </div>
                     </div>
@@ -284,7 +284,7 @@ if (isset($_SESSION['id'])) {
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-outline-primary">Ver mas noticias</button>
+                        <a href="../views/noticias.php"><button class="btn btn-outline-primary">Ver mas noticias</button></a>
                     </div>
                 </div>
             </section>

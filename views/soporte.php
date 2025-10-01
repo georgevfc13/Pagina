@@ -6,6 +6,14 @@
     <title>Soporte Técnico - Tu Empresa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnwpHbyT38iGgWJ8E7C5A376z4O5jL3c" crossorigin="anonymous" />
     <link rel="stylesheet" href="../assets/styles/style.css" />
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
     
@@ -42,7 +50,7 @@
                     <i class="fas fa-question-circle fa-4x mb-4"></i>
                     <h2 class="h4">Preguntas Frecuentes</h2>
                     <p class="text-muted">Encuentra respuestas a las consultas más comunes en nuestra sección de FAQs.</p>
-                    <a href="#" class="btn btn-primary mt-3">Ver FAQs</a>
+                    <a href="faqs.php" class="btn btn-primary mt-3">Ver FAQs</a>
                 </div>
             </div>
             
@@ -51,7 +59,7 @@
                     <i class="fas fa-envelope fa-4x mb-4"></i>
                     <h2 class="h4">Formulario de Contacto</h2>
                     <p class="text-muted">Envíanos un mensaje y te responderemos lo antes posible.</p>
-                    <a href="#" class="btn btn-primary mt-3">Enviar Mensaje</a>
+                    <a href="tel:+57 320 8744064" class="btn btn-primary mt-3">Enviar Mensaje</a>
                 </div>
             </div>
             
