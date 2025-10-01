@@ -88,7 +88,13 @@ if (session_status() === PHP_SESSION_NONE) {
               <?php echo isset($tipo) ? htmlspecialchars($tipo) : ''; ?>
             </li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="perfil.php">Perfil</a></li>
+          <li>
+  <a class="dropdown-item" 
+     href="<?php echo ($_SESSION['tipo_usuario'] ?? '') === 'juridico' ? 'perfilJuridico.php' : 'perfil.php'; ?>">
+     Perfil
+  </a>
+</li>
+
             <li><a class="dropdown-item" href="servicios_subidos.php">Servicios Subidos</a></li>
             <li><a class="dropdown-item" href="vacantes_aplicadas.php">Vacantes Aplicadas</a></li>
             <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>

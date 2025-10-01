@@ -3,7 +3,7 @@ require_once __DIR__ . "/../config/dataBase.php";
 require_once __DIR__ . "/../models/usuarioNatural.php";
 
 class UsuarioNaturalController {
- public function login($data) {
+ public function login($data):array    {
         $contacto = $data['contacto'] ?? '';
         $password = $data['password'] ?? '';
         $resultado = $this->usuario->login($contacto, $password);
@@ -116,9 +116,8 @@ class UsuarioNaturalController {
         // Refrescar variables de sesión básicas
         $_SESSION['nombre']           = $data['nombre'];
         $_SESSION['contacto']         = $data['contacto'];
-        $_SESSION['genero']           = $data['genero'];
-        $_SESSION['tipo_contacto']    = $data['tipo_contacto'];
-        $_SESSION['fecha_nacimiento'] = $data['fecha_nacimiento'];
+        
+        
         // Si no hay foto cargada y no existe en sesión, poner default
         if (empty($_SESSION['foto_perfil'])) {
             $_SESSION['foto_perfil'] = '../assets/img/logo.jpg';

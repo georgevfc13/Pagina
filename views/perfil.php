@@ -49,7 +49,7 @@ $usuario = [
  <img src="<?php echo $usuario['foto_perfil'] ?: '../assets/img/logo.jpg'; ?>"
      style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
 
-         style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
+         
     <br><br>
     <label>Nombre:</label>
     <input type="text" name="nombre" value="<?php echo htmlspecialchars($usuario['nombre']); ?>">

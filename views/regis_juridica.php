@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tipo_mensaje = "danger";
     }
 }
+
 ?>
 
 <!DOCTYPE html>

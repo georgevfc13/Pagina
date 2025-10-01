@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../models/Vacante.php';
 
 class VacanteController {
-    // Registrar vacante
+    // Registrar vacante (con íconos por tipo)
     public function registrarVacante() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
@@ -57,9 +57,26 @@ class VacanteController {
         $vacante = new Vacante();
         return $vacante->eliminarVacantePropia($id, $_SESSION['id']);
     }
+
+    // Aplicar a vacante
+    public function aplicarVacante($vacante_id, $usuario_id) {
+        $vacante = new Vacante();
+        return $vacante->aplicar($vacante_id, $usuario_id);
+    }
+
+    // Editar vacante
+    public function editarVacante($id, $data, ) {
+        if (!isset($_SESSION)) session_start();
+        if (!isset($_SESSION['id'])) {
+            return "Debes iniciar sesión para editar una vacante.";
+        }
+
+        $vacante = new Vacante();
+        return $vacante->editarVacante($id, $data, $_SESSION['id']);
+    }
 }
 
-// 👇 Bloque de acciones (igual que en servicios)
+// 👇 Bloque de acciones (cuando se accede por GET desde vistas)
 if (isset($_GET['action'])) {
     $controller = new VacanteController();
 
@@ -77,6 +94,16 @@ if (isset($_GET['action'])) {
         $resultado = $controller->eliminarVacante($_GET['id']);
         if ($resultado === true) {
             header('Location: ../views/vacantes.php?deleted=1');
+        } else {
+            header('Location: ../views/vacantes.php?error=' . urlencode($resultado));
+        }
+        exit();
+    }
+
+    if ($_GET['action'] === 'editar' && isset($_POST['id'])) {
+        $resultado = $controller->editarVacante($_POST['id'], $_POST);
+        if ($resultado === true) {
+            header('Location: ../views/vacantes.php?edited=1');
         } else {
             header('Location: ../views/vacantes.php?error=' . urlencode($resultado));
         }

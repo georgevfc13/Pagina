@@ -101,5 +101,52 @@ class EmpresaRut
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+
+    public function actualizar($id, $data)
+{
+    // Construir SQL dinámico según los campos que llegan
+    $campos = [];
+    $params = [":id" => $id];
+
+    if (isset($data['razon_social'])) {
+        $campos[] = "razon_social = :razon_social";
+        $params[":razon_social"] = htmlspecialchars(strip_tags($data['razon_social']));
+    }
+    if (isset($data['nit'])) {
+        $campos[] = "nit = :nit";
+        $params[":nit"] = htmlspecialchars(strip_tags($data['nit']));
+    }
+    if (isset($data['direccion'])) {
+        $campos[] = "direccion = :direccion";
+        $params[":direccion"] = htmlspecialchars(strip_tags($data['direccion']));
+    }
+    if (isset($data['contacto'])) {
+        $campos[] = "contacto = :contacto";
+        $params[":contacto"] = htmlspecialchars(strip_tags($data['contacto']));
+    }
+    if (isset($data['tipo_contacto'])) {
+        $campos[] = "tipo_contacto = :tipo_contacto";
+        $params[":tipo_contacto"] = htmlspecialchars(strip_tags($data['tipo_contacto']));
+    }
+    if (isset($data['password']) && !empty($data['password'])) {
+        $campos[] = "password = :password";
+        $params[":password"] = password_hash($data['password'], PASSWORD_DEFAULT);
+    }
+    if (isset($data['foto_perfil'])) {
+        $campos[] = "foto_perfil = :foto_perfil";
+        $params[":foto_perfil"] = htmlspecialchars(strip_tags($data['foto_perfil']));
+    }
+
+    if (empty($campos)) {
+        return false; // No hay nada que actualizar
+    }
+
+    $sql = "UPDATE {$this->table} SET " . implode(", ", $campos) . " WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+
+    return $stmt->execute($params);
+}
+
 }
 ?>

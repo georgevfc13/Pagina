@@ -11,7 +11,7 @@ require_once '../models/vacante.php';
 
 $usuarioId = $_SESSION['id'];
 $vacanteModel = new Vacante();
-$vacantes = $vacanteModel->getVacantesByUsuario($usuarioId);
+$vacantes = $vacanteModel->getVacantes($usuarioId);
 
 // Procesar eliminación
 if (isset($_POST['eliminar_vacante'])) {
@@ -31,7 +31,7 @@ if (isset($_POST['editar_vacante'])) {
         'empresa' => $_POST['edit_empresa'],
         'salario' => $_POST['edit_salario']
     ];
-    $vacanteModel->editarVacantePropia($id, $data, $usuarioId);
+    $vacanteModel->editarVacante($id, $data, $usuarioId);
     header('Location: vacantes_aplicadas.php');
     exit();
 }

@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . "/../config/dataBase.php";
 require_once __DIR__ . "/../models/EmpresaRut.php";
-// controller/EmpresaRUTController.php
 
 class EmpresaRutController {
 
@@ -11,20 +10,33 @@ class EmpresaRutController {
     public function __construct() {
         $database   = new Database();
         $this->db   = $database->getConnection();
-        // Aquí debe instanciar el MODELO, no el controlador
+        // Se instancia el MODELO, no el controlador
         $this->empresa = new EmpresaRut($this->db);
     }
 
     /**
-     * Login por contacto (correo o celular) y contraseña
+     * Login de empresa por NIT y contraseña
      */
     public function login($data) {
-        $nit = $data['nit'] ?? '';
+        $nit      = $data['nit']      ?? '';
         $password = $data['password'] ?? '';
 
         $resultado = $this->empresa->login($nit, $password);
 
         if (is_array($resultado)) {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            // Guardar datos en sesión
+            $_SESSION['id']            = $resultado['id'];
+            $_SESSION['razon_social']  = $resultado['razon_social'];
+            $_SESSION['nit']           = $resultado['nit'];
+            $_SESSION['representante'] = $resultado['representante'] ?? '';
+            $_SESSION['contacto']      = $resultado['contacto']      ?? '';
+            $_SESSION['foto_perfil']   = $resultado['foto_perfil']   ?? '../assets/img/logo.jpg';
+            $_SESSION['tipo_usuario']  = 'juridico';
+
             return [
                 'success' => true,
                 'empresa' => $resultado,
@@ -33,7 +45,7 @@ class EmpresaRutController {
         } else {
             return [
                 'success' => false,
-                'mensaje' => $resultado,
+                'mensaje' => $resultado, // mensaje de error desde el modelo
             ];
         }
     }
@@ -50,7 +62,7 @@ class EmpresaRutController {
         $this->empresa->password      = $data['password']      ?? '';
         $this->empresa->terminos      = isset($data['terminos']) ? 1 : 0;
 
-        // Foto de perfil
+        // Foto de perfil (por defecto)
         $rutaPredeterminada = '../assets/img/mancitoSinfoto.png';
         $fotoFinal = $rutaPredeterminada;
 
@@ -74,6 +86,40 @@ class EmpresaRutController {
             return "❌ Error al registrar";
         } else {
             return $resultado; // mensaje de error o NIT existente
+        }
+    }
+
+    /**
+     * Actualizar perfil de empresa
+     */
+    public function actualizarPerfil($id, $data, $file) {
+        // Actualizar datos principales
+        $this->empresa->actualizar($id, $data);
+
+        // Procesar foto si se subió
+        if (!empty($file['tmp_name'])) {
+            $carpeta = __DIR__ . "/../uploads/fotos/";
+            if (!is_dir($carpeta)) mkdir($carpeta, 0755, true);
+
+            $nombreArchivo = uniqid('foto_') . "_" . basename($file['name']);
+            $rutaServidor  = $carpeta . $nombreArchivo;
+
+            $info = getimagesize($file['tmp_name']);
+            if ($info && move_uploaded_file($file['tmp_name'], $rutaServidor)) {
+                $rutaBD = "../uploads/fotos/" . $nombreArchivo;
+                $this->empresa->actualizar($id, ['foto_perfil' => $rutaBD]);
+                $_SESSION['foto_perfil'] = $rutaBD;
+            }
+        }
+
+        // Refrescar variables de sesión
+        $_SESSION['razon_social']  = $data['razon_social']  ?? $_SESSION['razon_social'];
+        $_SESSION['nit']           = $data['nit']           ?? $_SESSION['nit'];
+        $_SESSION['representante'] = $data['representante'] ?? $_SESSION['representante'];
+        $_SESSION['contacto']      = $data['contacto']      ?? $_SESSION['contacto'];
+
+        if (empty($_SESSION['foto_perfil'])) {
+            $_SESSION['foto_perfil'] = '../assets/img/logo.jpg';
         }
     }
 }
