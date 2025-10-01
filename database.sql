@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS vacantes (
     vacantes_disponibles INT NOT NULL DEFAULT 1,
     aplicados INT NOT NULL DEFAULT 0,
     usuario_id INT NOT NULL,
-      icono VARCHAR(100) NULL,
+    icono VARCHAR(100) NULL,
     usuario_tipo ENUM('natural', 'juridico') NOT NULL
     -- No se define una foreign key directa, ya que puede ser de dos tablas distintas
 );
@@ -109,6 +109,11 @@ CREATE TABLE IF NOT EXISTS aplicaciones (
     vacante_id INT NOT NULL,
     usuario_id INT,
     fecha_aplicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (vacante_id) REFERENCES vacantes(id)
+        -- Eliminar la clave foránea actual (si existe) y crearla con ON DELETE CASCADE
+        ALTER TABLE aplicaciones DROP FOREIGN KEY aplicaciones_ibfk_1;
+        ALTER TABLE aplicaciones
+        ADD CONSTRAINT aplicaciones_ibfk_1
+        FOREIGN KEY (vacante_id) REFERENCES vacantes(id)
+        ON DELETE CASCADE;
     -- usuario_id puede ser NULL si no hay login, o referenciar usuarios_naturales
 );

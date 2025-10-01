@@ -265,8 +265,10 @@ if (isset($_GET['exito'])) {
                     <p class='card-text mb-3'><strong>Precio:</strong> <?= $precio ?></p>
                     <div class='d-flex flex-wrap gap-2 mt-auto'>
                         <button class='btn btn-info' onclick='contratarServicio(<?= $servicioId ?>)'>Contratar</button>
-                        <button class='btn btn-warning' onclick='mostrarEditarServicio(<?= $servicioId ?>)'>Editar</button>
-                        <button class='btn btn-danger' onclick='eliminarServicio(<?= $servicioId ?>)'>Eliminar</button>
+                        <?php if (isset($_SESSION['id']) && $_SESSION['id'] == $row['usuario_id']): ?>
+                            <button class='btn btn-warning' onclick='mostrarEditarServicio(<?= $servicioId ?>)'>Editar</button>
+                            <button class='btn btn-danger' onclick='eliminarServicio(<?= $servicioId ?>)'>Eliminar</button>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

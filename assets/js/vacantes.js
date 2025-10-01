@@ -77,9 +77,12 @@ function mostrarEditarVacante(id) {
     const tipo = card.querySelectorAll('.card-text')[2].textContent.replace('Tipo:', '').trim();
     let empresa = '';
     let salario = '';
+    let usuarioTipo = '';
     card.querySelectorAll('.card-text').forEach(el => {
         if (el.textContent.includes('Empresa:')) empresa = el.textContent.replace('Empresa:', '').trim();
         if (el.textContent.includes('Salario:')) salario = el.textContent.replace('Salario:', '').trim();
+        if (el.textContent.includes('Publicado por empresa:')) usuarioTipo = 'juridico';
+        if (el.textContent.includes('Publicado por persona natural:')) usuarioTipo = 'natural';
     });
     document.getElementById('edit-vacante-id').value = id;
     document.getElementById('edit-vacante-titulo').value = titulo;
@@ -88,6 +91,7 @@ function mostrarEditarVacante(id) {
     document.getElementById('edit-vacante-tipo').value = tipo;
     document.getElementById('edit-vacante-empresa').value = empresa;
     document.getElementById('edit-vacante-salario').value = salario;
+    document.getElementById('edit-vacante-usuario-tipo').value = usuarioTipo;
     document.getElementById('modal-editar-vacante').style.display = 'flex';
     setTimeout(() => document.getElementById('modal-editar-vacante').classList.add('show'), 10);
     vacanteEditandoId = id;
@@ -108,7 +112,8 @@ document.getElementById('form-editar-vacante').onsubmit = function(e) {
         ubicacion: document.getElementById('edit-vacante-ubicacion').value,
         tipo: document.getElementById('edit-vacante-tipo').value,
         empresa: document.getElementById('edit-vacante-empresa').value,
-        salario: document.getElementById('edit-vacante-salario').value
+        salario: document.getElementById('edit-vacante-salario').value,
+        usuario_tipo: document.getElementById('edit-vacante-usuario-tipo').value
     };
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '../controller/vacante_ajax.php', true);
@@ -243,7 +248,8 @@ document.getElementById('form-editar-vacante').onsubmit = function(e) {
         ubicacion: document.getElementById('edit-vacante-ubicacion').value,
         tipo: document.getElementById('edit-vacante-tipo').value,
         empresa: document.getElementById('edit-vacante-empresa').value,
-        salario: document.getElementById('edit-vacante-salario').value
+        salario: document.getElementById('edit-vacante-salario').value,
+        usuario_tipo: document.getElementById('edit-vacante-usuario-tipo').value
     };
     // AJAX para editar vacante
     var xhr = new XMLHttpRequest();

@@ -16,12 +16,17 @@ $vacantes = $controller->obtenerVacantes(6) ?? [];
 if (isset($_SESSION['id'])) {
     $nombre = $_SESSION['nombre'] ?? 'Usuario';
     $tipo   = $_SESSION['tipo'] ?? '';
-    $foto = $_SESSION['foto_perfil'] ?? 'assets/img/default-avatar.png'; // Ruta por defecto si no hay foto de perfil
+    // Usar la lógica unificada para foto de perfil
+    if (!empty($_SESSION['foto_perfil']) && file_exists(str_replace('..','.', $_SESSION['foto_perfil']))) {
+        $foto = $_SESSION['foto_perfil'];
+    } else {
+        $foto = '../assets/img/mancitoSinfoto.png';
+    }
 } else {
     // Si no hay sesión, es invitado
     $nombre = 'Invitado';
     $tipo   = 'invitado';
-    $foto = 'assets/img/default-avatar.png'; // Ruta por defecto para invitados
+    $foto = '../assets/img/mancitoSinfoto.png'; // Ruta por defecto para invitados
 }
 
 
@@ -55,9 +60,12 @@ if (isset($_SESSION['id'])) {
             <h1 class="fw-bold">Hola, <?php echo htmlspecialchars($nombre); ?>👋 </h1>
             <p class="lead">Bienvenido a GDA, tu puente entre oportunidades laborales y talento profesional</p>
             <?php if (isset($_SESSION['id'])): ?>
-                <img src="<?php echo htmlspecialchars($foto && file_exists(str_replace('..','.', $foto)) ? $foto : '../assets/img/logo.jpg'); ?>"
-                     alt="Foto de perfil"
-                     style="width:90px;height:90px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 0 8px #0002;">
+          <?php
+            $fotoHome = (!empty($foto) && file_exists(str_replace('..','.', $foto))) ? $foto : '../assets/img/mancitoSinfoto.png';
+          ?>
+          <img src="<?php echo htmlspecialchars($fotoHome); ?>"
+              alt="Foto de perfil"
+              style="width:90px;height:90px;border-radius:50%;object-fit:cover;background:#fff;box-shadow:0 0 8px #0002;" />
             <?php endif; ?>
             <?php if (!isset($_SESSION['id'])): ?>
                 <a href="registro.php" class="btn btn-light mt-3">Regístrate aquí</a>

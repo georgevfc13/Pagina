@@ -46,7 +46,12 @@ $usuario = [
 
   <main>
   <form method="POST" enctype="multipart/form-data">
- <img src="<?php echo $usuario['foto_perfil'] ?: '../assets/img/logo.jpg'; ?>"
+ <?php
+   $fotoPerfil = (!empty($usuario['foto_perfil']) && file_exists(str_replace('..','.', $usuario['foto_perfil'])))
+     ? $usuario['foto_perfil']
+     : '../assets/img/mancitoSinfoto.png';
+ ?>
+ <img src="<?php echo htmlspecialchars($fotoPerfil); ?>"
      style="width:100px;height:100px;border-radius:50%;object-fit:cover;">
 
          

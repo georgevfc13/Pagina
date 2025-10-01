@@ -2,12 +2,12 @@
 
 // login
 class UsuarioNatural {
-   public function login($contacto, $password) {
+   public function login($identificacion, $password) {
     $sql = "SELECT id, nombre, identificacion, fecha_nacimiento, genero, contacto, tipo_contacto, foto_perfil, password 
             FROM " . $this->table . " 
-            WHERE contacto = :contacto LIMIT 1";
+            WHERE identificacion = :identificacion LIMIT 1";
     $stmt = $this->conn->prepare($sql);
-    $stmt->bindParam(":contacto", $contacto);
+    $stmt->bindParam(":identificacion", $identificacion);
     $stmt->execute();
 
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);

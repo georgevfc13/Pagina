@@ -75,7 +75,16 @@ if (session_status() === PHP_SESSION_NONE) {
              role="button"
              data-bs-toggle="dropdown"
              aria-expanded="false">
-      <img src="<?php echo (isset($foto) && file_exists(str_replace('..','.', $foto))) ? htmlspecialchars($foto) : '../assets/img/logo.jpg'; ?>"
+      <?php
+        // Lógica unificada para imagen de perfil en navbar
+        $fotoNavbar = '';
+        if (isset($_SESSION['foto_perfil']) && !empty($_SESSION['foto_perfil']) && file_exists(str_replace('..','.', $_SESSION['foto_perfil']))) {
+          $fotoNavbar = $_SESSION['foto_perfil'];
+        } else {
+          $fotoNavbar = '../assets/img/mancitoSinfoto.png';
+        }
+      ?>
+      <img src="<?php echo htmlspecialchars($fotoNavbar); ?>"
         alt="Usuario"
         class="rounded-circle"
         width="40" height="40">

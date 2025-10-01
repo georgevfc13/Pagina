@@ -65,14 +65,15 @@ class VacanteController {
     }
 
     // Editar vacante
-    public function editarVacante($id, $data, ) {
+    public function editarVacante($id, $data) {
         if (!isset($_SESSION)) session_start();
         if (!isset($_SESSION['id'])) {
             return "Debes iniciar sesión para editar una vacante.";
         }
-
-        $vacante = new Vacante();
-        return $vacante->editarVacante($id, $data, $_SESSION['id']);
+    $vacante = new Vacante();
+    // Añadir usuario_id al array de datos
+    $data['usuario_id'] = $_SESSION['id'];
+    return $vacante->editarVacante($id, $data);
     }
 }
 

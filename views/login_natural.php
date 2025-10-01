@@ -47,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div><?php echo $mensaje; ?></div>
       <?php endif; ?>
 
-      <label>Correo / Telefono:</label>
-      <input type="text" name="contacto" required><br><br>
+  <label>Identificación:</label>
+  <input type="text" name="identificacion" required><br><br>
 
       <label>Contraseña:</label>
       <div class="input-group">

@@ -57,6 +57,16 @@ class Vacante {
     // ---------------------------
     public function eliminarVacantePropia($id, $usuario_id) {
         try {
+            // Verificar que el usuario sea el propietario
+            $sqlCheck = "SELECT usuario_id FROM vacantes WHERE id = :id";
+            $stmtCheck = $this->conn->prepare($sqlCheck);
+            $stmtCheck->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtCheck->execute();
+            $row = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+            if (!$row || $row['usuario_id'] != $usuario_id) {
+                return "No tienes permisos para eliminar esta vacante.";
+            }
+
             $sql = "DELETE FROM vacantes WHERE id = :id AND usuario_id = :usuario_id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -116,8 +126,18 @@ class Vacante {
     // ---------------------------
     // EDITAR VACANTE
     // ---------------------------
-    public function editarVacante($id, $data, $usuario_id) {
+    public function editarVacante($id, $data) {
         try {
+            // Verificar que el usuario sea el propietario
+            $sqlCheck = "SELECT usuario_id FROM vacantes WHERE id = :id";
+            $stmtCheck = $this->conn->prepare($sqlCheck);
+            $stmtCheck->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtCheck->execute();
+            $row = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+            if (!$row || $row['usuario_id'] != $data['usuario_id']) {
+                return "No tienes permisos para editar esta vacante.";
+            }
+
             $sql = "UPDATE vacantes SET 
                         titulo = :titulo, 
                         descripcion = :descripcion, 
