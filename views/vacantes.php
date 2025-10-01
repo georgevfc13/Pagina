@@ -163,7 +163,7 @@ if (isset($_POST['titulo'])) {
                     $publicadoPor = '';
                     if ($usuarioTipo === 'juridico') {
                         // Buscar nombre de la empresa
-                        $queryEmpresa = $conn->prepare("SELECT razon_social FROM usuarios_juridicos WHERE id = ?");
+                        $queryEmpresa = $conn->prepare("SELECT razon_social FROM empresa_rut WHERE id = ?");
                         $queryEmpresa->execute([$usuarioId]);
                         if ($empresa = $queryEmpresa->fetch(PDO::FETCH_ASSOC)) {
                             $badge = "<span class='badge bg-success ms-2'>Empresa</span>";
@@ -200,10 +200,12 @@ if (isset($_POST['titulo'])) {
                                     <div class='col'><strong>Aplicadas:</strong> <span id='aplicados-$vacanteId'>$aplicados</span></div>
                                 </div>";
                     echo    "<div class='d-flex flex-wrap gap-2 mt-auto'>
-                                <button class='btn btn-info' onclick='mostrarAplicarVacante($vacanteId)'>Aplicar</button>
-                                <button class='btn btn-warning' onclick='mostrarEditarVacante($vacanteId)'>Editar</button>
-                                <button class='btn btn-danger' onclick='eliminarVacante($vacanteId)'>Eliminar</button>
-                            </div>
+                                <button class='btn btn-info' onclick='mostrarAplicarVacante($vacanteId)'>Aplicar</button>";
+                    if (isset($_SESSION['id']) && $_SESSION['id'] == $row['usuario_id']) {
+                        echo "<button class='btn btn-warning' onclick='mostrarEditarVacante($vacanteId)'>Editar</button>
+                              <button class='btn btn-danger' onclick='eliminarVacante($vacanteId)'>Eliminar</button>";
+                    }
+                    echo    "</div>
                             </div>
                         </div>";
                     $modalIndex++;
@@ -248,6 +250,7 @@ if (isset($_POST['titulo'])) {
             </div>
             <form id="form-editar-vacante" class="modal-body-servicio">
                 <input type="hidden" id="edit-vacante-id" name="id" />
+                <input type="hidden" id="edit-vacante-usuario-tipo" name="usuario_tipo" />
                 <div class="mb-2">
                     <label class="form-label">Título</label>
                     <input type="text" class="form-control" id="edit-vacante-titulo" name="titulo" required />
